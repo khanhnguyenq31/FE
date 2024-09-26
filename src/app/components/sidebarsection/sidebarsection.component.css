@@ -1,0 +1,157 @@
+.sidebar-container {
+    position: fixed;
+    left: 0;
+    top: 0;
+
+    width: 370px;
+    flex: 0.25;
+    overflow-y: auto;
+
+    display: flex;
+    flex-direction: column;
+    margin-right: 0.5rem;
+}
+
+
+/*  TOP CONTAINER*/
+.top-container {
+    margin-top: 10px;
+    height: 170px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    /* gap: 1.5rem;*/
+    padding: 0 1.7rem;
+    margin-bottom: 0.5rem;
+    background-color: var(--grey);
+    border-radius: 0.5rem;
+
+    background-color: #1b1919;
+}
+
+.top-container .top-item {
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+
+    font-weight: 700;
+    font-size: 15px;
+    opacity: 0.7;
+    cursor: pointer;
+
+    overflow: hidden;
+}
+
+.top-container .top-item:hover {
+    opacity: 1;
+    transition: all 0.3s;
+}
+
+.top-container .top-item img {
+    width: 25px;
+    height: 25px;
+}
+
+.top-container .top-item p {
+    margin-left: 15px;
+}
+
+.top-container .brand {
+    margin-top: 5px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    font-size: 18px;
+
+    user-select: none;
+    overflow: hidden;
+}
+
+.top-container .brand img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
+/*  TOP CONTAINER*/
+
+.library-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    /* gap: 1.5rem;*/
+    padding: 0 1.7rem;
+    margin-bottom: 0.5rem;
+    background-color: var(--grey);
+    border-radius: 0.5rem;
+    background-color: #1b1919;
+}
+
+.library-header {
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.library-header img {
+    height: 25px;
+    width: 25px;
+    opacity: 0.8;
+    /* margin-top: 0.5rem;*/
+}
+
+.library-header p {
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
+
+.library-header p:hover {
+    opacity: 1;
+    transition: all 0.3s;
+}
+
+.library-header img:hover {
+    opacity: 1;
+    transition: all 0.3s;
+}
+
+.link-flex {
+    display: flex;
+    justify-content: flex-start;
+    gap: 1rem;
+    align-items: center;
+    opacity: 0.7;
+    font-weight: 600;
+    font-size: 0.8rem;
+    /* cursor: pointer;*/
+}
+
+.link-flex:hover {
+    opacity: 1;
+    transition: all 0.3s;
+}
+
+.link-flex img {
+    height: 1.2rem;
+    width: 1.2rem;
+}
+
+.link-flex p {
+    font-size: 1rem;
+    color: var(--white);
+}
+
+
+.chip {
+    margin-top: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    background-color: var(--light-grey);
+    border-radius: 5rem;
+    width: fit-content;
+    font-weight: normal;
+    color: var(--white);
+}

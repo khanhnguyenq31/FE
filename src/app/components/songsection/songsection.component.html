@@ -1,0 +1,67 @@
+<section>
+    <div class="current-container">
+        <!-- 1st container -->
+        <div class="song-details">
+            <div class="song-thumbnail">
+                <img
+                    src={{this.songs[songIndex].coverImageUrl}}
+                    alt="play-song"
+                    #masterCover>
+            </div>
+            <div class="song-infor">
+                <div class="song-info">
+                    <h1 #songTitle id="songTitle">{{ songs[songIndex].title
+                        }}</h1>
+                    <p #songPerfomer id="songPerfomer">{{
+                        songs[songIndex].artist }}</p>
+                </div>
+                <div class="fav-action">
+                    <i class="fa-regular fa-heart" style="font-size: 18px;"
+                        #heartIcon></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2nd container -->
+        <div class="song-status">
+            <div class="control-container">
+                <div class="child"> <i class="fa-solid fa-shuffle" #shuffleMusic
+                        style="font-size: 16px;"></i> </div>
+                <div class="child"> <i class="fa-solid fa-backward-step"
+                        id="previous"></i> </div>
+                <div class="child"> <i class="fa-solid fa-circle-play fa-2x"
+                        id="masterPlayBtn" style="font-size: 35px;"></i> </div>
+                <div class="child"> <i class="fa-sharp fa-solid fa-forward-step"
+                        id="next"></i> </div>
+                <div class="child"> <i class="fa-solid fa-repeat"
+                        id="repeatMode" style="font-size: 15px;"></i></div>
+            </div>
+
+            <div class="progressbar-container">
+                <span id="current-time" #currentTimeSpan>0:00</span>
+                <div class="custom-progress">
+                    <div class="progress-bar" id="customProgressBar">
+                        <div class="progress" #customProgress></div>
+                        <div class="progress-thumb" #customProgressThumb></div>
+                    </div>
+                </div>
+                <span id="duration" #durationSpan>0:00</span>
+            </div>
+
+        </div>
+
+        <!-- 3rd container -->
+        <div class="song-directions">
+            <div class="child"> <i class="fa-solid fa-music"></i></div>
+            <div class="child"> <i
+                    class="fa-solid fa-bars song-queue"></i></div>
+            <div class="child"> <i class="fa-solid fa-computer"></i></div>
+            <div class="child volume">
+                <i class="fa-solid fa-duotone fa-volume-high" id="volIcon"></i>
+                <input type="range" value="100" min="1" max="100" step="1"
+                    class="volume-seekbar" #volumeRange>
+            </div>
+        </div>
+    </div>
+</section>
+

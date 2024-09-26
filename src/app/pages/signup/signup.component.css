@@ -1,0 +1,292 @@
+header {
+    height: 14vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0 4rem;
+}
+
+#spotify-logo {
+    width: 150px;
+}
+
+.mode-container {
+    position: relative;
+}
+
+#themeIcon {
+    font-size: 25px;
+    cursor: pointer;
+}
+
+#toggle-paragraph {
+    display: none;
+    font-size: 13px;
+    position: absolute;
+    top: -1rem;
+    right: -2.5rem;
+    width: 115px;
+}
+
+#nav-line {
+    width: 100%;
+    border-top: 0.5px solid #dfdcdc;
+}
+
+@media (max-width:768px) {
+    header {
+        padding: 0 3rem 0 1rem;
+    }
+}
+
+/* Signup Section */
+
+#main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 2rem 5rem 2rem;
+    position: relative;
+}
+
+#validationMessage {
+    background-color: #ff0000;
+    color: #ffffff;
+    width: 30rem;
+    padding: 15px;
+    margin: 15px 0;
+    font-weight: 600;
+    display: none;
+}
+
+.avatar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.avatar-label-container {
+    cursor: pointer;
+}
+
+.avatar-image-container {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #1ed760;
+}
+
+.avatar-preview-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+}
+
+.avatar-default-icon {
+    font-size: 50px;
+    color: #757676;
+}
+
+.avatar-upload-input {
+    display: none;
+}
+
+.email-container,
+.user-container {
+    display: flex;
+    flex-direction: column;
+}
+
+#username,
+#email,
+#password-elements {
+    outline: none;
+    background-color: transparent;
+    color: #ffffff;
+    border: 1px solid #757676;
+    border-radius: 8px;
+    width: 30rem;
+    padding: 14px 15px;
+    margin: 10px 0px;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+#password-elements {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#password {
+    background-color: transparent;
+    color: #ffffff;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    font-weight: 500;
+    width: 80%;
+}
+
+#eye-icon {
+    color: #ff0000;
+}
+
+label {
+    font-weight: bold;
+}
+
+a {
+    color: #000000;
+    font-weight: 600;
+    margin: 12px 0px;
+}
+
+
+#signup-btn {
+    background-color: #1ed760;
+    width: 7rem;
+    padding: 13px 10px;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: ease-in-out 0.2s;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.bottom-line {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    border: 1px solid #d9dadc;
+    width: 470px;
+}
+
+#login-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+#login-btn {
+    width: 30rem;
+    padding: 12px 0px;
+    margin-top: 25px;
+    font-size: 15px;
+    font-weight: 700;
+    border-radius: 50px;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    background-color: transparent;
+    color: #757676;
+    border: 1px solid #757676;
+    text-transform: uppercase;
+}
+
+@media (max-width: 550px) {
+
+    #username,
+    #email,
+    #password-elements,
+    #validationMessage,
+    #login-btn,
+    .bottom-line {
+        width: 90vw;
+    }
+}
+
+/* Captcha */
+
+.recaptcha-section {
+    position: absolute;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.outside-recaptcha {
+    width: 80px;
+    height: 60px;
+    box-shadow: #757676 0 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    transition: 0.5s ease-in-out;
+}
+
+.outside-recaptcha img {
+    width: 40px;
+}
+
+.outside-recaptcha p {
+    font-size: 9px;
+    color: #757676;
+}
+
+.inside-recaptcha {
+    background-color: #1877f2;
+    color: #ffffff;
+    height: 60px;
+    width: 200px;
+    padding-top: 10px;
+    padding-left: 15px;
+    position: absolute;
+    right: 0;
+    transition: 0.5s ease-in-out;
+}
+
+.inside-recaptcha {
+    opacity: 0;
+}
+
+.recaptcha-section:hover .inside-recaptcha {
+    opacity: 1;
+    transform: translate(0%);
+}
+
+.recaptcha-section:hover .outside-recaptcha {
+    transform: translate(-250%);
+}
+
+
+.inside-span {
+    font-size: 14px;
+}
+
+.re-cap-span {
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+}
+
+.re {
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.inside-recaptcha p {
+    font-size: 11px;
+    padding-top: 4px;
+}
+
+/* Hover Efect */
+
+#signup-btn:hover {
+    transform: scale(1.05);
+}
