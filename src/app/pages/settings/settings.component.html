@@ -1,0 +1,128 @@
+<html>
+<head>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body class="bg-black text-white font-sans">
+    
+    <div class="flex">
+        <app-sidebarsection></app-sidebarsection>
+        <div class="flex-1 p-4 ml-[300px]">
+    <div class="flex justify-between items-center mb-8">
+        <div class="flex items-center">
+         <button class="text-white mr-4">
+          <i class="fas fa-chevron-left">
+          </i>
+         </button>
+         <button class="text-white">
+          <i class="fas fa-chevron-right">
+          </i>
+         </button>
+        </div>
+        <!--
+        <div class="flex items-center">
+         <a class="mr-4" href="#">
+          Playlists
+         </a>
+         <a class="mr-4" href="#">
+          Podcasts
+         </a>
+         <a class="mr-4" href="#">
+          Artists
+         </a>
+         <a href="#">
+          Albums
+         </a>
+        </div>
+        -->
+        <div class="flex items-center">
+         <app-profilemenu></app-profilemenu>
+        </div>
+       </div>
+       </div>
+    </div>
+    <div class=" mx-auto p-6 ml-[300px]">
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-3xl font-bold">Cài đặt</h1>
+            <i class="fas fa-search text-xl"></i>
+        </div>
+        <div class="mb-6">
+            <h2 class="text-lg font-semibold mb-2">Ngôn ngữ</h2>
+            <p class="text-sm mb-4">Chọn ngôn ngữ - Các thay đổi sẽ được áp dụng sau khi bạn khởi động lại ứng dụng</p>
+            <div class="relative">
+                <select class="block appearance-none w-full bg-gray-800 border border-gray-700 text-white py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-gray-700 focus:border-gray-500">
+                    <option>Tiếng Việt (Vietnam)</option>
+                </select>
+                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-white">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h2 class="text-lg font-semibold mb-2">Hiển thị</h2>
+            <div class="flex items-center justify-between mb-4">
+                <p class="text-sm">Hiển thị bảng đang phát khi nhấp vào nút phát</p>
+                <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            <div class="flex items-center justify-between">
+                <p class="text-sm">Hiển thị hình ảnh ngắn và lặp lại trên bản nhạc (Canvas)</p>
+                <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 34px;
+            height: 20px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 12px;
+            width: 12px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #4ade80;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(14px);
+        }
+    </style>
+    <app-songsection></app-songsection>
+</body>
+</html>

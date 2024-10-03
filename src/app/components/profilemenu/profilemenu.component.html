@@ -1,15 +1,15 @@
 <div class="profile-menu" (click)="toggleMenu()">
     <div class="profile-info">
         <img src="https://i.pinimg.com/474x/e5/b1/65/e5b165832a3fcc5140b5ab510e7c1baa.jpg" alt="Profile" class="profile-image" />
-        <span class="profile-name">davedirect3</span>
+        <span class="profile-name">GEN Chovy</span>
         <mat-icon class="dropdown-icon">arrow_drop_down</mat-icon>
     </div>
     <div *ngIf="isMenuOpen" class="menu">
         <ul>
             <li routerLink="/profile">Profile</li>
             <li (click)="navigateTo('account')">Account</li>
-            <li (click)="navigateTo('settings')">Settings</li>
-            <li (click)="logout()">Log out</li>
+            <li routerLink="/settings">Settings</li>
+            <li routerLink="">Log out</li>
         </ul>
     </div>
 </div>

@@ -6,6 +6,7 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { HomebeforeloginComponent } from './pages/homebeforelogin/homebeforelogin.component';
 import { LikedsongsComponent } from './pages/likedsongs/likedsongs.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { SettingsComponent } from './pages/settings/settings.component';
 
 export const routes: Routes = [
     {path:'', component: HomebeforeloginComponent},
@@ -14,4 +15,5 @@ export const routes: Routes = [
     { path: 'signup', component: SignupComponent },
     { path: 'likedsongs', component: LikedsongsComponent },
     { path: 'profile', component: ProfileComponent },
+    { path: 'settings', component: SettingsComponent },
 ];
