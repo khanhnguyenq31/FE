@@ -1,0 +1,170 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        html, body {
+         height: 120%;
+        }
+       </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body class="bg-black text-white">
+    <div class=" h-screen">
+        <app-sidebarsection></app-sidebarsection>
+    <div class=" mx-auto p-4 ml-[300px]">
+        <div class="flex justify-between items-center mb-8">
+     <div class="flex items-center">
+      <button class="text-white mr-4">
+       <i class="fas fa-chevron-left">
+       </i>
+      </button>
+      <button class="text-white">
+       <i class="fas fa-chevron-right">
+       </i>
+      </button>
+     </div>
+     <!--
+     <div class="flex items-center">
+      <a class="mr-4" href="#">
+       Playlists
+      </a>
+      <a class="mr-4" href="#">
+       Podcasts
+      </a>
+      <a class="mr-4" href="#">
+       Artists
+      </a>
+      <a href="#">
+       Albums
+      </a>
+     </div>
+     -->
+     <div class="flex items-center">
+      <app-profilemenu></app-profilemenu>
+     </div>
+    </div>
+        <!-- Account Section -->
+        <div class="mb-6">
+            <h2 class="text-xl font-bold mb-4">Tài khoản</h2>
+            <div class="bg-gray-800 p-4 rounded-lg">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center">
+                        <i class="fas fa-box-open text-gray-400 mr-4"></i>
+                        <span>Quản lý gói đăng ký</span>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400"></i>
+                </div>
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center">
+                        <i class="fas fa-pencil-alt text-gray-400 mr-4"></i>
+                        <span>Chỉnh sửa hồ sơ</span>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400"></i>
+                </div>
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <i class="fas fa-undo text-gray-400 mr-4"></i>
+                        <span>Khôi phục danh sách phát</span>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Payment Section -->
+        <div class="mb-6">
+            <h2 class="text-xl font-bold mb-4">Thanh toán</h2>
+            <div class="bg-gray-800 p-4 rounded-lg">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center">
+                        <i class="fas fa-history text-gray-400 mr-4"></i>
+                        <span>Lịch sử đặt hàng</span>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400"></i>
+                </div>
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center">
+                        <i class="fas fa-credit-card text-gray-400 mr-4"></i>
+                        <span>Thẻ thanh toán đã lưu</span>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400"></i>
+                </div>
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <i class="fas fa-exchange-alt text-gray-400 mr-4"></i>
+                        <span>Đổi</span>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Security and Privacy Section -->
+        <div class="mb-6">
+            <h2 class="text-xl font-bold mb-4">Bảo mật và quyền riêng tư</h2>
+            <div class="bg-gray-800 p-4 rounded-lg">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center">
+                        <i class="fas fa-lock text-gray-400 mr-4"></i>
+                        <span>Đổi mật khẩu</span>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400"></i>
+                </div>
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center">
+                        <i class="fas fa-th text-gray-400 mr-4"></i>
+                        <span>Quản lý ứng dụng</span>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400"></i>
+                </div>
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center">
+                        <i class="fas fa-bell text-gray-400 mr-4"></i>
+                        <span>Cài đặt thông báo</span>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400"></i>
+                </div>
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center">
+                        <i class="fas fa-user-shield text-gray-400 mr-4"></i>
+                        <span>Cài đặt quyền riêng tư</span>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400"></i>
+                </div>
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center">
+                        <i class="fas fa-user-cog text-gray-400 mr-4"></i>
+                        <span>Chỉnh sửa phương thức đăng nhập</span>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400"></i>
+                </div>
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <i class="fas fa-sign-out-alt text-gray-400 mr-4"></i>
+                        <span>Đăng xuất ở mọi nơi</span>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Help Section -->
+        <div>
+            <h2 class="text-xl font-bold mb-4">Trợ giúp</h2>
+            <div class="bg-gray-800 p-4 rounded-lg">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <i class="fas fa-headset text-gray-400 mr-4"></i>
+                        <span>nhóm hỗ trợ của Khánh</span>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <app-songsection></app-songsection>
+</body>
+</html>

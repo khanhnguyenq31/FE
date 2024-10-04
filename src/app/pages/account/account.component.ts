@@ -4,12 +4,12 @@ import { SidebarsectionComponent } from '../../components/sidebarsection/sidebar
 import { ProfilemenuComponent } from '../../components/profilemenu/profilemenu.component';
 
 @Component({
-  selector: 'app-profile',
+  selector: 'app-account',
   standalone: true,
   imports: [SongsectionComponent, SidebarsectionComponent, ProfilemenuComponent],
-  templateUrl: './profile.component.html',
-  styleUrl: './profile.component.css'
+  templateUrl: './account.component.html',
+  styleUrl: './account.component.css'
 })
-export class ProfileComponent {
+export class AccountComponent {
 
 }
