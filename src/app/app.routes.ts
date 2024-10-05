@@ -8,6 +8,8 @@ import { LikedsongsComponent } from './pages/likedsongs/likedsongs.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { AccountComponent } from './pages/account/account.component';
+import { PlaylistComponent } from './pages/playlist/playlist.component';
+import { CreatelistComponent } from './pages/createlist/createlist.component';
 
 export const routes: Routes = [
     {path:'', component: HomebeforeloginComponent},
@@ -18,4 +20,6 @@ export const routes: Routes = [
     { path: 'profile', component: ProfileComponent },
     { path: 'settings', component: SettingsComponent },
     { path: 'account', component: AccountComponent },
+    { path:'playlist',component:PlaylistComponent},
+    { path:'createlist',component:CreatelistComponent}
 ];

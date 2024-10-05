@@ -1,0 +1,155 @@
+body {
+    margin:0;
+    font-family: "Roboto", sans-serif;
+    background-color: #121212;
+    color: white;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 0 100px 270px;
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+
+.header img {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+
+.playlist-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.playlist-info img {
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    margin-right: 20px;
+}
+
+.playlist-details {
+    max-width: 600px;
+}
+
+.playlist-details h1 {
+    font-size: 48px;
+    margin: 0;
+}
+
+.playlist-details p {
+    margin: 10px 0;
+}
+
+
+
+.controls {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+
+
+.controls .play-button {
+    background-color: #411db9;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.controls .play-button i {
+    font-size: 24px;
+    color: white;
+}
+
+.controls .play-button:hover {
+    background-color: #2a0e75;
+    transform: scale(1.1);
+}
+.controls #icon {
+    margin-left: 20px;
+    cursor: pointer
+}
+.table-container {
+    background-color: #181818;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    color: #b3b3b3;
+    font-weight: normal;
+}
+
+td {
+    border-top: 1px solid #282828;
+}
+
+.track-number {
+    width: 30px;
+}
+
+.track-title {
+    display: flex;
+    align-items: center;
+}
+
+.track-title img {
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.track-title .track-name {
+    font-weight: bold;
+}
+
+.track-title .track-artist {
+    color: #b3b3b3;
+}
+
+.track-album,
+.track-date,
+.track-duration {
+    color: #b3b3b3;
+}
+
+.track-like {
+    text-align: center;
+}
+
+.track-like i {
+    color: #411db9;
+    cursor: pointer;
+}
