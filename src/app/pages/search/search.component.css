@@ -1,0 +1,83 @@
+body {
+   
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: white;
+    height: 100vh;
+    width:100vw;
+}
+.header {
+    margin-left: 250px;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #000;
+}
+.header i {
+    font-size: 24px;
+    margin-right: 10px;
+}
+.header input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    background-color: #333;
+    color: white;
+    margin-right: 10px;
+}
+.header .fa-trash {
+    font-size: 24px;
+}
+.container {
+    padding: 20px;
+}
+.container h1 {
+    margin-left: 300px;
+    margin-bottom: 20px;
+}
+.grid {
+    margin-left: 300px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+.card {
+    position: relative;
+    padding: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
+.card img {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 80px;
+    height: 80px;
+    transform: rotate(-10deg);
+}
+.card:nth-child(1) { background-color: #e13300; }
+.card:nth-child(2) { background-color: #1db954; }
+.card:nth-child(3) { background-color: #8d67ab; }
+.card:nth-child(4) { background-color: #148a08; }
+.card:nth-child(5) { background-color: #e91429; }
+.card:nth-child(6) { background-color: #b02897; }
+.card:nth-child(7) { background-color: #ff4632; }
+.card:nth-child(8) { background-color: #1e3264; }
+.card:nth-child(9) { background-color: #8c1932; }
+.card:nth-child(10) { background-color: #e91429; }
+.card:nth-child(11) { background-color: #1e3264; }
+.card:nth-child(12) { background-color: #8c1932; }
+.card:nth-child(13) { background-color: #e13300; }
+.card:nth-child(14) { background-color: #1db954; }
+.card:nth-child(15) { background-color: #8d67ab; }
+.card:nth-child(16) { background-color: #148a08; }
+.card:nth-child(17) { background-color: #e91429; }
+.card:nth-child(18) { background-color: #b02897; }
+.card:nth-child(19) { background-color: #ff4632; }
+.card:nth-child(20) { background-color: #1e3264; }  

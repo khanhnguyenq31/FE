@@ -10,6 +10,7 @@ import { SettingsComponent } from './pages/settings/settings.component';
 import { AccountComponent } from './pages/account/account.component';
 import { PlaylistComponent } from './pages/playlist/playlist.component';
 import { CreatelistComponent } from './pages/createlist/createlist.component';
+import { SearchComponent } from './pages/search/search.component';
 
 export const routes: Routes = [
     {path:'', component: HomebeforeloginComponent},
@@ -21,5 +22,6 @@ export const routes: Routes = [
     { path: 'settings', component: SettingsComponent },
     { path: 'account', component: AccountComponent },
     { path:'playlist',component:PlaylistComponent},
-    { path:'createlist',component:CreatelistComponent}
+    { path:'createlist',component:CreatelistComponent},
+    { path:'search',component:SearchComponent}
 ];
