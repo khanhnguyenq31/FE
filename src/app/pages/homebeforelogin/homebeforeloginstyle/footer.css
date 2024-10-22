@@ -4,18 +4,27 @@
     left: 0;
     right: 0;
 
+
     background: linear-gradient(to right, #ae2896, #509bf5);
-    padding: 15px 40px;
+    height: 90px;
+
+    padding-left: 280px;
+    padding-right: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+
     display: flex;
+    align-items: center;
     justify-content: space-between;
     
 }
 
 .footer h6 {
     color: #ffffff;
+    font-family: 'Lato', Arial;
     text-transform: uppercase;
-    font-weight: 400;
-    font-size: 12px;
+    font-weight: 600;
+    font-size: 1rem;
     margin-bottom: 10px;
 }
 
