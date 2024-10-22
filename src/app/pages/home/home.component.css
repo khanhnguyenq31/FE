@@ -1,252 +1,164 @@
-.page-container {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-
-    height: calc(100vh - 110px);
-    width: calc(100vw - 390px);
-
-    overflow-x: hidden;
-    overflow-y: scroll;
-    border-radius: 5px;
-    background-color: aqua;
-}
-
-.trending-section {
-    background-color: #161616;
-    color: #ffffff;
-    letter-spacing: 2px;
-    overflow: hidden;
-    padding: 1rem;
-}
-
-.playlist-sponsored {
+/* Begin search bar section*/
+.search-bar {
+    margin-left: 300px;
+    background-color: #1c1c1c;
+    border-radius: 20px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding-bottom: 1.2rem;
+    padding: 10px 20px;
+    width: 500px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
-
-.playlist-sponsored p {
-    font-size: 11px;
-    font-weight: bold;
-    cursor: default;
-}
-
-.playlist-sponsored span {
-    font-size: 11px;
-    background-color: #000000;
-    padding: 5px 16px;
-    border-radius: 8px;
-    color: #b5bcf5;
-    cursor: default;
-}
-
-.trending-container {
-    display: flex;
-    gap: 1.4rem;
-}
-
-.trending-thumbnail {
-    height: 200px;
-    width: 200px;
-
-    overflow: hidden;
-}
-
-.home-playlist-cover {
-    height: 200px;
-    object-fit: cover;
-}
-
-.trending-song-container {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.trending-song-container h1 {
-    font-size: 2.5rem;
-    line-height: 4.5rem;
-    cursor: pointer;
-}
-
-.trending-song-container h1:hover {
-    text-decoration: underline;
-}
-
-.trending-song-container p {
-    color: #9f9b9b;
-    max-width: 85%;
-}
-
-#play-btn-home {
-    height: 45px;
-    width: 100px;
-    background-color: #26cc5a;
-    font-size: 15px;
-    font-weight: bold;
+.search-bar input {
+    background: none;
     border: none;
-    border-radius: 30px;
-    transition: all .2s ease-in-out;
-    cursor: pointer;
+    color: #ccc;
+    font-size: 16px;
+    flex-grow: 1;
+    margin-left: 10px;
+    outline: none;
+}
+.search-bar i {
+    color: #ccc;
+    font-size: 20px;
+}
+.search-bar .search-icon {
+    margin-right: 10px;
+}
+.search-bar .clear-icon {
+    margin-left: 10px;
 }
 
-.home-buttons {
+.header {
+    justify-content: space-between;
+    margin-left: 250px;
     display: flex;
     align-items: center;
-    gap: 1.5rem;
-    margin-top: 1rem;
+    padding: 10px 20px;
+    background-color: #000;
 }
-
-#follow-btn {
-    height: 45px;
-    width: 120px;
+.header i {
+    font-size: 24px;
+    margin-right: 10px;
+}
+.header input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    background-color: #333;
     color: white;
+    margin-right: 10px;
+}
+.header .fa-trash {
+    font-size: 24px;
+}
+
+/* End search bar section*/
+
+
+/* Begin main content section*/
+main {
+    background-color: black;
+}
+
+.main-container {
+    padding-top: 20px;
+    height: 100%;
+    padding: 20px;
+    margin-bottom: 90px;
+    background-color: #121212;
+}
+
+.spotify-playlists {
+    margin-left: 300px;
+}   
+
+.spotify-playlists h2 {
+    font-size: 22px;
+    color: white;
+    margin-bottom: 20px;
     font-weight: 600;
-    border-radius: 50px;
-    border: 1px solid white;
-    background: transparent;
-    transition: all .2s ease-in-out;
-    cursor: pointer;
 }
 
-#play-btn-home:hover,
-#follow-btn:hover {
-    transform: scale(1.04);
-}
-
-.home-more-btn:hover+.more-playlist {
-    display: block;
-}
-
-.more-playlist {
-    display: none;
-    width: 70px;
-    height: 20px;
-    background-color: #282626;
-    color: #fff;
-    font-size: 14px;
-    font-weight: bold;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0px;
-    transform: translate(-105%, -100%);
-}
-
-.user-likes {
-    background-color: #161616;
-    padding: 1rem;
+.spotify-playlists .list {
+    display: flex;
+    gap: 20px;
     overflow: hidden;
+
+    height: 280px;
 }
 
-.user-likes-title {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.5rem;
-    margin: 20px 0;
-}
-
-
-.user-likes-title h1 {
-    color: #d0cbcb;
-    font-size: 25px;
+.spotify-playlists .list .item {
+    width: 180px;
+    padding: 10px;
+    border-radius: 6px;
     cursor: pointer;
+    transition: all ease 0.4s;
+
 }
 
-.user-likes-title h1:hover {
-    text-decoration: 2px solid #b7b1b1 underline;
+.spotify-playlists .list img {
+    width: 150px;
+    height: 150px;
+    
+    border: 1px solid white;
 }
 
-.user-likes-title p {
-    color: #b7b1b1;
-    font-size: 12px;
-    font-weight: bold;
-    cursor: pointer;
+.spotify-playlists .list .item:hover {
+    background-color: #b4b4b4;
 }
 
-.user-likes-title p:hover {
-    text-decoration: 1.5px solid #b7b1b1 underline;
-}
-
-.cards {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 18px;
-    overflow: scroll;
-}
-
-.cards::-webkit-scrollbar {
-    width: 0;
-}
-
-.song-cards {
-    background-color: #282626;
-    border-radius: 10px;
-    padding: 15px 15px;
-    min-width: 170px;
-    max-width: 170px;
-    min-height: 250px;
-    max-height: 250px;
+.spotify-playlists .list .item .play {
     position: relative;
 }
 
-.song-cards:hover {
-    background-color: #363434;
-}
-
-.cover-play-btn {
-    color: #26cc5a;
-    border: none;
-    border-radius: 50%;
-    background-color: black;
+.spotify-playlists .list .item .play .fa {
     position: absolute;
-    top: 6.5rem;
-    left: 6.5rem;
+    right: 10px;
+    top: -40px;
+
+    padding: 7px;
+    
+    background-color: #ffffff;
+    border-radius: 100%;
+    
+    opacity: 0;
+    width: 40px;
+    height: 40px;
+    
+    transition: all ease 0.4s;
 }
 
-.song-cards .cover-play-btn {
-    display: none;
+.spotify-playlists .list .item:hover .play .fa {
+    opacity: 0.6;
+    transform: translateY(-20px);
 }
 
-.song-cards:hover .cover-play-btn {
-    display: block;
+.spotify-playlists .list .item .play .fa:hover {
+    opacity: 1;
+    border: 1px rgb(119, 119, 119);
+}                                       
+
+.spotify-playlists .list .item h4 {
+    color: white;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-#masterPlayBtn {
-    color: #fcfffd;
-    background-color: black;
-    border: none;
-    border-radius: 50%;
+.spotify-playlists .list .item p {
+    color: #4c4c4c;
+    font-size: 0.8rem;
+    line-height: 20px;
+    font-weight: 500;
 }
 
-.song-cards img {
-    height: 140px;
-    border-radius: 8px;
+.spotify-playlists hr {
+    margin: 70px 0px 0px;
+    border-color: #636363;
 }
-
-.song-cards h4 {
-    color: #ffffff;
-    font-size: 14px;
-    margin-top: 10px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.song-cards p {
-    color: #b7b1b1;
-    font-size: 13px;
-    font-weight: bold;
-    margin: 6px 0px;
-    letter-spacing: 0.6px;
-    cursor: pointer;
-}
-
-.song-cover img {
-    object-fit: cover;
-    object-position: center;
-    display: block;
-    margin: 0 auto;
-}
+/* end main content section*/

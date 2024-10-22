@@ -4,18 +4,16 @@ import { SignupComponent } from '../signup/signup.component';
 import { LoginComponent } from '../login/login.component';
 import { SongsectionComponent } from "../../components/songsection/songsection.component";
 import { CommonModule } from '@angular/common';
-import { SidebarsectionComponent } from "../../components/sidebarsection/sidebarsection.component"; // Import CommonModule
+import { SidebarsectionComponent } from "../../components/sidebarsection/sidebarsection.component";
+import { HomeComponent } from "../home/home.component";
+import { ProfilemenuComponent } from '../../components/profilemenu/profilemenu.component';
 
 @Component({
   selector: 'app-homebeforelogin',
   standalone: true,
-  imports: [RouterLink, SignupComponent, LoginComponent, SongsectionComponent, CommonModule, SidebarsectionComponent],
+  imports: [RouterLink, ProfilemenuComponent ,SignupComponent, LoginComponent, SongsectionComponent, CommonModule, SidebarsectionComponent, HomeComponent],
   templateUrl: './homebeforelogin.component.html',
   styleUrls: ['./homebeforeloginstyle/homebeforelogin.component.css', 
-    './homebeforeloginstyle/header.css', 
-    './homebeforeloginstyle/sidebar.css', 
-    './homebeforeloginstyle/main.css',
-    './homebeforeloginstyle/notification.css', 
     './homebeforeloginstyle/footer.css']
 })
 export class HomebeforeloginComponent {
