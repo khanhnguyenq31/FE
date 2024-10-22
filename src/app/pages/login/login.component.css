@@ -1,5 +1,4 @@
 
-
 header {
     height: 14vh;
     display: flex;
@@ -66,13 +65,14 @@ header {
 .email-container {
     display: flex;
     flex-direction: column;
+    
 }
 
 #email,
 #password-elements {
     outline: none;
     background-color: transparent;
-    color: #ffffff;
+    color: black;
     border: 1px solid #757676;
     border-radius: 8px;
     width: 30rem;
@@ -90,7 +90,7 @@ header {
 
 #login-password {
     background-color: transparent;
-    color: #ffffff;
+    color: black;
     border: none;
     outline: none;
     font-size: 15px;
@@ -196,7 +196,7 @@ input[type="checkbox"]:focus {
 
 /* Captcha */
 
-.recaptcha-section {
+.recaptcha-section {     
     position: absolute;
     right: 0;
     bottom: -4rem;

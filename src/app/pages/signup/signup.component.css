@@ -110,7 +110,7 @@ header {
 #password-elements {
     outline: none;
     background-color: transparent;
-    color: #ffffff;
+    color: black;
     border: 1px solid #757676;
     border-radius: 8px;
     width: 30rem;
@@ -128,7 +128,7 @@ header {
 
 #password {
     background-color: transparent;
-    color: #ffffff;
+    color: black;
     border: none;
     outline: none;
     font-size: 15px;
