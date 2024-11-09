@@ -1,73 +1,81 @@
-<div
-  class="fixed bottom-0 left-0 z-50 right-0 bg-gray-900 p-4 flex items-center justify-between"
-  style="height: 100px"
->
-  <div class="flex items-center">
-    <img
-      alt=""
-      class="mr-4"
-      height="50"
-      src="https://i1.sndcdn.com/artworks-C1kL1ygHytMcyMJy-9L3tUQ-t500x500.jpg"
-      width="50"
-    />
-    <div>
-      <h3 class="text-sm font-bold">Love Sand</h3>
-      <p class="text-xs">HIEUTHUHAI, Ali Hoàng Dương, Vũ Thịnh, Jsol</p>
-    </div>
-    <button class="ml-4">
-      <div
-        class="relative inline-block cursor-pointer text-2xl"
-        [ngClass]="heartColor"
-        (click)="toggleLike()"
-        (mouseenter)="showTooltip = true"
-        (mouseleave)="showTooltip = false"
-      >
-        <i class="fas fa-heart"></i>
-        <span
-          class="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-black text-white text-sm px-2 py-1 rounded tooltip"
-          *ngIf="showTooltip"
-        >
-          {{ hoverText }}
-        </span>
-      </div>
-    </button>
+<div class="whole-container">
+  <img
+  class="song-picture"
+  src="https://i1.sndcdn.com/artworks-C1kL1ygHytMcyMJy-9L3tUQ-t500x500.jpg"
+  />
+
+  <div class="song-detail">
+    <p class="song-title">Love Sand</p>
+    <p class="song-artist">HIEUTHUHAI, Ali Hoàng Dương, Vũ Thịnh, Jsol</p>
   </div>
-  <div class="flex items-center">
-    <button class="mx-2">
-      <i class="fas fa-random"> </i>
-    </button>
-    <button class="mx-2">
-      <i class="fas fa-step-backward"> </i>
-    </button>
-    <button class="mx-2">
-      <i class="fas fa-play"> </i>
-    </button>
-    <button class="mx-2">
-      <i class="fas fa-step-forward"> </i>
-    </button>
-    <button class="mx-2">
-      <i class="fas fa-redo"> </i>
-    </button>
-    <div class="flex items-center mx-4">
-      <span class="text-xs"> 2:39 </span>
-      <div class="w-32 h-1 bg-gray-700 mx-2">
-        <div class="w-1/2 h-full bg-white"></div>
-      </div>
-      <span class="text-xs"> 4:32 </span>
+
+  <div class="audio-control">
+    <div class="buttons">
+      <button class="shuffle-button" (click)="shuffleSong()">
+        <svg fill="#FFFFFF" viewBox="0 0 32.00 32.00" version="1.1" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.704"></g><g id="SVGRepo_iconCarrier"> <title>shuffle</title> <path d="M0 20.688v2c0 0.281 0.219 0.5 0.5 0.5h2.875c1.688 0 3.094-0.781 4.25-1.969 1.188-1.188 2.156-2.781 3.125-4.313 0.781-1.25 1.563-2.438 2.375-3.344 0.781-0.938 1.563-1.5 2.5-1.5h2.656v2.281c0 0.719 0.5 0.844 1.094 0.375l4.344-3.625c0.375-0.313 0.375-0.906 0-1.219l-4.344-3.594c-0.594-0.5-1.094-0.375-1.094 0.375v2.406h-2.656c-1.719 0-3.063 0.75-4.25 1.969-1.156 1.188-2.219 2.781-3.156 4.281-0.813 1.281-1.563 2.5-2.375 3.406-0.781 0.906-1.563 1.469-2.469 1.469h-2.875c-0.281 0-0.5 0.219-0.5 0.5zM0 9.531v2c0 0.281 0.219 0.5 0.5 0.5h2.875c1.406 0 2.531 1.375 3.75 3.156 0.031-0.094 0.063-0.156 0.094-0.219 0.031-0.031 0.125-0.094 0.156-0.156 0.469-0.781 1-1.531 1.5-2.344-0.75-0.969-1.469-1.844-2.406-2.438-0.906-0.625-1.906-0.969-3.094-0.969h-2.875c-0.344 0-0.5 0.156-0.5 0.469zM18.281 20.125h-2.656c-1.375 0-2.563-1.344-3.75-3.094-0.063 0.094-0.094 0.156-0.125 0.219-0.063 0.063-0.094 0.125-0.156 0.219-0.219 0.375-0.5 0.781-0.719 1.156-0.25 0.344-0.5 0.75-0.719 1.094 0.719 0.969 1.469 1.813 2.375 2.406 0.875 0.625 1.906 1.031 3.094 1.031h2.656v2.188c0 0.719 0.5 0.875 1.094 0.375l4.344-3.656c0.375-0.313 0.375-0.875 0-1.188l-4.344-3.594c-0.594-0.469-1.094-0.375-1.094 0.375v2.469z"></path> </g></svg>
+      </button>
+
+      <button class="previous-button" (click)="changeSong('prev')">
+        <svg fill="#FFFFFF" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 17.802 17.802" xml:space="preserve" transform="matrix(1, 0, 0, 1, 0, 0)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g id="c92_stop"> <path d="M15.363,0.042c-0.139-0.07-0.303-0.051-0.424,0.043L4.163,8.587C4.069,8.664,4.01,8.78,4.01,8.9 c0,0.119,0.059,0.24,0.153,0.314l10.776,8.502c0.071,0.057,0.162,0.086,0.249,0.086l0.175-0.039 c0.139-0.064,0.225-0.207,0.225-0.361V0.403C15.588,0.249,15.502,0.107,15.363,0.042z"></path> <path d="M5.188,0.033H2.53c-0.172,0-0.315,0.182-0.315,0.401V17.37c0,0.221,0.143,0.403,0.315,0.403h2.657 c0.174,0,0.315-0.183,0.315-0.403V0.434C5.503,0.215,5.361,0.033,5.188,0.033z"></path> </g> <g id="Capa_1_264_"> </g> </g> </g></svg>
+      </button>
+
+    <!-- Start of play/stop -->
+      <button *ngIf="!play" class="play-button" (click)="playMusic()">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#FFFFFF" version="1.1" id="Capa_1" viewBox="0 0 490.718 490.718" xml:space="preserve">
+          <path d="M245.359,0.359C109.852,0.359,0,110.049,0,245.358s109.852,245,245.359,245s245.359-109.691,245.359-245   S380.866,0.359,245.359,0.359z M176.828,341.011V140.824l187.489,100.098L176.828,341.011z"/>
+        </svg>
+      </button>  
+
+      <button *ngIf="play" class="stop-button" (click)="playMusic()">
+        <svg fill="#FFFFFF" height="200px" width="200px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 60 60" xml:space="preserve" transform="matrix(-1, 0, 0, 1, 0, 0)" stroke="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M30,0C13.458,0,0,13.458,0,30s13.458,30,30,30s30-13.458,30-30S46.542,0,30,0z M27,46h-8V14h8V46z M41,46h-8V14h8V46z"></path> </g></svg>
+      </button>  
+    <!-- End of play/stop -->  
+
+      <button class="next-button" (click)="changeSong('next')">
+        <svg fill="#FFFFFF" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 17.802 17.802" xml:space="preserve" transform="matrix(-1, 0, 0, -1, 0, 0)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g id="c92_stop"> <path d="M15.363,0.042c-0.139-0.07-0.303-0.051-0.424,0.043L4.163,8.587C4.069,8.664,4.01,8.78,4.01,8.9 c0,0.119,0.059,0.24,0.153,0.314l10.776,8.502c0.071,0.057,0.162,0.086,0.249,0.086l0.175-0.039 c0.139-0.064,0.225-0.207,0.225-0.361V0.403C15.588,0.249,15.502,0.107,15.363,0.042z"></path> <path d="M5.188,0.033H2.53c-0.172,0-0.315,0.182-0.315,0.401V17.37c0,0.221,0.143,0.403,0.315,0.403h2.657 c0.174,0,0.315-0.183,0.315-0.403V0.434C5.503,0.215,5.361,0.033,5.188,0.033z"></path> </g> <g id="Capa_1_264_"> </g> </g> </g></svg>
+      </button>
+      
+      <button *ngIf="!(repeat1song || repeatPlaylist)" class="repeat-button" (click)="repeat1Song(0)">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#8f8f8f" ><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path fill="none" d="M0 0h24v24H0z"></path> <path d="M8 20v1.932a.5.5 0 0 1-.82.385l-4.12-3.433A.5.5 0 0 1 3.382 18H18a2 2 0 0 0 2-2V8h2v8a4 4 0 0 1-4 4H8zm8-16V2.068a.5.5 0 0 1 .82-.385l4.12 3.433a.5.5 0 0 1-.321.884H6a2 2 0 0 0-2 2v8H2V8a4 4 0 0 1 4-4h10z"></path> </g> </g></svg>
+      </button>
+
+      <button *ngIf="repeatPlaylist" class="repeat-button" (click)="repeat1Song(1)">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#FFFFFF" ><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path fill="none" d="M0 0h24v24H0z"></path> <path d="M8 20v1.932a.5.5 0 0 1-.82.385l-4.12-3.433A.5.5 0 0 1 3.382 18H18a2 2 0 0 0 2-2V8h2v8a4 4 0 0 1-4 4H8zm8-16V2.068a.5.5 0 0 1 .82-.385l4.12 3.433a.5.5 0 0 1-.321.884H6a2 2 0 0 0-2 2v8H2V8a4 4 0 0 1 4-4h10z"></path> </g> </g></svg>
+      </button>
+
+      <button *ngIf="repeat1song" class="repeat-button" (click)="repeat1Song(2)">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#FFFFFF"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path fill="none" d="M0 0h24v24H0z"></path> <path d="M8 20v1.932a.5.5 0 0 1-.82.385l-4.12-3.433A.5.5 0 0 1 3.382 18H18a2 2 0 0 0 2-2V8h2v8a4 4 0 0 1-4 4H8zm8-16V2.068a.5.5 0 0 1 .82-.385l4.12 3.433a.5.5 0 0 1-.321.884H6a2 2 0 0 0-2 2v8H2V8a4 4 0 0 1 4-4h10zm-5 4h2v8h-2v-6H9V9l2-1z"></path> </g> </g></svg>
+      </button>
+    </div>
+  
+    <div class="song-bar">
+      <p class="song-minute">{{currentTime}}</p>
+      <input type="range" #progressBar min="0" max="100" step="0.1" value="0" (input)="onSeek($event)" />
+      <p class="song-minute">{{totalTime}}</p>
     </div>
   </div>
-  <div class="flex items-center">
-    <button class="mx-2">
-      <i class="fas fa-list"> </i>
+
+  <div class="playlist-control">
+    <!-- Start of Mute/inMuted -->
+    <button (click)="mute()" *ngIf="!isMuted" class="sound-button">
+      <svg viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>sound-loud-filled</title> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="icon" fill="#ffffff" transform="translate(42.666667, 85.333333)"> <path d="M361.299413,341.610667 L328.014293,314.98176 C402.206933,233.906133 402.206933,109.96608 328.013013,28.8906667 L361.298133,2.26304 C447.910187,98.97536 447.908907,244.898347 361.299413,341.610667 Z M276.912853,69.77216 L243.588693,96.4309333 C283.38432,138.998613 283.38304,204.87488 243.589973,247.44256 L276.914133,274.101333 C329.118507,215.880107 329.118507,127.992107 276.912853,69.77216 Z M191.749973,1.42108547e-14 L80.8957867,87.2292267 L7.10542736e-15,87.2292267 L7.10542736e-15,257.895893 L81.0208,257.895893 L191.749973,343.35424 L191.749973,1.42108547e-14 L191.749973,1.42108547e-14 Z" id="Shape"> </path> </g> </g> </g></svg>
     </button>
-    <button class="mx-2">
-      <i class="fas fa-desktop"> </i>
+
+    <button (click)="mute()"   *ngIf="isMuted" class="sound-button">
+      <svg viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>sound-off-filled</title> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="icon" fill="#ffffff" transform="translate(42.666667, 59.581722)"> <path d="M47.0849493,-1.42108547e-14 L298.668,251.583611 L304.101001,257.015597 L304.101,257.016 L353.573532,306.488791 C353.573732,306.488458 353.573933,306.488124 353.574133,306.48779 L384.435257,337.348961 L384.434,337.349 L409.751616,362.666662 L379.581717,392.836561 L191.749,205.003 L191.749973,369.105851 L81.0208,283.647505 L7.10542736e-15,283.647505 L7.10542736e-15,112.980838 L80.8957867,112.980838 L91.433,104.688 L16.9150553,30.169894 L47.0849493,-1.42108547e-14 Z M361.298133,28.0146513 C429.037729,103.653701 443.797162,209.394226 405.578884,298.151284 L372.628394,265.201173 C396.498256,194.197542 381.626623,113.228555 328.013013,54.642278 L361.298133,28.0146513 Z M276.912853,95.5237713 C305.539387,127.448193 318.4688,168.293162 315.701304,208.275874 L266.464558,159.040303 C261.641821,146.125608 254.316511,133.919279 244.488548,123.156461 L243.588693,122.182545 L276.912853,95.5237713 Z M191.749973,25.7516113 L191.749,84.3256113 L158.969,51.5456113 L191.749973,25.7516113 Z" id="Combined-Shape"> </path> </g> </g> </g></svg>
     </button>
-    <button class="mx-2">
-      <i class="fas fa-volume-up"> </i>
-    </button>
-    <div class="w-24 h-1 bg-gray-700 mx-2">
-      <div class="w-1/2 h-full bg-white"></div>
+    <!-- End of Mute/inMuted -->
+
+    <div class="volume-control">
+      <input type="range" id="volumeControl" min="0" max="100" step="1" value="50" (input)="changeVolume($event)" />
     </div>
   </div>
+  
 </div>
+
+
+
+<audio #audioPlayer class="file-mp3">
+  <source [src]="songs[currentSongIndex]" type="audio/mp3">
+</audio>
+  
