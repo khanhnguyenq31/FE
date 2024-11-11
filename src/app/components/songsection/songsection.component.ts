@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, ViewChild, ElementRef } from '@angular/core';
+import { DataStorageService } from '../../data-storage.service';
+import { Router, NavigationEnd } from '@angular/router';
 @Component({
   selector: 'app-songsection',
   standalone: true,
@@ -7,7 +9,12 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
   templateUrl: './songsection.component.html',
   styleUrl: './songsection.component.css'
 })
+
 export class SongsectionComponent  {
+  constructor (private dataService : DataStorageService , private router: Router) {
+    console.log(router.url)
+  }
+
   songs: string[] = [
     'https://anotherbucket229.s3.ap-southeast-2.amazonaws.com/emotional-piano-music-256262.mp3',
     'https://anotherbucket229.s3.ap-southeast-2.amazonaws.com/inspirational-uplifting-calm-piano-254764.mp3',
@@ -39,6 +46,11 @@ export class SongsectionComponent  {
 
   ngAfterViewInit() {
     const audioPlayer = this.audioPlayerRef.nativeElement;
+    audioPlayer.currentTime = this.dataService.timePlaying;
+    this.play = this.dataService.play;
+    if (this.play === true) audioPlayer.play()
+
+
     audioPlayer.addEventListener('ended', () => {
       if (this.currentSongIndex === this.songs.length - 1) {
         if(this.repeatPlaylist) {
@@ -46,7 +58,7 @@ export class SongsectionComponent  {
           audioPlayer.src = this.songs[this.currentSongIndex];
           audioPlayer.play();
         } else
-          this.play = false;
+          this.dataService.play = this.play = false;
       } else {
         this.currentSongIndex = this.currentSongIndex + 1;
         audioPlayer.src = this.songs[this.currentSongIndex];
@@ -60,6 +72,8 @@ export class SongsectionComponent  {
       const duration = audioPlayer.duration; // Thời gian tổng của bài hát
     
       // Cập nhật giá trị cho thanh tiến độ
+      this.dataService.timePlaying = currentTime
+    
       progressBar.value = (currentTime / duration) * 100;
       this.currentTime = Math.floor(currentTime / 60).toString() + ":" + Math.floor(currentTime % 60).toString().padStart(2, '0');
       const minute = Math.floor(duration / 60).toString();
@@ -78,7 +92,7 @@ export class SongsectionComponent  {
     else {
      audioPlayer.pause();
     }
-    this.play = !this.play;
+    this.dataService.play = this.play = !this.play;
   }
 
   mute() {
