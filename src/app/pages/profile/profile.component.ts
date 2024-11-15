@@ -11,5 +11,5 @@ import { ProfilemenuComponent } from '../../components/profilemenu/profilemenu.c
   styleUrl: './profile.component.css'
 })
 export class ProfileComponent {
-
+  
 }

@@ -13,5 +13,16 @@ import { ProfilemenuComponent } from '../../components/profilemenu/profilemenu.c
   styleUrl: './likedsongs.component.css'
 })
 export class LikedsongsComponent {
-
+  hiddenFlag = true;
+  iddenFlag = true;
+  
+  // open the notification
+  open() {
+    this.hiddenFlag = false;
+  }
+  
+  // close the notification
+  close() {
+    this.hiddenFlag = true;
+  }
 }
