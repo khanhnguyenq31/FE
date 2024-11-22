@@ -11,6 +11,12 @@ import { AccountComponent } from './pages/account/account.component';
 import { PlaylistComponent } from './pages/playlist/playlist.component';
 import { CreatelistComponent } from './pages/createlist/createlist.component';
 import { SearchComponent } from './pages/search/search.component';
+import { SongsComponent } from './artist/songs/songs.component';
+import { AlbumsComponent } from './artist/albums/albums.component';
+import { NewSongComponent } from './artist/songs/new-song/new-song.component';
+import { NewAlbumComponent } from './artist/albums/new-album/new-album.component';
+
+
 
 export const routes: Routes = [
     {path:'', component: HomebeforeloginComponent},
@@ -21,7 +27,11 @@ export const routes: Routes = [
     { path: 'profile', component: ProfileComponent },
     { path: 'settings', component: SettingsComponent },
     { path: 'account', component: AccountComponent },
-    { path:'playlist',component:PlaylistComponent},
-    { path:'createlist',component:CreatelistComponent},
-    { path:'search',component:SearchComponent}
+    { path:'playlist', component:PlaylistComponent},
+    { path:'createlist', component:CreatelistComponent},
+    { path:'search', component:SearchComponent},
+    { path:'artist/songs', component:SongsComponent},
+    { path:'artist/albums',component:AlbumsComponent},
+    { path:'artist/songs/new', component:NewSongComponent},
+    { path:'artist/albums/new', component:NewAlbumComponent},
 ];

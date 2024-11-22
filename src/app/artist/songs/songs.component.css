@@ -1,0 +1,180 @@
+body {
+    margin: 0 0 100px 256px;
+    font-family: "Roboto", sans-serif;
+    background-color: #121212;
+    color: white;
+    overflow-x: hidden;
+}
+
+.header-content {
+    position: relative;
+    padding: 20px;
+    background-image: url('https://storage.googleapis.com/a1aa/image/9BOiDBhBAkJSMNYftSd2XvoPgwofqZIPH0uftjLRD5zZ38mnA.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.artist-info {
+    position: relative;
+    z-index: 1;
+}
+
+.artist-info h1 {
+    font-size: 64px;
+    margin: 0;
+}
+
+.artist-info p {
+    font-size: 18px;
+    margin: 5px 0;
+}
+
+.artist-info .verified {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #1DB954;
+}
+
+.artist-info .verified i {
+    margin-right: 5px;
+}
+
+.artist-info .buttons {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.artist-info .buttons .play-button {
+    background-color: #1DB954;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 56px;
+    height: 56px;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.artist-info .buttons .play-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(29, 185, 84, 0.6);
+}
+
+.artist-info .buttons .more-button {
+    background-color: #282828;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.content {
+    padding: 20px;
+    background-color: #181818;
+    margin-top: -20px;
+}
+
+.create-song-button {
+    background-color: #1DB954;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    float: right;
+    margin-top: 20px;
+}
+
+.create-song-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(29, 185, 84, 0.6);
+}
+
+.popular h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.popular table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.popular td {
+    padding: 10px;
+    border-bottom: 1px solid #282828;
+    text-align: left;
+    font-size: 16px;
+    color: #b3b3b3;
+}
+
+.popular tr:hover td {
+    background-color: #282828;
+}
+
+.popular img {
+    width: 50px;
+    height: 50px;
+    border-radius: 4px;
+    margin-right: 20px;
+}
+
+.popular .song-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+}
+
+.popular .song-title:hover {
+    text-decoration: underline;
+}
+
+.popular .song-number {
+    position: relative;
+    text-align: center;
+}
+
+.popular .song-number::before {
+    content: attr(data-number);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: #b3b3b3;
+}
+
+.popular tr:hover .song-number::before {
+    content: '\f04b';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    color: #b3b3b3;
+}
