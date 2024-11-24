@@ -178,3 +178,8 @@ body {
     font-weight: 900;
     color: #b3b3b3;
 }
+option.selected {
+    text-decoration: underline;
+    background-color: #1db954;
+    color: white;
+}

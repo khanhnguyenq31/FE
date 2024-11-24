@@ -1,34 +1,27 @@
 <body>
-  <div class="header">
-    <app-profilemenu></app-profilemenu>
-   </div>
-  <div class="container">
-    <div class="playlist-header">
-      <img
-        alt="Playlist cover image"
-        height="200"
-        src="https://yt3.googleusercontent.com/oN0p3-PD3HUzn2KbMm4fVhvRrKtJhodGlwocI184BBSpybcQIphSeh3Z0i7WBgTq7e12yKxb=s900-c-k-c0x00ffffff-no-rj"
-        width="200"
-      />
-      <div class="playlist-info">
-        <p>Playlist</p>
-        <h1>Danh sách phát của tôi</h1>
-        <p>Anh Khoa Nguyễn</p>
+  <div class="form-container">
+    <h2>Tạo Playlist</h2>
+    <form action="/playlists/new" method="post">
+      <div class="form-group">
+        <label for="name"> Tên Playlist </label>
+        <input id="name" name="name" required="" type="text" />
       </div>
-    </div>
-    <div class="playlist-actions">
-      <div class="dots">...</div>
-      <div class="view-options">
-        <p>Danh sách</p>
-        <i class="fas fa-list"> </i>
+      <div class="form-group">
+        <label for="description"> Mô tả </label>
+        <textarea id="description" name="description" required="" rows="4">
+        </textarea>
       </div>
-    </div>
-    <div class="search-bar">
-      <i class="fas fa-search"> </i>
-      <input placeholder="Tìm bài hát và tập podcast" type="text" />
-      <i class="fas fa-times"> </i>
-    </div>
+      <div class="form-group">
+        <label for="status"> Trạng thái </label>
+        <select id="status" name="status" required="">
+          <option value="public">Công khai</option>
+          <option value="private">Riêng tư</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <button type="submit">Tạo Playlist</button>
+      </div>
+    </form>
   </div>
-
   <app-sidebarsection></app-sidebarsection>
 </body>

@@ -1,5 +1,5 @@
 body {
-    margin:0;
+    margin: 0 0 100px 256px;
     font-family: "Roboto", sans-serif;
     background-color: #121212;
     color: white;
@@ -8,92 +8,105 @@ body {
 .container {
     width: 100%;
     max-width: 1200px;
-    margin: 0 0 100px 270px;
+    margin: 0 auto;
     padding: 20px;
 }
 
 .header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     padding: 20px 0;
+    background: linear-gradient(180deg, #1DB954 0%, #121212 100%);
+    border-radius: 10px;
+    position: relative;
+    height: 250px;
+    /* Set a fixed height for the header */
 }
 
 .header img {
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-}
-
-.playlist-info {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.playlist-info img {
-    width: 200px;
-    height: 200px;
+    height: 100%;
+    /* Make the image take the full height of the header */
     border-radius: 10px;
-    margin-right: 20px;
 }
 
-.playlist-details {
-    max-width: 600px;
+.header .info {
+    margin-left: 20px;
+    flex-grow: 1;
 }
 
-.playlist-details h1 {
-    font-size: 48px;
+.header .info h1 {
+    font-size: 72px;
     margin: 0;
 }
 
-.playlist-details p {
-    margin: 10px 0;
+.header .info p {
+    font-size: 14px;
+    margin: 5px 0;
 }
 
+.edit-button {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    font-size: 30px;
+    color: #b3b3b3;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
 
+.edit-button:hover {
+    color: #1DB954;
+}
 
 .controls {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    margin: 20px 0;
 }
 
-
-
 .controls .play-button {
-    background-color: #411db9;
+    background-color: #1DB954;
     border: none;
     border-radius: 50%;
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.controls .play-button i {
-    font-size: 24px;
+    font-size: 30px;
     color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .controls .play-button:hover {
-    background-color: #2a0e75;
+    background-color: #1ed760;
     transform: scale(1.1);
 }
-.controls #icon {
+
+.controls .other-buttons {
+    display: flex;
+    align-items: center;
     margin-left: 20px;
-    cursor: pointer
 }
+
+.controls .other-buttons i {
+    font-size: 24px;
+    margin-right: 20px;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.controls .other-buttons i:hover {
+    color: #1DB954;
+    transform: scale(1.1);
+}
+
 .table-container {
     background-color: #181818;
     border-radius: 10px;
     padding: 20px;
 }
-
 
 table {
     width: 100%;
@@ -107,16 +120,25 @@ td {
 }
 
 th {
+    font-size: 12px;
     color: #b3b3b3;
-    font-weight: normal;
 }
 
 td {
-    border-top: 1px solid #282828;
+    font-size: 14px;
+    position: relative;
+}
+
+td img {
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
 }
 
 .track-number {
     width: 30px;
+    color: #b3b3b3;
+    text-align: center;
 }
 
 .track-title {
@@ -125,31 +147,42 @@ td {
 }
 
 .track-title img {
-    width: 40px;
-    height: 40px;
-    border-radius: 5px;
     margin-right: 10px;
 }
 
-.track-title .track-name {
-    font-weight: bold;
-}
-
-.track-title .track-artist {
-    color: #b3b3b3;
-}
-
+.track-artist,
 .track-album,
-.track-date,
 .track-duration {
     color: #b3b3b3;
 }
 
-.track-like {
-    text-align: center;
+.track-duration {
+    text-align: right;
 }
 
-.track-like i {
-    color: #411db9;
+tbody tr:hover {
+    background-color: #282828;
     cursor: pointer;
+}
+
+tbody tr:hover .track-title div:first-child {
+    text-decoration: underline;
+}
+
+.track-number .play-icon {
+    display: none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+    color: #b3b3b3;
+}
+
+tbody tr:hover .track-number .play-icon {
+    display: inline;
+}
+
+tbody tr:hover .track-number span {
+    display: none;
 }
