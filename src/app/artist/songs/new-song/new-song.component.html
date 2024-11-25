@@ -1,143 +1,39 @@
-<html>
-  <head>
-    <title>Create New Song</title>
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-      rel="stylesheet"
-    />
-    <style>
-      body {
-        margin: 0 0 100px 256px;
-        font-family: Arial, sans-serif;
-        background-color: #121212;
-        color: white;
-        overflow-x: hidden;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-      }
-      .form-container {
-        background-color: #181818;
-        padding: 40px;
-        border-radius: 10px;
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-        width: 600px;
-        max-width: 90%;
-      }
-      .form-container h2 {
-        text-align: center;
-        margin-bottom: 30px;
-        font-size: 28px;
-      }
-      .form-group {
-        margin-bottom: 20px;
-      }
-      .form-group label {
-        display: block;
-        margin-bottom: 10px;
-        font-size: 16px;
-        color: #b3b3b3;
-      }
-      .form-group input,
-      .form-group select {
-        width: 100%;
-        padding: 15px;
-        border: none;
-        border-radius: 5px;
-        background-color: #282828;
-        color: white;
-        font-size: 16px;
-      }
-      .form-group input[type="file"] {
-        padding: 10px;
-      }
-      .form-group button {
-        width: 100%;
-        padding: 15px;
-        border: none;
-        border-radius: 5px;
-        background-color: #1db954;
-        color: white;
-        font-size: 18px;
-        cursor: pointer;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-      }
-      .form-group button:hover {
-        transform: scale(1.05);
-        box-shadow: 0 0 15px rgba(29, 185, 84, 0.6);
-      }
-    </style>
-  </head>
-  <body>
-    <app-sidebarsection></app-sidebarsection>
-    <div class="form-container">
-      <h2>Tạo bài hát mới</h2>
-      <form id="newSongForm">
-        <div class="form-group">
-          <label for="songTitle">Tên bài hát</label>
-          <input type="text" id="songTitle" name="songTitle" required />
-        </div>
-        <div class="form-group">
-          <label for="songDuration">Thời lượng</label>
-          <input type="text" id="songDuration" name="songDuration" required />
-        </div>
-        <div class="form-group">
-          <label for="songCover">Ảnh bìa</label>
-          <input
-            type="file"
-            id="songCover"
-            name="songCover"
-            accept="image/*"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <label for="songFile">Tệp bài hát (mp3)</label>
-          <input
-            type="file"
-            id="songFile"
-            name="songFile"
-            accept="audio/mp3"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <button type="submit">Tạo bài hát</button>
-        </div>
-      </form>
-    </div>
-
-    <script>
-      document
-        .getElementById("newSongForm")
-        .addEventListener("submit", function (event) {
-          event.preventDefault();
-
-          const songTitle = document.getElementById("songTitle").value;
-          const songDuration = document.getElementById("songDuration").value;
-          const songCover = document.getElementById("songCover").files[0];
-          const songFile = document.getElementById("songFile").files[0];
-
-          const reader = new FileReader();
-          reader.onload = function (e) {
-            const newSong = {
-              title: songTitle,
-              plays: 0,
-              duration: songDuration,
-              status: "Pending",
-              cover: e.target.result,
-              file: songFile.name,
-            };
-
-            const songs = JSON.parse(localStorage.getItem("songs")) || [];
-            songs.push(newSong);
-            localStorage.setItem("songs", JSON.stringify(songs));
-
-            window.location.href = "/artist/songs";
-          };
-          reader.readAsDataURL(songCover);
-        });
-    </script>
-  </body>
-</html>
+<body>
+  <div class="form-container">
+    <h2>Tạo bài hát mới</h2>
+    <form id="newSongForm">
+      <div class="form-group">
+        <label for="songTitle">Tên bài hát</label>
+        <input type="text" id="songTitle" name="songTitle" required />
+      </div>
+      <div class="form-group">
+        <label for="songDuration">Thời lượng</label>
+        <input type="text" id="songDuration" name="songDuration" required />
+      </div>
+      <div class="form-group">
+        <label for="songCover">Ảnh bìa</label>
+        <input
+          type="file"
+          id="songCover"
+          name="songCover"
+          accept="image/*"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="songFile">Tệp bài hát (mp3)</label>
+        <input
+          type="file"
+          id="songFile"
+          name="songFile"
+          accept="audio/mp3"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <button type="submit">Tạo bài hát</button>
+      </div>
+    </form>
+  </div>
+  <app-sidebarsection></app-sidebarsection>
+</body>
