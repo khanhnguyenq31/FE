@@ -15,6 +15,8 @@ import { SongsComponent } from './artist/songs/songs.component';
 import { AlbumsComponent } from './artist/albums/albums.component';
 import { NewSongComponent } from './artist/songs/new-song/new-song.component';
 import { NewAlbumComponent } from './artist/albums/new-album/new-album.component';
+import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
+import { ProfileEditComponent } from './pages/profile/profile-edit/profile-edit.component';
 
 
 
@@ -34,4 +36,6 @@ export const routes: Routes = [
     { path:'artist/albums',component:AlbumsComponent},
     { path:'artist/songs/new', component:NewSongComponent},
     { path:'artist/albums/new', component:NewAlbumComponent},
+    { path:'reset-password', component: ResetPasswordComponent},
+    { path: 'profile/edit', component: ProfileEditComponent },
 ];

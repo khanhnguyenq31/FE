@@ -1,0 +1,49 @@
+<html>
+ <head>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+ </head>
+ <body>
+    <div class="container">
+        <app-sidebarsection></app-sidebarsection>
+        <div class="content">
+            <div class="header">
+                <div class="profile-menu">
+                    <app-profilemenu></app-profilemenu>
+                </div>
+            </div>
+            <div class="form-container">
+                <div class="profile-picture" (click)="fileInput.click()">
+                    <i class="fas fa-user"></i>
+                    <input type="file" #fileInput accept="image/*" (change)="onFileSelected($event)" style="display: none;">
+                    <span class="edit-text">Chỉnh sửa</span>
+                </div>
+                <form>
+                    <div class="form-group">
+                        <label for="name">Tên:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="country">Quốc gia:</label>
+                        <select id="country" name="country" required>
+                            <option value="">Chọn quốc gia</option>
+                            <option value="vn">Việt Nam</option>
+                            <option value="us">Mỹ</option>
+                            <option value="jp">Nhật Bản</option>
+                            <option value="kr">Hàn Quốc</option>
+                            <option value="fr">Pháp</option>
+                            <!-- Thêm các quốc gia khác nếu cần -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="dob">Ngày sinh:</label>
+                        <input type="date" id="dob" name="dob" required>
+                    </div>
+                    <button type="submit">Lưu</button>
+                </form>
+            </div>
+        </div>
+    </div>
+  
+    <div class="footer"></div>
+ </body>
+</html>

@@ -1,0 +1,166 @@
+body {
+    background-color: #121212;
+    color: white;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    height: 100vh; /* Chiều cao toàn bộ màn hình */
+}
+
+.content {
+    margin-left: 300px; /* Khoảng cách từ sidebar */
+    padding: 1rem; /* Padding cho nội dung */
+    flex: 1; /* Chiếm toàn bộ không gian còn lại */
+}
+
+.header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 2rem; /* Khoảng cách dưới header */
+}
+
+.profile-menu {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.nav-button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-right: 1rem; /* Khoảng cách giữa các nút */
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem; /* Khoảng cách dưới thông tin profile */
+}
+
+.profile-picture {
+    width: 8rem; /* Kích thước hình ảnh */
+    height: 8rem; /* Kích thước hình ảnh */
+    background-color: #4a5568; /* Màu nền cho hình ảnh */
+    border-radius: 50%; /* Hình tròn */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem; /* Khoảng cách dưới hình ảnh */
+}
+
+.profile-picture i {
+    font-size: 4rem; /* Kích thước biểu tượng lớn hơn */
+    color: white; /* Màu sắc biểu tượng */
+}
+
+.profile-name {
+    font-size: 3rem; /* Kích thước chữ */
+    font-weight: bold; /* Đậm */
+    margin: 1rem 0; /* Khoảng cách trên và dưới */
+}
+
+.profile-following {
+    color: #cbd5e0; /* Màu chữ */
+    margin-top: 0.5rem; /* Khoảng cách trên */
+}
+
+.section-title {
+    font-size: 1.5rem; /* Kích thước chữ */
+    font-weight: bold; /* Đậm */
+    margin-bottom: 1rem; /* Khoảng cách dưới tiêu đề */
+}
+
+.song-table {
+    width: 100%; /* Chiều rộng bảng */
+    margin-top: 1rem; /* Khoảng cách trên bảng */
+}
+
+.song-table th, .song-table td {
+    padding: 0.5rem; /* Padding cho ô */
+    text-align: left; /* Căn trái */
+}
+
+.footer {
+    height: 40rem; /* Chiều cao footer */
+    background-color: #121212;
+}
+
+.section-header {
+    display: flex; /* Sử dụng flexbox để căn chỉnh tiêu đề và nút */
+    justify-content: space-between; /* Căn giữa khoảng cách giữa tiêu đề và nút */
+    align-items: center; /* Căn giữa theo chiều dọc */
+}
+
+.add-artist-button {
+    background-color: #1db954; /* Màu nền xanh lá */
+    color: white; /* Màu chữ */
+    border: none; /* Không có viền */
+    border-radius: 4px; /* Bo góc */
+    padding: 0.5rem 1rem; /* Padding cho nút */
+    cursor: pointer; /* Con trỏ khi hover */
+}
+
+.artist img {
+    border-radius: 50%;
+    height: auto;
+}
+
+.artist-list {
+    display: flex; /* Sử dụng flexbox để sắp xếp các artist theo chiều ngang */
+    flex-wrap: wrap; /* Cho phép các artist xuống dòng nếu không đủ chỗ */
+    gap: 1rem; /* Khoảng cách giữa các artist */
+}
+
+.artist {
+    display: flex; /* Sử dụng flexbox cho từng artist */
+    flex-direction: column; /* Sắp xếp hình ảnh và tên theo chiều dọc */
+    align-items: center; /* Căn giữa các phần tử theo chiều ngang */
+}
+
+.playlist img {
+    width: 150px;
+    height: 150px;
+    border-radius: 8px;
+    margin-right: 20px;
+}
+
+.playlist .play {
+    position: relative;
+}
+
+.playlist .play .fa {
+    position: absolute;
+    right: 10px;
+    top: -40px;
+
+    padding: 7px;
+    
+    background-color: #ffffff;
+    border-radius: 100%;
+    
+    opacity: 0;
+    width: 40px;
+    height: 40px;
+    
+    transition: all ease 0.4s;
+}
+
+.playlist:hover .play .fa {
+    opacity: 0.6;
+    transform: translateY(-20px);
+}
+
+.playlist .play .fa:hover {
+    opacity: 1;
+    border: 1px rgb(119, 119, 119);
+}                                  
+
+.playlist:hover {
+    background-color: #b4b4b4;
+}
