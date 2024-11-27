@@ -12,32 +12,58 @@
 <!-- Login Section -->
 <section id="main-container">
     <p id="validationMessage">Incorrect username or password.</p>
-    <!-- Login Form -->
-    <div id="login-form">
-        <div class="email-container">
-            <label>Email address</label>
-            <input type="text" placeholder="Email address..." id="email">
-        </div>
-        <div id="password-container">
-            <label>Password</label>
-            <div id="password-elements">
-                <input type="password" placeholder="Password..."
-                    id="login-password">
-                <i class="fa-solid fa-eye-slash" id="eye-icon"></i>
-            </div>
-        </div>
 
-        <div id="checkbox-login-container">
-            <div>
-                <p class="forgot-paragraph" >Forgot your password?</p>
-                <div class="checkbox-container">
-                    <input type="checkbox" id="check-box" checked>
-                    <p>Remember me</p>
+    <!-- Login Form -->
+    <form #loginForm="ngForm" (ngSubmit)="login()" novalidate>
+        <div id="login-form">
+            <div class="email-container">
+                <label>Email address</label>
+                <!-- Thêm name="email" -->
+                <input 
+                    type="text" 
+                    placeholder="Email address..." 
+                    id="email" 
+                    [(ngModel)]="email" 
+                    name="email" 
+                    required>
+            </div>
+            <div id="password-container">
+                <label>Password</label>
+                <div id="password-elements">
+                    <!-- Thêm name="password" -->
+                    <input 
+                        type="password" 
+                        placeholder="Password..." 
+                        id="login-password" 
+                        [(ngModel)]="password" 
+                        name="password" 
+                        required>
+                    <i class="fa-solid fa-eye-slash" id="eye-icon"></i>
                 </div>
             </div>
-            <button id="login-btn" routerLink="/home">LOG IN</button>
+    
+            <div id="checkbox-login-container">
+                <div>
+                    <p class="forgot-paragraph">Forgot your password?</p>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="check-box" checked>
+                        <p>Remember me</p>
+                    </div>
+                </div>
+                <button id="login-btn" type="submit">LOG IN</button>
+            </div>
+            <!-- Dropdown for Role Selection -->
+            <div class="role-container">
+                <label for="role">Select Role</label>
+                <select id="role" [(ngModel)]="selectedRole" name="role" required>
+                    <option value="1">Admin</option>
+                    <option value="2">Listener</option>
+                    <option value="3">Artist</option>
+                </select>
+            </div>
         </div>
-    </div>
+    </form>
+    
     <hr class="bottom-line">
     <!-- Sign Up -->
     <div id="sign-up-section">
