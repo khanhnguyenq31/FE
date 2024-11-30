@@ -13,46 +13,90 @@
 <section id="main-container">
     <p id="validationMessage">All input field is required.</p>
     <!-- Signup Form -->
-    <div id="signup-form">
-        <div class="avatar-container">
-            <label for="imageUpload" class="avatar-label-container">
-                <div class="avatar-image-container">
-                    <img class="avatar-preview-image" />
-                    <i class="fa-solid fa-user avatar-default-icon"></i>
-                </div>
-            </label>
-            <input
-                onchange="handleImage(event)"
-                type="file"
-                class="avatar-upload-input"
-                name="imageUpload"
-                id="imageUpload"
-                accept=".jpg, .jpeg, .png, .svg" />
-        </div>
-
-        <div class="user-container">
-            <label>User name</label>
-            <input type="text" placeholder="User name..." id="username">
-        </div>
-
-        <div class="email-container">
-            <label>Email address</label>
-            <input type="text" placeholder="Email address..." id="email">
-        </div>
-        <div id="password-container">
-            <label>Password</label>
-            <div id="password-elements">
-                <input type="password" placeholder="Password..." id="password">
-                <i class="fa-solid fa-eye-slash" id="eye-icon"></i>
+    <form #registerForm="ngForm">
+        <div id="signup-form">
+            <div class="avatar-container">
+                <label for="imageUpload" class="avatar-label-container">
+                    <div class="avatar-image-container">
+                        <img class="avatar-preview-image" />
+                        <i class="fa-solid fa-user avatar-default-icon"></i>
+                    </div>
+                </label>
+                <input
+                    onchange="handleImage(event)"
+                    type="file"
+                    class="avatar-upload-input"
+                    name="imageUpload"
+                    id="imageUpload"
+                    accept=".jpg, .jpeg, .png, .svg" />
             </div>
+
+            <!-- Username -->
+            <div class="user-container">
+                <label for="username">User name</label>
+                <input type="text" placeholder="User name..." id="username"
+                    name="username" [(ngModel)]="username" required>
+            </div>
+
+            <!-- Email Address -->
+            <div class="email-container">
+                <label for="email">Email address</label>
+                <input type="email" placeholder="Email address..." id="email"
+                    name="email" [(ngModel)]="email" required>
+            </div>
+
+            <!-- Password -->
+            <div id="password-container">
+                <label for="password">Password</label>
+                <div id="password-elements">
+                    <input type="password" placeholder="Password..."
+                        id="password" name="password" [(ngModel)]="password"
+                        required>
+                    <i class="fa-solid fa-eye-slash" id="eye-icon"></i>
+                </div>
+            </div>
+
+            <!-- Retype Password -->
+            <div id="retype-password-container">
+                <label for="retypePassword">Retype Password</label>
+                <div id="password-elements">
+                    <input type="password" placeholder="Retype password..."
+                        id="retypePassword" name="retypePassword"
+                        [(ngModel)]="retypePassword"
+                        required>
+                    <i class="fa-solid fa-eye-slash" id="eye-icon"></i>
+                </div>
+            </div>
+
+            <!-- Country -->
+            <div class="country-container">
+                <label for="country">Country</label>
+                <select id="country" name="country" [(ngModel)]="country"
+                    required>
+                    <option value disabled selected>Select your country</option>
+                    <option value="USA">USA</option>
+                    <option value="UK">UK</option>
+                    <option value="Vietnam">Vietnam</option>
+                    <option value="Canada">Canada</option>
+                </select>
+            </div>
+
+            <!-- Date of Birth -->
+            <div class="dob-container">
+                <label for="dateOfBirth">Date of Birth</label>
+                <input type="date" id="dateOfBirth" name="dateOfBirth"
+                    [(ngModel)]="dateOfBirth" required>
+            </div>
+
+            <button id="signup-btn" (click)="register()">signup</button>
         </div>
-        <button id="signup-btn" routerLink="/login">signup</button>
-    </div>
+    </form>
+
     <hr class="bottom-line">
     <!-- Sign Up -->
     <div id="login-section">
         <h3>Already have an account ?</h3>
-        <button id="login-btn" routerLink="/login">LogIn for Spotify</button>
+        <button id="login-btn" routerLink="/signin">LogIn for Spotify</button>
     </div>
 
     <!-- reCAPTCHA -->
