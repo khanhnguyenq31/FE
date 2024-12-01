@@ -1,91 +1,97 @@
 <!-- Header Section -->
 <header>
-    <img
-        src="https://res.cloudinary.com/dlt4ash36/image/upload/v1700793822/Spotify_Logo_zhfwpq.png"
-        alt="Spotify-Logo" id="spotify-logo">
-    <div class="mode-container">
-        <i class="bi bi-brightness-high-fill" id="themeIcon"></i>
-        <p id="toggle-paragraph">Toggle Light Mode</p>
-    </div>
+  <img
+    src="https://res.cloudinary.com/dlt4ash36/image/upload/v1700793822/Spotify_Logo_zhfwpq.png"
+    alt="Spotify-Logo"
+    id="spotify-logo"
+  />
+  <div class="mode-container">
+    <i class="bi bi-brightness-high-fill" id="themeIcon"></i>
+    <p id="toggle-paragraph">Toggle Light Mode</p>
+  </div>
 </header>
 <div id="nav-line"></div>
 <!-- Login Section -->
 <section id="main-container">
-    <p id="validationMessage">Incorrect username or password.</p>
+  <p id="validationMessage">Incorrect username or password.</p>
 
-    <!-- Login Form -->
-    <form #loginForm="ngForm" (ngSubmit)="login()" novalidate>
-        <div id="login-form">
-            <div class="email-container">
-                <label>Email address</label>
-                <!-- Thêm name="email" -->
-                <input 
-                    type="text" 
-                    placeholder="Email address..." 
-                    id="email" 
-                    [(ngModel)]="email" 
-                    name="email" 
-                    required>
-            </div>
-            <div id="password-container">
-                <label>Password</label>
-                <div id="password-elements">
-                    <!-- Thêm name="password" -->
-                    <input 
-                        type="password" 
-                        placeholder="Password..." 
-                        id="login-password" 
-                        [(ngModel)]="password" 
-                        name="password" 
-                        required>
-                    <i class="fa-solid fa-eye-slash" id="eye-icon"></i>
-                </div>
-            </div>
-    
-            <div id="checkbox-login-container">
-                <div>
-                    <p class="forgot-paragraph">Forgot your password?</p>
-                    <div class="checkbox-container">
-                        <input type="checkbox" id="check-box" checked>
-                        <p>Remember me</p>
-                    </div>
-                </div>
-                <button id="login-btn" type="submit">LOG IN</button>
-            </div>
-            <!-- Dropdown for Role Selection -->
-            <div class="role-container">
-                <label for="role">Select Role</label>
-                <select id="role" [(ngModel)]="selectedRole" name="role" required>
-                    <option value="1">Admin</option>
-                    <option value="2">Listener</option>
-                    <option value="3">Artist</option>
-                </select>
-            </div>
+  <!-- Login Form -->
+  <form #loginForm="ngForm" (ngSubmit)="login()" novalidate>
+    <div id="login-form">
+      <div class="email-container">
+        <label>Email address</label>
+        <!-- Thêm name="email" -->
+        <input
+          type="text"
+          placeholder="Email address..."
+          id="email"
+          [(ngModel)]="email"
+          name="email"
+          required
+        />
+      </div>
+      <div id="password-container">
+        <label>Password</label>
+        <div id="password-elements">
+          <!-- Thêm name="password" -->
+          <input
+            type="password"
+            placeholder="Password..."
+            id="login-password"
+            [(ngModel)]="password"
+            name="password"
+            required
+          />
+          <i class="fa-solid fa-eye-slash" id="eye-icon"></i>
         </div>
-    </form>
-    
-    <hr class="bottom-line">
-    <!-- Sign Up -->
-    <div id="sign-up-section">
-        <h3>Don't have an account ?</h3>
-        <button id="signup-btn" routerLink="/signup">Sign up for Spotify</button>
-    </div>
+      </div>
 
-    <!-- reCAPTCHA -->
-    <div class="captcha-container">
-        <aside class="recaptcha-section">
-            <div class="outside-recaptcha">
-                <img
-                    src="https://res.cloudinary.com/dlt4ash36/image/upload/v1700793821/recaptcha_b1yccf.png"
-                    alt="reCAPTCHA">
-                <p class="outside-para">Privacy - Terms</p>
-            </div>
-            <div class="inside-recaptcha">
-                <span class="inside-span">protected by <span
-                        class="re">re</span><span
-                        class="re-cap-span">captcha</span></span>
-                <p class="inside-para">Privacy - Terms</p>
-            </div>
-        </aside>
+      <div id="checkbox-login-container">
+        <div>
+          <p class="forgot-paragraph">Forgot your password?</p>
+          <div class="checkbox-container">
+            <input type="checkbox" id="check-box" checked />
+            <p>Remember me</p>
+          </div>
+        </div>
+        <button id="login-btn" type="submit">LOG IN</button>
+      </div>
+      <!-- Dropdown for Role Selection -->
+      <div class="role-container">
+        <label for="role">Select Role</label>
+        <select id="role" [(ngModel)]="selectedRole" name="role" required>
+          <option value="1">Admin</option>
+          <option value="2">Artist</option>
+          <option value="3">Listener</option>
+        </select>
+      </div>
     </div>
+  </form>
+
+  <hr class="bottom-line" />
+  <!-- Sign Up -->
+  <div id="sign-up-section">
+    <h3>Don't have an account ?</h3>
+    <button id="signup-btn" routerLink="/signup">Sign up for Spotify</button>
+  </div>
+
+  <!-- reCAPTCHA -->
+  <div class="captcha-container">
+    <aside class="recaptcha-section">
+      <div class="outside-recaptcha">
+        <img
+          src="https://res.cloudinary.com/dlt4ash36/image/upload/v1700793821/recaptcha_b1yccf.png"
+          alt="reCAPTCHA"
+        />
+        <p class="outside-para">Privacy - Terms</p>
+      </div>
+      <div class="inside-recaptcha">
+        <span class="inside-span"
+          >protected by <span class="re">re</span
+          ><span class="re-cap-span">captcha</span></span
+        >
+        <p class="inside-para">Privacy - Terms</p>
+      </div>
+    </aside>
+  </div>
 </section>

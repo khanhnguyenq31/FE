@@ -1,33 +1,53 @@
 <body>
+  <div *ngIf="successMessage" class="success-message">
+    {{ successMessage }}
+  </div>
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
   <div class="form-container">
     <h2>Tạo bài hát mới</h2>
-    <form id="newSongForm">
+
+    <form (ngSubmit)="onSubmit()" #newSongForm="ngForm">
       <div class="form-group">
         <label for="songTitle">Tên bài hát</label>
-        <input type="text" id="songTitle" name="songTitle" required />
-      </div>
-      <div class="form-group">
-        <label for="songDuration">Thời lượng</label>
-        <input type="text" id="songDuration" name="songDuration" required />
-      </div>
-      <div class="form-group">
-        <label for="songCover">Ảnh bìa</label>
         <input
-          type="file"
-          id="songCover"
-          name="songCover"
-          accept="image/*"
+          type="text"
+          id="songTitle"
+          name="songTitle"
           required
+          [(ngModel)]="songTitle"
         />
       </div>
       <div class="form-group">
-        <label for="songFile">Tệp bài hát (mp3)</label>
+        <label for="songDescription">Mô tả</label>
+        <input
+          type="text"
+          id="songDescription"
+          name="songDescription"
+          required
+          [(ngModel)]="songDescription"
+        />
+      </div>
+      <div class="form-group">
+        <label for="releaseDate">Ngày phát hành</label>
+        <input
+          type="date"
+          id="releaseDate"
+          name="releaseDate"
+          required
+          [(ngModel)]="releaseDate"
+        />
+      </div>
+      <div class="form-group">
+        <label for="songFile">Tệp bài hát </label>
         <input
           type="file"
           id="songFile"
           name="songFile"
-          accept="audio/mp3"
+          accept="audio/*"
           required
+          (change)="onFileChange($event)"
         />
       </div>
       <div class="form-group">

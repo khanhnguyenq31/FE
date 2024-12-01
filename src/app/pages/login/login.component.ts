@@ -27,7 +27,7 @@ export class LoginComponent extends BaseComponent implements OnInit {
   validationMessage: string = '';
 
   roles: Role[] = [];
-  selectedRole: number = 2; // Default to Admin
+  selectedRole: number = 3; // Default to Admin
 
   userResponse?: UserResponse;
 
@@ -44,7 +44,7 @@ export class LoginComponent extends BaseComponent implements OnInit {
       next: (apiResponse: ApiResponse) => {
         const roles = apiResponse.data;
         this.roles = roles;
-        this.selectedRole = roles.length > 0 ? roles[2].id : 2;
+        this.selectedRole = roles.length > 0 ? roles[2].id : 3;
       },
       error: (error: HttpErrorResponse) => {
         console.error(error?.error?.message ?? '');
@@ -102,9 +102,9 @@ export class LoginComponent extends BaseComponent implements OnInit {
             if (this.userResponse?.role.name == 'ADMIN') {//////////////////////////
               this.router.navigate(['/home']);
             } else if (this.userResponse?.role.name == 'LISTENER') {
-              this.router.navigate(['/listener']); ///home
-            } else if (this.userResponse?.role.name == 'ARTIRST') {
-              this.router.navigate(['/artirst']);
+              this.router.navigate(['/home']); ///home
+            } else if (this.userResponse?.role.name == 'ARTIST') {
+              this.router.navigate(['/artist/songs/new']);
             }
           },
           error: (error: HttpErrorResponse) => {

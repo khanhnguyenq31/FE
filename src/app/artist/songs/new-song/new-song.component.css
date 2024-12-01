@@ -67,3 +67,44 @@ body {
     transform: scale(1.05);
     box-shadow: 0 0 15px rgba(29, 185, 84, 0.6);
 }
+.success-message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #4caf50;
+    /* Màu nền xanh cho thông báo */
+    color: white;
+    /* Màu chữ */
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+    z-index: 1000;
+    /* Đảm bảo luôn hiển thị trên cùng */
+    animation: fadeOut 1s 2s forwards;
+    /* Hiệu ứng mờ dần sau 2 giây */
+}
+.error-message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #f44336;
+    /* Màu nền xanh cho thông báo */
+    color: white;
+    /* Màu chữ */
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+    z-index: 1000;
+    /* Đảm bảo luôn hiển thị trên cùng */
+    animation: fadeOut 1s 2s forwards;
+    /* Hiệu ứng mờ dần sau 2 giây */
+}
+/* Hiệu ứng mờ dần */
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}

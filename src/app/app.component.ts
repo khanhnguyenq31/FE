@@ -6,12 +6,12 @@ import { SongsectionComponent } from "./components/songsection/songsection.compo
 import { CreatelistComponent } from './pages/createlist/createlist.component';
 import { PlaylistComponent } from './pages/playlist/playlist.component';
 import { SidebarsectionComponent } from "./components/sidebarsection/sidebarsection.component";
-import { FormsModule } from '@angular/forms';
 import { Router, NavigationEnd } from '@angular/router';
 import { NewAlbumComponent } from './artist/albums/new-album/new-album.component';
 import { SongsComponent } from './artist/songs/songs.component';
 import { AlbumsComponent } from './artist/albums/albums.component';
 import { NewSongComponent } from './artist/songs/new-song/new-song.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
