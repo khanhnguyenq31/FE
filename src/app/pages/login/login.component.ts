@@ -54,7 +54,7 @@ export class LoginComponent extends BaseComponent implements OnInit {
 
   login(): void {
     // Ensure the form is valid before proceeding
-    debugger;
+    //debugger;
     if (this.loginForm.invalid) {
       this.validationMessage = 'Please enter valid email and password.';
       return;
@@ -64,7 +64,7 @@ export class LoginComponent extends BaseComponent implements OnInit {
       this.validationMessage = 'Please enter both email and password.';
       return;
     }
-    debugger;
+    //debugger;
     ///////////////////////////////
     // Kiểm tra xem username có đuôi @gmail.com không
     if (this.email.endsWith('@gmail.com')) {
@@ -74,7 +74,7 @@ export class LoginComponent extends BaseComponent implements OnInit {
       this.username = this.email; // Nếu không, gán email là rỗng
     }
     //////////////////////////////
-    debugger;
+    //debugger;
 
     const loginDTO: LoginDTO = {
       email: this.email,
@@ -82,14 +82,14 @@ export class LoginComponent extends BaseComponent implements OnInit {
       password: this.password,
       role_id: this.selectedRole
     };
-    debugger;
+    //debugger;
 
     this.userService.login(loginDTO).subscribe({
       next: (apiResponse: ApiResponse) => {
-        debugger;
+        //debugger;
         const { token } = apiResponse.data;
         this.tokenService.setToken(token);
-        debugger;
+        //debugger;
         this.userService.getUserDetail(token).subscribe({
           next: (apiResponse2: ApiResponse) => {
             this.userResponse = {
@@ -98,13 +98,17 @@ export class LoginComponent extends BaseComponent implements OnInit {
             };
 
             this.userService.saveUserResponseTLS(this.userResponse);
-            debugger;
+            //debugger;
             if (this.userResponse?.role.name == 'ADMIN') {//////////////////////////
               this.router.navigate(['/home']);
             } else if (this.userResponse?.role.name == 'LISTENER') {
               this.router.navigate(['/home']); ///home
             } else if (this.userResponse?.role.name == 'ARTIST') {
+<<<<<<< HEAD
               this.router.navigate(['/artist/songs/new']);
+=======
+              this.router.navigate(['/home']);
+>>>>>>> f157bff5e7edf0f1da4fc805fb69ba6cf2cd5a84
             }
           },
           error: (error: HttpErrorResponse) => {

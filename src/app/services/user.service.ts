@@ -7,7 +7,7 @@ import { ApiResponse } from "../responses/api.response";
 import { LoginDTO } from "../dtos/login.dto";
 import { UserResponse } from "../responses/user.response";
 import { DOCUMENT } from "@angular/common";
-
+import { RegisterDTO } from "../dtos/register.dto";
 
 @Injectable({
     providedIn: 'root'
@@ -29,6 +29,11 @@ export class UserService {
     private apiGetAllUser = `${environment.apiBaseUrl}/users`;
     getAllUser(params: { page: number, limit: number, keyword: string }): Observable<ApiResponse> {
         return this.http.get<ApiResponse>(this.apiGetAllUser, { params: params });
+    }
+
+    private apiRegister = `${environment.apiBaseUrl}/users/register`;
+    register(registerDTO: RegisterDTO): Observable<ApiResponse> {
+        return this.http.post<ApiResponse>(this.apiRegister, registerDTO, this.apiConfig);
     }
 
     private apiLogin = `${environment.apiBaseUrl}/users/login`;
