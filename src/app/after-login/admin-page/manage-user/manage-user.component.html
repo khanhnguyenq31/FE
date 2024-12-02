@@ -1,0 +1,43 @@
+<div class="user-management">
+    <table class="user-table">
+      <thead>
+        <tr>
+          <th>Tên người dùng</th>
+          <th>Loại tài khoản</th>
+          <th>Hành động</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{ user.username }}</td>
+          <td>{{ user.accountType }}</td>
+          <td>
+            <button class="active-button" (click)="toggleActivation(user)">{{ user.active ? 'Vô hiệu' : 'Kích hoạt' }}</button>
+            <button (click)="deleteUser(user)">Xóa</button>
+            <button (click)="viewDetails(user)">Chi tiết</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- User Detail Modal -->
+    <div class="user-detail-modal" *ngIf="!hiddenDetail">
+      <div class="detail-container">
+        <h2>Thông tin người dùng</h2>
+        <p><strong>Tên người dùng:</strong> {{ selectedUser.username }}</p>
+        <p><strong>Loại tài khoản:</strong> {{ selectedUser.accountType }}</p>
+        <div *ngIf="selectedUser.accountType === 'Nghệ sĩ'">
+          <h3>Bài nhạc đã đăng:</h3>
+          <ul>
+            <li *ngFor="let song of selectedUser.songs">{{ song }}</li>
+          </ul>
+          <h3>Album đã đăng:</h3>
+          <ul>
+            <li *ngFor="let album of selectedUser.albums">{{ album }}</li>
+          </ul>
+        </div>
+        <button (click)="closeDetails()">Đóng</button>
+      </div>
+    </div>
+  </div>
+  

@@ -15,6 +15,12 @@ export class TokenService {
         this.localStorage = document.defaultView?.localStorage;
     }
 
+    isLoggedIn() : boolean {
+        if (this.localStorage?.getItem(this.TOKEN_KEY) == undefined)
+            return false;
+        else return true;
+    }
+
     getToken(): string { return this.localStorage?.getItem(this.TOKEN_KEY) ?? ''; }
 
     setToken(token: string): void { this.localStorage?.setItem(this.TOKEN_KEY, token); }
@@ -31,6 +37,4 @@ export class TokenService {
     removeToken(): void {
         this.localStorage?.removeItem(this.TOKEN_KEY);
     }
-
-    
 }
