@@ -104,11 +104,7 @@ export class LoginComponent extends BaseComponent implements OnInit {
             } else if (this.userResponse?.role.name == 'LISTENER') {
               this.router.navigate(['/home']); ///home
             } else if (this.userResponse?.role.name == 'ARTIST') {
-<<<<<<< HEAD
               this.router.navigate(['/artist/songs/new']);
-=======
-              this.router.navigate(['/home']);
->>>>>>> f157bff5e7edf0f1da4fc805fb69ba6cf2cd5a84
             }
           },
           error: (error: HttpErrorResponse) => {
