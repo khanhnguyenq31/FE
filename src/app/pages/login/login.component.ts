@@ -1,7 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { SignupComponent } from '../signup/signup.component';
-import { HomebeforeloginComponent } from '../homebeforelogin/homebeforelogin.component';
 import { Role } from '../../models/role';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ApiResponse } from '../../responses/api.response';
@@ -100,11 +98,14 @@ export class LoginComponent extends BaseComponent implements OnInit {
             this.userService.saveUserResponseTLS(this.userResponse);
             //debugger;
             if (this.userResponse?.role.name == 'ADMIN') {//////////////////////////
-              this.router.navigate(['/home']);
+              this.roleService.setRole('ADMIN')
+              this.router.navigate(['/afterlogin/adminpage']);
             } else if (this.userResponse?.role.name == 'LISTENER') {
-              this.router.navigate(['/home']); ///home
+              this.roleService.setRole('LISTENER')
+              this.router.navigate(['/afterlogin/listenerpage']); ///home
             } else if (this.userResponse?.role.name == 'ARTIST') {
-              this.router.navigate(['/artist/songs/new']);
+              this.roleService.setRole('ARTIST')
+              this.router.navigate(['/afterlogin/artistpage']);
             }
           },
           error: (error: HttpErrorResponse) => {

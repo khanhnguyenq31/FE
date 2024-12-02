@@ -2,7 +2,9 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
-
+import { TokenService } from '../../services/token.service';
+import { RoleService } from '../../services/role.service';
+import { inject } from '@angular/core';
 @Component({
   selector: 'app-profilemenu',
   standalone: true,
@@ -12,7 +14,8 @@ import { RouterLink } from '@angular/router';
 })
 export class ProfilemenuComponent {
   isMenuOpen = false;
-
+  tokenService = inject(TokenService); // Inject AuthService
+  roleService = inject(RoleService); // Inject AuthService
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
   }
@@ -26,6 +29,8 @@ export class ProfilemenuComponent {
   logout() {
     // Xử lý đăng xuất
     console.log('Logging out');
+    this.tokenService.removeToken();
+    this.roleService.removeRole();
     this.isMenuOpen = false; // Đóng menu sau khi chọn
   }
 }

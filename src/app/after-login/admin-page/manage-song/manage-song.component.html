@@ -1,0 +1,133 @@
+<div class="container">
+    <table class="song-list">
+    <thead>
+        <tr>
+        <th>#</th>
+        <th>Song Title</th>
+        <th>Artist/Group</th>
+        <th>Requested Date</th>
+        <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+        <td>1</td>
+        <td>Shape of You</td>
+        <td>Ed Sheeran</td>
+        <td>2024-11-25</td>
+        <td class="actions">
+            <button class="approve">Approve</button>
+            <button class="reject" (click)="openRejectModal()">Reject</button>
+            <button class="details" (click)="open()">Details</button>
+        </td>
+        </tr>
+        <tr>
+        <td>2</td>
+        <td>Butter</td>
+        <td>BTS</td>
+        <td>2024-11-24</td>
+        <td class="actions">
+            <button class="approve">Approve</button>
+            <button class="reject" (click)="openRejectModal()">Reject</button>
+            <button class="details" (click)="open()">Details</button>
+        </td>
+        </tr>
+        <tr>
+        <td>3</td>
+        <td>Someone Like You</td>
+        <td>Adele</td>
+        <td>2024-11-23</td>
+        <td class="actions">
+            <button class="approve">Approve</button>
+            <button class="reject" (click)="openRejectModal()">Reject</button>
+            <button class="details" (click)="open()">Details</button>
+        </td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Shape of You</td>
+            <td>Ed Sheeran</td>
+            <td>2024-11-25</td>
+            <td class="actions">
+                <button class="approve">Approve</button>
+                <button class="reject" (click)="openRejectModal()">Reject</button>
+                <button class="details" (click)="open()">Details</button>
+            </td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Shape of You</td>
+            <td>Ed Sheeran</td>
+            <td>2024-11-25</td>
+            <td class="actions">
+                <button class="approve">Approve</button>
+                <button class="reject" (click)="openRejectModal()">Reject</button>
+                <button class="details" (click)="open()">Details</button>
+            </td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>Shape of You</td>
+            <td>Ed Sheeran</td>
+            <td>2024-11-25</td>
+            <td class="actions">
+                <button class="approve">Approve</button>
+                <button class="reject" (click)="openRejectModal()">Reject</button>
+                <button class="details" (click)="open()">Details</button>
+            </td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>Shape of You</td>
+            <td>Ed Sheeran</td>
+            <td>2024-11-25</td>
+            <td class="actions">
+                <button class="approve">Approve</button>
+                <button class="reject" (click)="openRejectModal()">Reject</button>
+                <button class="details" (click)="open()">Details</button>
+            </td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>Shape of You</td>
+            <td>Ed Sheeran</td>
+            <td>2024-11-25</td>
+            <td class="actions">
+                <button class="approve">Approve</button>
+                <button class="reject" (click)="openRejectModal()">Reject</button>
+                <button class="details" (click)="open()">Details</button>
+            </td>
+        </tr>
+    </tbody>
+    </table>
+    
+    <div class="overlap" *ngIf="!hiddenFlag"></div>
+    <div class="notification" *ngIf="!hiddenFlag">
+        <div class="song-image">
+            <img src="https://anotherbucket229.s3.ap-southeast-2.amazonaws.com/ab67616d00001e02c006b0181a3846c1c63e178f.jpg" alt="Song Thumbnail" />
+          </div>
+          <div class="song-info">
+            <h2>Không phải gu</h2>
+            <p><strong>Artist:</strong> Artist Name</p>
+            <p><strong>Genre:</strong> Genre Name</p>
+            <p><strong>Release Date:</strong> YYYY-MM-DD</p>
+            <p><strong>Description:</strong> A brief description of the song goes here.</p>
+            <div class="actions">
+              <button class="approve">Approve</button>
+              <button class="reject" (click)="openRejectModal()">Reject</button>
+            </div>
+        </div>
+        <button (click)="close()" class="close">Close</button>
+    </div>
+
+    <div class="overlap" *ngIf="!hiddenRejectModal"></div>
+    <div class="reject-modal" *ngIf="!hiddenRejectModal">
+        <h2>Reason for Rejection</h2>
+        <textarea placeholder="Enter your reason here..." [(ngModel)]="rejectReason"></textarea>
+        <div class="actions">
+            <button (click)="submitRejection()">Submit</button>
+            <button (click)="closeRejectModal()">Cancel</button>
+        </div>
+    </div>
+</div>
+
