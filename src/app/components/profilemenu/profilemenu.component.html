@@ -6,10 +6,10 @@
     </div>
     <div *ngIf="isMenuOpen" class="menu">
         <ul>
-            <li routerLink="/profile">Profile</li>
-            <li routerLink="/account">Account</li>
-            <li routerLink="/settings">Settings</li>
-            <li (click)="logout()" routerLink="">Log out</li>
+            <li (click)="navigateTo('profile')">Profile</li>
+            <li (click)="navigateTo('account')">Account</li>
+            <li (click)="navigateTo('settings')">Settings</li>
+            <li (click)="logout()">Log out</li>
         </ul>
     </div>
 </div>

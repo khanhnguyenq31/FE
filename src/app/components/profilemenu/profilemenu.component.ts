@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 import { TokenService } from '../../services/token.service';
@@ -16,13 +17,38 @@ export class ProfilemenuComponent {
   isMenuOpen = false;
   tokenService = inject(TokenService); // Inject AuthService
   roleService = inject(RoleService); // Inject AuthService
+  router = inject(Router); // Inject Router
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
-  navigateTo(route: string) {
-    // Xử lý điều hướng tới các trang khác
-    console.log(`Navigating to ${route}`);
+  navigateTo(section: 'profile' | 'account' | 'settings') {
+    const role = this.roleService.getRole(); // Lấy role hiện tại của người dùng
+    let targetRoute = '';
+
+    // Xác định route dựa trên role và section
+    switch (role) {
+      case 'ADMIN':
+        if (section === 'profile') targetRoute = '/afterlogin/adminpage';
+        else if (section === 'account') targetRoute = '/afterlogin/adminpage/manageUser';
+        else if (section === 'settings') targetRoute = '/afterlogin/adminpage/manageReport';
+        break;
+
+      case 'LISTENER':
+        targetRoute = `/afterlogin/listenerpage/${section}`;
+        break;
+
+      case 'ARTIST':
+        targetRoute = `/afterlogin/artistpage/${section}`;
+        break;
+
+      default:
+        console.error('Unknown role:', role);
+        return;
+    }
+
+    // Điều hướng tới route mục tiêu
+    this.router.navigate([targetRoute]);
     this.isMenuOpen = false; // Đóng menu sau khi chọn
   }
 
@@ -32,5 +58,6 @@ export class ProfilemenuComponent {
     this.tokenService.removeToken();
     this.roleService.removeRole();
     this.isMenuOpen = false; // Đóng menu sau khi chọn
+    this.router.navigate(['/']); // Điều hướng về trang beforelogin
   }
 }
