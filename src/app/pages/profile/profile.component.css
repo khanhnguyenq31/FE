@@ -123,6 +123,9 @@ body {
     align-items: center; /* Căn giữa các phần tử theo chiều ngang */
 }
 
+.playlist {
+  width: 150px;  
+}
 .playlist img {
     width: 150px;
     height: 150px;
