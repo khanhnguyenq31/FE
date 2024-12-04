@@ -1,47 +1,68 @@
 <body>
+  <div *ngIf="successMessage" class="success-message">
+    {{ successMessage }}
+  </div>
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
   <div class="form-container">
-    <h2>Tạo Album Mới</h2>
-    <form
-      action="/artist/albums/new"
-      method="post"
-      enctype="multipart/form-data"
-    >
+    <h2>Tạo album mới</h2>
+
+    <form (ngSubmit)="onSubmit()" #newAlbumForm="ngForm">
       <div class="form-group">
-        <label for="name"> Tên Album </label>
-        <input id="name" name="name" required="" type="text" />
-      </div>
-      <div class="form-group">
-        <label for="description"> Mô tả </label>
-        <textarea id="description" name="description" required="" rows="4">
-        </textarea>
-      </div>
-      <div class="form-group">
-        <label for="cover"> Ảnh Bìa </label>
+        <label for="albumTitle">Tên album</label>
         <input
-          accept="image/*"
-          id="cover"
-          name="cover"
-          required=""
-          type="file"
+          type="text"
+          id="albumTitle"
+          name="albumTitle"
+          required
+          [(ngModel)]="albumTitle"
         />
       </div>
       <div class="form-group">
-        <label for="songs"> Danh Sách Bài Hát </label>
-        <select id="songs" multiple="" name="songs[]" required="">
-          <option value="1">TRẦN BỘ NHỚ (feat. Dương Domic)</option>
-          <option value="2">bình yên</option>
-          <option value="3">Vì Anh Đâu Có Biết</option>
-          <option value="4">Sau Cơn Mưa</option>
-          <option value="5">Miên Man</option>
-          <option value="6">Nghe Như Tình Yêu</option>
-          <option value="7">Em Không Sai Chúng Ta Sai</option>
-          <option value="8">Hoa Nở Không Màu</option>
-          <option value="9">Bông Hoa Đẹp Nhất</option>
-          <option value="10">Cứ Chill Thôi</option>
-        </select>
+        <label for="albumDescription">Mô tả album</label>
+        <input
+          type="text"
+          id="albumDescription"
+          name="albumDescription"
+          required
+          [(ngModel)]="albumDescription"
+        />
       </div>
       <div class="form-group">
-        <button type="submit">Tạo Album</button>
+        <label for="albumReleaseDate">Ngày phát hành</label>
+        <input
+          type="date"
+          id="albumReleaseDate"
+          name="albumReleaseDate"
+          required
+          [(ngModel)]="albumReleaseDate"
+        />
+      </div>
+      <div class="form-group">
+        <label for="albumImage">Ảnh bìa album</label>
+        <input
+          type="file"
+          id="albumImage"
+          name="albumImage"
+          accept="image/*"
+          required
+          (change)="onFileChange($event)"
+        />
+      </div>
+      <div class="form-group">
+        <label for="genreIds">Thể loại nhạc (ID cách nhau bằng dấu phẩy)</label>
+        <input
+          type="text"
+          id="genreIds"
+          name="genreIds"
+          placeholder="Nhập ID thể loại, ví dụ: 4,5"
+          [(ngModel)]="genreIds"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <button type="submit">Tạo album</button>
       </div>
     </form>
   </div>

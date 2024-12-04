@@ -18,9 +18,9 @@ export class SongsectionComponent  {
   @Input() status: boolean = true;
 
   songs: string[] = [
-    'https://anotherbucket229.s3.ap-southeast-2.amazonaws.com/emotional-piano-music-256262.mp3',
+    'https://res.cloudinary.com/dpxhfbpd0/video/upload/v1733156250/songs/apwxgkxkmlgmxhqqqvfz.mp3',
     'https://anotherbucket229.s3.ap-southeast-2.amazonaws.com/inspirational-uplifting-calm-piano-254764.mp3',
-    'https://anotherbucket229.s3.ap-southeast-2.amazonaws.com/testnhac.mp3'
+    'https://res.cloudinary.com/dpxhfbpd0/video/upload/v1733155122/songs/p2gukjhvmwuc2tacigo9.mp3'
   ];
 
   shuffleSong() {

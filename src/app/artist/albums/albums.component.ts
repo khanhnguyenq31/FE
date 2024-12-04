@@ -4,6 +4,7 @@ import { SongsectionComponent } from '../../components/songsection/songsection.c
 import { SidebarsectionComponent } from '../../components/sidebarsection/sidebarsection.component';
 import { RouterLink } from '@angular/router';
 
+
 @Component({
   selector: 'app-albums',
   standalone: true,

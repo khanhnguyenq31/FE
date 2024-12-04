@@ -25,7 +25,7 @@ export class LoginComponent extends BaseComponent implements OnInit {
   validationMessage: string = '';
 
   roles: Role[] = [];
-  selectedRole: number = 3; // Default to Admin
+  selectedRole !: number; 
 
   userResponse?: UserResponse;
 
@@ -42,7 +42,8 @@ export class LoginComponent extends BaseComponent implements OnInit {
       next: (apiResponse: ApiResponse) => {
         const roles = apiResponse.data;
         this.roles = roles;
-        this.selectedRole = roles.length > 0 ? roles[2].id : 3;
+        console.log(roles.id)
+        this.selectedRole = roles.length > 0 ? roles[2].id : 1;
       },
       error: (error: HttpErrorResponse) => {
         console.error(error?.error?.message ?? '');
