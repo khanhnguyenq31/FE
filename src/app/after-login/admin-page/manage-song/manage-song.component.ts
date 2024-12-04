@@ -1,48 +1,78 @@
 import { Component } from '@angular/core';
-import { NgIf } from '@angular/common';
+import { NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { SongService } from '../../../services/song.service';
+import { HttpErrorResponse } from '@angular/common/http';
+
 @Component({
   selector: 'app-manage-song',
   standalone: true,
-  imports: [NgIf , FormsModule],
+  imports: [ FormsModule , NgFor],
   templateUrl: './manage-song.component.html',
   styleUrl: './manage-song.component.css'
 })
 export class ManageSongComponent {
-  hiddenFlag = true;
-  iddenFlag = true;
   
-  // open the notification
-  open() {
-    this.hiddenFlag = false;
-  }
-  
-  // close the notification
-  close() {
-    this.hiddenFlag = true;
-  }
-
-  hiddenSongDetail = true; // Hide song detail modal by default
-  hiddenRejectModal = true; // Hide reject modal by default
-
-  // Rejection reason
-  rejectReason: string = '';
-
-  // Open reject modal
-  openRejectModal() {
-    this.hiddenRejectModal = false;
-    this.hiddenSongDetail = true; // Hide song detail modal
+  constructor(private songService : SongService) {
+    // suppose that admin gets all song
+    this.songService.getAllSong().subscribe({
+      next: (response) => {
+        this.songs = response.data.songs
+      },
+      error: (error: HttpErrorResponse) => {
+        console.error('Lỗi khi tải danh sách nhạc:', error);
+      }
+    });
   }
 
-  // Close reject modal
-  closeRejectModal() {
-    this.hiddenRejectModal = true;
+  songs_list_approved: number[] = [];
+  songs_list_rejected: number[] = [];
+
+  songs: Array<{ id: number; name: string; secure_url: string; status: string }> = [];
+
+  onChange(song_id: number , status: string) {
+    if (status = 'APPROVED')
+      this.songs_list_approved.push(song_id)
+    else if (status = 'REJECTED') this.songs_list_rejected.push(song_id)
   }
 
-  // Submit rejection reason
-  submitRejection() {
-    console.log('Rejection Reason:', this.rejectReason);
-    this.hiddenRejectModal = true;
-    this.rejectReason = ''; // Clear input after submission
+  submitAllSelections() { 
+    this.songService.approveSong(this.songs_list_approved).subscribe({
+      next: (response) => {
+        console.log('Approve thành công:', response);  
+        this.songService.getAllSong().subscribe({
+          next: (response) => {
+            this.songs = [...response.data.songs];
+          },
+          error: (error: HttpErrorResponse) => {
+            console.error('Lỗi khi tải danh sách nhạc:', error);
+          }
+        });
+      },
+      error: (error: HttpErrorResponse) => {
+        console.error('Lỗi khi approve:', error);
+      }
+    });
+
+    this.songService.rejectSong(this.songs_list_approved).subscribe({
+      next: (response) => {
+        console.log('Reject thành công:', response);
+        this.songService.getAllSong().subscribe({
+          next: (response) => {
+            this.songs = [...response.data.songs];
+          },
+          error: (error: HttpErrorResponse) => {
+            console.error('Lỗi khi tải danh sách nhạc:', error);
+          }
+        });
+      },
+      error: (error: HttpErrorResponse) => {
+        console.error('Lỗi khi reject:', error);
+      }
+    });
+    this.songs_list_approved.length = 0;
+    
+    this.songs_list_rejected.length = 0;
+
   }
 }
