@@ -1,7 +1,12 @@
 <div class="profile-menu" (click)="toggleMenu()">
     <div class="profile-info">
-        <img src="https://i.pinimg.com/474x/e5/b1/65/e5b165832a3fcc5140b5ab510e7c1baa.jpg" alt="Profile" class="profile-image" />
-        <span class="profile-name">GEN Chovy</span>
+        <img *ngIf="imageUrl; else defaultImage" [src]="imageUrl" alt="Profile" class="profile-image" />
+        <ng-template #defaultImage>
+            <div class="profile-image-container">
+                <i class="fas fa-user"></i>
+            </div>
+        </ng-template>
+        <span class="profile-name">{{ username }}</span>
         <mat-icon class="dropdown-icon">arrow_drop_down</mat-icon>
     </div>
     <div *ngIf="isMenuOpen" class="menu">

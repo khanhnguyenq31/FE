@@ -49,3 +49,14 @@
 .menu li:hover {
     background-color: #444; /* Màu nền khi hover */
 }
+
+.profile-image-container {
+    width: 40px; /* Kích thước hình tròn */
+    height: 40px; /* Kích thước hình tròn */
+    background-color: #4a5568; /* Màu nền */
+    border-radius: 50%; /* Hình tròn */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Căn giữa biểu tượng */
+    margin-right: 8px;
+}

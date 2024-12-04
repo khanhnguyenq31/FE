@@ -54,10 +54,14 @@ body {
     margin-bottom: 1rem; /* Khoảng cách dưới hình ảnh */
 }
 
-.profile-picture i {
-    font-size: 4rem; /* Kích thước biểu tượng lớn hơn */
-    color: white; /* Màu sắc biểu tượng */
+.profile-picture img {
+    width: 8rem; /* Kích thước giống như biểu tượng */
+    height: 8rem; /* Kích thước giống như biểu tượng */
+    border-radius: 50%; /* Hình tròn */
+    object-fit: cover; /* Đảm bảo hình ảnh không bị méo */
 }
+
+
 
 .profile-name {
     font-size: 3rem; /* Kích thước chữ */
@@ -166,4 +170,9 @@ body {
 
 .playlist:hover {
     background-color: #b4b4b4;
+}
+
+.default-icon {
+    font-size: 4rem; /* Kích thước biểu tượng lớn hơn */
+    color: white; /* Màu sắc của biểu tượng */
 }

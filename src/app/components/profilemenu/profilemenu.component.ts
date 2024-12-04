@@ -6,10 +6,13 @@ import { RouterLink } from '@angular/router';
 import { TokenService } from '../../services/token.service';
 import { RoleService } from '../../services/role.service';
 import { inject } from '@angular/core';
+import { ApiResponse } from '../../responses/api.response';
+import { UserDetailService } from '../../services/user-detail.service';
+
 @Component({
   selector: 'app-profilemenu',
   standalone: true,
-  imports: [CommonModule, MatIconModule, RouterLink],
+  imports: [CommonModule, MatIconModule],
   templateUrl: './profilemenu.component.html',
   styleUrl: './profilemenu.component.css'
 })
@@ -60,4 +63,25 @@ export class ProfilemenuComponent {
     this.isMenuOpen = false; // Đóng menu sau khi chọn
     this.router.navigate(['/']); // Điều hướng về trang beforelogin
   }
+
+  username: string = '';
+  imageUrl: string | null = null;
+
+  constructor(private userDetailService: UserDetailService, private tokenSvc: TokenService) {}
+
+  ngOnInit() {
+    const token = this.tokenSvc.getToken();
+    this.userDetailService.getUserDetails(token).subscribe({
+      next: (response: ApiResponse) => {
+        if (response.status === 'OK') {
+          this.username = response.data.username;
+          this.imageUrl = response.data.image_url; // Lưu trữ URL hình ảnh
+        }
+      },
+      error: (error) => {
+        console.error('Error fetching user details:', error);
+      }
+    });
+  }
+
 }

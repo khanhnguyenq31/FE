@@ -56,7 +56,8 @@ export const routes: Routes = [
                 { path: 'playlist', component:PlaylistComponent},
                 { path: 'createlist', component:CreatelistComponent},
                 { path: 'search', component:SearchComponent},
-                { path: 'profile/edit', component: ProfileEditComponent },    
+                { path: 'profile/edit', component: ProfileEditComponent },
+                { path: 'reset-password', component: ResetPasswordComponent}    
             ]
         },
         { path: 'artistpage' , component: ListennerPageComponent, 
@@ -70,7 +71,8 @@ export const routes: Routes = [
                 { path: 'playlist', component:PlaylistComponent},
                 { path: 'createlist', component:CreatelistComponent},
                 { path: 'search', component:SearchComponent},
-
+                { path: 'profile/edit', component: ProfileEditComponent },
+                { path: 'reset-password', component: ResetPasswordComponent},
                 { path: 'songs', component:SongsComponent},
                 { path: 'albums',component:AlbumsComponent},
                 

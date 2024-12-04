@@ -14,15 +14,18 @@
             </div>
             <div class="profile-info">
                 <div class="profile-picture">
-                    <i class="fas fa-user"></i>
+                  <img *ngIf="imageUrl; else defaultImage" [src]="imageUrl" alt="Profile Picture" />
+                  <ng-template #defaultImage>
+                    <i class="fas fa-user default-icon"></i> <!-- Biểu tượng mặc định nếu không có hình ảnh -->
+                  </ng-template>
                 </div>
-                <h1 class="profile-name">GEN Chovy</h1>
+                <h1 class="profile-name">{{ username }}</h1>
                 <p class="profile-following">3 đang theo dõi</p>
-            </div>
+              </div>
             <div class="top-artists">
                 <div class="section-header">
                     <h2 class="section-title">Nghệ sĩ hàng đầu tháng này</h2>
-                    <button class="add-artist-button" routerLink="/profile/edit">Chỉnh sửa</button>
+                    <button class="add-artist-button" routerLink="/afterlogin/listenerpage/profile/edit">Chỉnh sửa</button>
                 </div>
                 <div class="artist-list">
                     <!-- Danh sách nghệ sĩ -->
