@@ -40,14 +40,24 @@
         />
       </div>
       <div class="form-group">
-        <label for="songFile">Tệp bài hát </label>
+        <label for="songFile">Tệp bài hát</label>
         <input
           type="file"
           id="songFile"
           name="songFile"
           accept="audio/*"
           required
-          (change)="onFileChange($event)"
+          (change)="onFileChange($event, 'song')"
+        />
+      </div>
+      <div class="form-group">
+        <label for="songImage">Hình ảnh bài hát</label>
+        <input
+          type="file"
+          id="songImage"
+          name="songImage"
+          accept="image/*"
+          (change)="onFileChange($event, 'image')"
         />
       </div>
       <div class="form-group">
