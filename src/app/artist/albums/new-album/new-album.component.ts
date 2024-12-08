@@ -5,7 +5,7 @@ import { RouterLink } from '@angular/router';
 import { SidebarsectionComponent } from '../../../components/sidebarsection/sidebarsection.component';
 import { HttpErrorResponse } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { UploadAlbumService } from '../../../services/upload-album.service';
+import { UploadAlbumService } from '../../../services/artist/upload-album.service'; 
 import { ApiResponse } from '../../../responses/api.response';
 @Component({
   selector: 'app-new-album',

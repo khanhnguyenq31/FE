@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { SidebarsectionComponent } from '../../../components/sidebarsection/sidebarsection.component';
 import { HttpErrorResponse } from '@angular/common/http';
-import { UploadSongService } from '../../../services/upload-song.service';
+import { UploadSongService } from '../../../services/artist/upload-song.service';
 import { FormsModule } from '@angular/forms';
 
 @Component({

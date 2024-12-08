@@ -1,0 +1,9 @@
+.my-album-list {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.my-album-list::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}

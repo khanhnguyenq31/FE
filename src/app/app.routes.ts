@@ -74,11 +74,10 @@ export const routes: Routes = [
                 { path: 'profile/edit', component: ProfileEditComponent },
                 { path: 'reset-password', component: ResetPasswordComponent},
                 { path: 'songs', component:SongsComponent},
-                { path: 'albums',component:AlbumsComponent},
-                
                 { path: 'songs/new', component:NewSongComponent},
                 { path: 'albums/new', component:NewAlbumComponent},
-                { path: 'profile/edit', component: ProfileEditComponent },    
+                { path: 'profile/edit', component: ProfileEditComponent },
+                { path: 'albums/:id', component:AlbumsComponent},   
             ]
         },
         { path: '**', component: PageNotFoundComponent }
