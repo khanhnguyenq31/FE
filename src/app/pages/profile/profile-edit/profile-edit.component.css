@@ -118,4 +118,7 @@ select {
     opacity: 1; /* Hiện chữ khi rê chuột vào */
 }
 
+.footer {
+    height: 100px;
+}
 

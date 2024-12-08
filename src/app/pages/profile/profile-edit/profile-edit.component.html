@@ -1,8 +1,8 @@
 <html>
- <head>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
- </head>
- <body>
+<head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+</head>
+<body>
     <div class="container">
         <app-sidebarsection></app-sidebarsection>
         <div class="content">
@@ -12,11 +12,19 @@
                 </div>
             </div>
             <div class="form-container">
+                <!-- Form chỉnh sửa hình ảnh -->
                 <div class="profile-picture" (click)="fileInput.click()">
                     <i class="fas fa-user"></i>
                     <input type="file" #fileInput accept="image/*" (change)="onFileSelected($event)" style="display: none;">
                     <span class="edit-text">Chỉnh sửa</span>
                 </div>
+                <form>
+                    <button type="submit">Lưu hình ảnh</button>
+                </form>
+            </div>
+
+            <div class="form-container">
+                <!-- Form chỉnh sửa thông tin cá nhân -->
                 <form>
                     <div class="form-group">
                         <label for="name">Tên:</label>
@@ -38,12 +46,12 @@
                         <label for="dob">Ngày sinh:</label>
                         <input type="date" id="dob" name="dob" required>
                     </div>
-                    <button type="submit">Lưu</button>
+                    <button type="submit">Lưu thông tin</button>
                 </form>
             </div>
         </div>
     </div>
-  
+
     <div class="footer"></div>
- </body>
+</body>
 </html>
