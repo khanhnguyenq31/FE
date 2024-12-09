@@ -88,6 +88,14 @@
                     [(ngModel)]="dateOfBirth" required>
             </div>
 
+            <div class="role-container">
+                <label for="role">Chọn vai trò</label>
+                <select id="role" [(ngModel)]="roleId" name="role" required>
+                    <option value="2">Artist</option>
+                    <option value="3">Listener</option>
+                </select>
+            </div>
+            
             <button id="signup-btn" (click)="register()">signup</button>
         </div>
     </form>

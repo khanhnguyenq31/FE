@@ -84,9 +84,9 @@ export class SignupComponent extends BaseComponent {
       retype_password: this.retypePassword,
       country: this.country,
       date_of_birth: this.dateOfBirth,
-      role_id: 2
+      role_id: this.roleId
     }
-
+    debugger
     this.userService.register(registerDTO).subscribe({
       next: (apiResponse: ApiResponse) => {
         debugger;
