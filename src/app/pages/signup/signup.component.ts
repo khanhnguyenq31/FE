@@ -36,7 +36,7 @@ export class SignupComponent extends BaseComponent {
     this.country = '';
     this.dateOfBirth = new Date();
     this.dateOfBirth.setFullYear(this.dateOfBirth.getFullYear() - 18);
-    this.roleId = 2;
+    this.roleId = 3;
   }
 
   checkPasswordsMatch() {
@@ -93,7 +93,7 @@ export class SignupComponent extends BaseComponent {
         const confirmation = window
           .confirm('Đăng ký thành công, mời bạn đăng nhập. Bấm "OK" để chuyển đến trang đăng nhập.');
         if (confirmation) {
-          this.router.navigate(['/signin']);
+          this.router.navigate(['/login']);
         }
       },
       complete: () => {
