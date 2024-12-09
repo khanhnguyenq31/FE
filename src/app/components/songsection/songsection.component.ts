@@ -33,10 +33,8 @@ export class SongsectionComponent implements OnInit, AfterViewInit  {
     console.log(router.url)
   }
   ngOnInit() { 
-    this.songs = this.dataService.getPlaylist(); // Lấy danh sách bài hát từ DataStorageService
-    this.dataService.selectedSong$.subscribe(songUrl => {
-      this.playSong(songUrl);
-    });
+    this.dataService.playlist$.subscribe(songs => {this.songs = songs; });
+    this.dataService.selectedSong$.subscribe(songUrl => {this.playSong(songUrl); });
   }
 
 
@@ -135,14 +133,14 @@ export class SongsectionComponent implements OnInit, AfterViewInit  {
   
   changeSong(direction: string) {
     if (direction === 'next') {
-      this.currentSongIndex = (this.currentSongIndex + 1) % this.songs.length;
+      this.dataService.currentSongIndex = (this.dataService.currentSongIndex + 1) % this.songs.length;
     } else if (direction === 'prev') {
-      this.currentSongIndex =
-        (this.currentSongIndex - 1 + this.songs.length) % this.songs.length;
+      this.dataService.currentSongIndex =
+        (this.dataService.currentSongIndex - 1 + this.songs.length) % this.songs.length;
     }
 
     const audioPlayer = this.audioPlayerRef.nativeElement;
-    audioPlayer.src = this.songs[this.currentSongIndex];
+    audioPlayer.src = this.songs[this.dataService.currentSongIndex];
     audioPlayer.play();
   }
   
