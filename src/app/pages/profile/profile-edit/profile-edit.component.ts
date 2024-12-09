@@ -26,8 +26,13 @@ export class ProfileEditComponent {
   password: string = '';
   country: string = '';
   dateOfBirth: string = '';
+  confirmPassword: string = '';
   constructor(private tokenService: TokenService, private userUpdateInfoService: UserupdateinfoService) {}
   updateUserInfo() {
+    if (this.password !== this.confirmPassword) {
+      alert("Mật khẩu và mật khẩu nhập lại không khớp!");
+      return; // Ngăn không cho submit nếu mật khẩu không khớp
+    }
     const token = this.tokenService.getToken(); // Get the token from the TokenService
     const userInfo = {
       username: this.username,
@@ -47,6 +52,7 @@ export class ProfileEditComponent {
         this.password = '';
         this.country = '';
         this.dateOfBirth = '';
+        this.confirmPassword = '';
       },
       error: (error: HttpErrorResponse) => {
         console.error('Update failed:', error);
