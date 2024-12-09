@@ -31,21 +31,18 @@
     <div *ngIf="!isLoading && songs.length === 0" class="no-songs">
       Không có bài hát nào.
     </div>
-    <table *ngIf="songs.length > 0">
-      <tbody>
-        <!-- <tr *ngFor="let song of songs; let i = index" (click)="playSelectedSong(song.secure_url)"> -->
-          <tr *ngFor="let song of songs; let i = index">
-          <td class="song-number" [attr.data-number]="i + 1"></td>
-          <td>
-            <img
-              [src]="song.secure_url"
-            />
-          </td>
-          <td class="song-title">{{ song.name }}</td>
-          <td>{{ song.duration }}</td>
-          <td>{{ song.status }}</td>
-        </tr>
-      </tbody>
+    <table *ngIf="songs.length > 0"> 
+      <tbody> 
+        <tr *ngFor="let song of songs; let i = index" (click)="playSelectedSong(song.secure_url)"> 
+          <td class="song-number" [attr.data-number]="i + 1"></td> 
+          <td> 
+            <img [src]="song.secure_url" /> 
+          </td> 
+          <td class="song-title">{{ song.name }}</td> 
+          <td>{{ song.duration }}</td> 
+          <td>{{ song.status }}</td> 
+        </tr> 
+      </tbody> 
     </table>
   </div>
 </div>

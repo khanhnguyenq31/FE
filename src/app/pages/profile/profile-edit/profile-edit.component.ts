@@ -14,7 +14,7 @@ import { UploadProfileImageService } from '../../../services/upload-profile-imag
   templateUrl: './profile-edit.component.html',
   styleUrls: ['./profile-edit.component.css']
 })
-export class ProfileEditComponent {
+export class ProfileEditComponent  {
   selectedFile: File | null = null;
   @ViewChild('fileInput') fileInput!: ElementRef;
   username: string = '';
