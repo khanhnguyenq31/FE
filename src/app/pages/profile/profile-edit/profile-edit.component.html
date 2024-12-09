@@ -24,31 +24,31 @@
             </div>
 
             <div class="form-container">
-                <!-- Form chỉnh sửa thông tin cá nhân -->
-                <form>
-                    <div class="form-group">
-                        <label for="name">Tên:</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="country">Quốc gia:</label>
-                        <select id="country" name="country" required>
-                            <option value="">Chọn quốc gia</option>
-                            <option value="vn">Việt Nam</option>
-                            <option value="us">Mỹ</option>
-                            <option value="jp">Nhật Bản</option>
-                            <option value="kr">Hàn Quốc</option>
-                            <option value="fr">Pháp</option>
-                            <!-- Thêm các quốc gia khác nếu cần -->
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="dob">Ngày sinh:</label>
-                        <input type="date" id="dob" name="dob" required>
-                    </div>
-                    <button type="submit">Lưu thông tin</button>
+                <h2>Edit Profile</h2>
+                <form (ngSubmit)="updateUserInfo()">
+                  <div class="form-group">
+                    <label for="username">Username</label>
+                    <input id="username" [(ngModel)]="username" name="username" required />
+                  </div>
+                  <div class="form-group">
+                    <label for="email">Email</label>
+                    <input id="email" [(ngModel)]="email" name="email" required />
+                  </div>
+                  <div class="form-group">
+                    <label for="password">Password</label>
+                    <input id="password" type="password" [(ngModel)]="password" name="password" required />
+                  </div>
+                  <div class="form-group">
+                    <label for="country">Country</label>
+                    <input id="country" [(ngModel)]="country" name="country" required />
+                  </div>
+                  <div class="form-group">
+                    <label for="date_of_birth">Date of Birth</label>
+                    <input id="date_of_birth" type="date" [(ngModel)]="dateOfBirth" name="date_of_birth" required />
+                  </div>
+                  <button type="submit">Update</button>
                 </form>
-            </div>
+              </div>
         </div>
     </div>
 
