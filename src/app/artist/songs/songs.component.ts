@@ -40,9 +40,9 @@ export class SongsComponent implements OnInit {
       },
     });
   }
-  // playSelectedSong(songUrl: string) {
-  // this.dataService.setSelectedSong(songUrl);
-  // this.dataService.setPlaylist(this.songs.map(song => song.secure_url));
-  // }
+  playSelectedSong(songUrl: string): void { 
+    this.dataService.setSelectedSong(songUrl); 
+    this.dataService.setPlaylist(this.songs.map(song => song.secure_url)); 
+  } 
 
 }
