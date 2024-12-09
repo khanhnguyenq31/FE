@@ -122,3 +122,35 @@ select {
     height: 300px;
 }
 
+/* src/app/pages/profile/profile-edit/profile-edit.component.css */
+.upload-container {
+    position: relative;
+    width: 100px; /* Width of the circular area */
+    height: 100px; /* Height of the circular area */
+    border-radius: 50%; /* Make it circular */
+    background-color: #1e1e1e; /* Background color */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer; /* Change cursor to pointer */
+    margin: 20px auto; /* Center the upload area */
+    overflow: hidden; /* Hide overflow */
+}
+
+.upload-container input[type="file"] {
+    display: none; /* Hide the file input */
+}
+
+.profile-picture {
+    width: 80px; /* Size of the icon */
+    height: 80px; /* Size of the icon */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white; /* Icon color */
+    font-size: 3rem; /* Adjust icon size */
+}
+
+.profile-picture i {
+    font-size: 3rem; /* Adjust icon size */
+}

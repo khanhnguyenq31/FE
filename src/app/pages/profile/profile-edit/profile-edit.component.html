@@ -11,16 +11,17 @@
                     <app-profilemenu></app-profilemenu>
                 </div>
             </div>
+
             <div class="form-container">
-                <!-- Form chỉnh sửa hình ảnh -->
-                <div class="profile-picture" (click)="fileInput.click()">
-                    <i class="fas fa-user"></i>
-                    <input type="file" #fileInput accept="image/*" (change)="onFileSelected($event)" style="display: none;">
-                    <span class="edit-text">Chỉnh sửa</span>
+              
+              <div class="upload-container" (click)="triggerFileInput()">
+                <input type="file" #fileInput (change)="onFileSelected($event)" style="display: none;" />
+                <div class="profile-picture">
+                  <i class="fas fa-user"></i>
                 </div>
-                <form>
-                    <button type="submit">Lưu hình ảnh</button>
-                </form>
+              </div>
+              
+              <button (click)="uploadImage()">Upload Image</button>
             </div>
 
             <div class="form-container">
