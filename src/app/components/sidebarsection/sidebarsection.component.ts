@@ -5,12 +5,14 @@ import { RoleService } from '../../services/role.service';
 import { CommonModule } from '@angular/common';
 import { AlbumService } from '../../services/album.service';
 import { ArtistAlbumService } from '../../services/artist/album.service';
+import { PlaylistService } from '../../services/playlist.service'; // Import PlaylistService
+
 @Component({
   selector: 'app-sidebarsection',
   standalone: true,
   imports: [RouterLink, CommonModule],
   templateUrl: './sidebarsection.component.html',
-  styleUrl: './sidebarsection.component.css',
+  styleUrls: ['./sidebarsection.component.css'],
 })
 export class SidebarsectionComponent {
   home: string = '';
@@ -22,14 +24,19 @@ export class SidebarsectionComponent {
   uploadSong: string = '';
   mySongs: string = '';
   myAlbums: string = '';
+  myPlaylists: string = ''; // Đường dẫn đến trang playlists
   isArtist: boolean = false;
   albums: any[] = []; // Danh sách album
+  playlists: any[] = []; // Danh sách playlist
   showAlbums: boolean = false; // Cờ để hiển thị các album
+  showPlaylists: boolean = false; // Cờ để hiển thị các playlist
 
   constructor(
     private router: Router,
     private roleService: RoleService,
-    private artistalbumService: ArtistAlbumService
+    private artistalbumService: ArtistAlbumService,
+    private albumService: AlbumService,
+    private playlistService: PlaylistService // Khởi tạo PlaylistService
   ) {
     const role = this.roleService.getRole();
 
@@ -45,6 +52,9 @@ export class SidebarsectionComponent {
       this.createlist = '/afterlogin/listenerpage/createlist';
       this.likedsongs = '/afterlogin/listenerpage/likedsongs';
       this.search = '/afterlogin/listenerpage/search';
+
+      // Lấy danh sách playlist
+      this.fetchPlaylists();
     } else if (role === 'ARTIST') {
       this.isArtist = true;
       this.home = '/afterlogin/artistpage';
@@ -56,9 +66,12 @@ export class SidebarsectionComponent {
       this.uploadSong = '/afterlogin/artistpage/songs/new';
       this.mySongs = '/afterlogin/artistpage/songs';
       this.myAlbums = '/afterlogin/artistpage/albums';
+      this.myPlaylists = '/afterlogin/artistpage/playlists'; // Đường dẫn đến playlists
 
       // Lấy danh sách album
       this.fetchAlbums();
+      // Lấy danh sách playlist
+      this.fetchPlaylists();
     }
   }
 
@@ -70,11 +83,30 @@ export class SidebarsectionComponent {
     });
   }
 
+  fetchPlaylists() {
+    this.playlistService.getAllPlaylists().subscribe((response) => {
+      if (response && response.data) {
+        this.playlists = response.data; // Lưu danh sách playlist
+      }
+    });
+  }
+
   toggleAlbumList() {
     this.showAlbums = !this.showAlbums;
   }
 
-  navigateToAlbum(albumId: number) {
-    this.router.navigate([`/afterlogin/artistpage/albums/${albumId}`]);
+  togglePlaylistList() {
+    this.showPlaylists = !this.showPlaylists;
+  }
+
+ navigateToAlbum(album: any) {
+  this.albumService.setAlbumInfo(album);
+  this.router.navigate([`/afterlogin/artistpage/albums/${album.id}`]);
+  this.showAlbums=false;
+  }
+
+  navigateToPlaylist(playlistId: number) {
+    this.router.navigate([`/afterlogin/artistpage/playlists/${playlistId}`]);
+    this.showPlaylists=false;
   }
 }

@@ -1,22 +1,50 @@
 <body>
+  <div *ngIf="successMessage" class="success-message">
+    {{ successMessage }}
+  </div>
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
   <div class="form-container">
     <h2>Tạo Playlist</h2>
-    <form action="/playlists/new" method="post">
+    <form (ngSubmit)="onSubmit()" #newPlaylistForm="ngForm" enctype="multipart/form-data">
       <div class="form-group">
-        <label for="name"> Tên Playlist </label>
-        <input id="name" name="name" required="" type="text" />
+        <label for="name">Tên Playlist</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          required
+          [(ngModel)]="playlistName"
+        />
       </div>
       <div class="form-group">
-        <label for="description"> Mô tả </label>
-        <textarea id="description" name="description" required="" rows="4">
-        </textarea>
+        <label for="description">Mô tả</label>
+        <input
+          id="description"
+          name="description"
+          required
+          rows="4"
+          [(ngModel)]="playlistDescription"
+        />
       </div>
       <div class="form-group">
-        <label for="status"> Trạng thái </label>
-        <select id="status" name="status" required="">
+        <label for="status">Trạng thái</label>
+        <select id="status" name="status" required [(ngModel)]="playlistStatus">
           <option value="public">Công khai</option>
           <option value="private">Riêng tư</option>
         </select>
+      </div>
+      <div class="form-group">
+        <label for="image">Hình ảnh bìa</label>
+        <input
+          type="file"
+          id="image"
+          name="image"
+          accept="image/*"
+          required
+          (change)="onFileChange($event)"
+        />
       </div>
       <div class="form-group">
         <button type="submit">Tạo Playlist</button>

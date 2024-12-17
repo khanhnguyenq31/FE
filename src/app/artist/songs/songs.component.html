@@ -36,7 +36,7 @@
         <tr *ngFor="let song of songs; let i = index" (click)="playSelectedSong(song.secure_url)"> 
           <td class="song-number" [attr.data-number]="i + 1"></td> 
           <td> 
-            <img [src]="song.secure_url" /> 
+            <img [src]="song.public_image_id" /> 
           </td> 
           <td class="song-title">{{ song.name }}</td> 
           <td>{{ song.duration }}</td> 

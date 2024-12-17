@@ -8,7 +8,9 @@ import { ApiResponse } from '../responses/api.response';
   providedIn: 'root'
 })
 export class AlbumService {
-  private apiUrl = "http://localhost:8088/api/v1/albums"
+  private apiUrl = "http://localhost:8088/api/v1/albums";
+  private songsApiUrl = 'http://localhost:8088/api/v1/songs/albums';
+  private albumInfo: any;
   constructor(private http: HttpClient, private tokenService: TokenService) {}
 
   getAllalbum(): Observable<any>  {
@@ -46,5 +48,22 @@ export class AlbumService {
 
     console.log(JSON.stringify(data))
     return this.http.patch(`${this.apiUrl}/reject`, JSON.stringify(data) , { headers });
+  }
+
+    //lấy bài hát theo ID album
+  getSongsByAlbumId(albumId: number): Observable<ApiResponse> {
+    const token = this.tokenService.getToken();
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
+    return this.http.get<ApiResponse>(`${this.songsApiUrl}/${albumId}`, { headers });
+  }
+  setAlbumInfo(album: any) {
+    this.albumInfo = album;
+  }
+
+  getAlbumInfo() {
+    return this.albumInfo;
   }
 }

@@ -9,7 +9,6 @@ body {
 .header-content {
     position: relative;
     padding: 20px;
-    background-image: url("https://storage.googleapis.com/a1aa/image/9BOiDBhBAkJSMNYftSd2XvoPgwofqZIPH0uftjLRD5zZ38mnA.jpg");
     background-size: cover;
     background-position: center;
     height: 400px;
@@ -46,7 +45,7 @@ body {
     display: flex;
     align-items: center;
     font-size: 14px;
-    color: #1db954;
+    color: #1DB954;
 }
 
 .artist-info .verified i {
@@ -60,7 +59,7 @@ body {
 }
 
 .artist-info .buttons .play-button {
-    background-color: #1db954;
+    background-color: #1DB954;
     color: white;
     border: none;
     border-radius: 50%;
@@ -99,8 +98,8 @@ body {
     margin-top: -20px;
 }
 
-.create-album-button {
-    background-color: #1db954;
+.create-song-button {
+    background-color: #1DB954;
     color: white;
     border: none;
     border-radius: 20px;
@@ -113,7 +112,7 @@ body {
     margin-top: 20px;
 }
 
-.create-album-button:hover {
+.create-song-button:hover {
     transform: scale(1.05);
     box-shadow: 0 0 15px rgba(29, 185, 84, 0.6);
 }
@@ -147,23 +146,23 @@ body {
     margin-right: 20px;
 }
 
-.popular .album-title {
+.popular .song-title {
     font-size: 18px;
     font-weight: bold;
     color: white;
     cursor: pointer;
 }
 
-.popular .album-title:hover {
+.popular .song-title:hover {
     text-decoration: underline;
 }
 
-.popular .album-number {
+.popular .song-number {
     position: relative;
     text-align: center;
 }
 
-.popular .album-number::before {
+.popular .song-number::before {
     content: attr(data-number);
     position: absolute;
     left: 50%;
@@ -172,14 +171,73 @@ body {
     color: #b3b3b3;
 }
 
-.popular tr:hover .album-number::before {
-    content: "\f04b";
-    font-family: "Font Awesome 5 Free";
+.popular tr:hover .song-number::before {
+    content: '\f04b';
+    font-family: 'Font Awesome 5 Free';
     font-weight: 900;
     color: #b3b3b3;
 }
-option.selected {
-    text-decoration: underline;
-    background-color: #1db954;
+
+.modal {
+    display: flex;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #282828;
     color: white;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    position: relative;
+    border-radius: 8px;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+}
+
+.modal-content div {
+    margin-bottom: 10px;
+}
+
+.modal-content input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+.add-songs-button {
+    background-color: #1DB954;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-songs-button:hover {
+    background-color: #1aa34a;
 }
