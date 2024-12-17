@@ -34,6 +34,7 @@ export class AlbumsComponent implements OnInit {
     private artistSongService: ArtistSongService,
   ) {}
 
+  // 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.albumId = +params['id'];
@@ -50,6 +51,7 @@ export class AlbumsComponent implements OnInit {
     });
   }
 
+  //lấy tất cả bài hát theo id
   fetchSongs(): void {
     this.albumService.getSongsByAlbumId(this.albumId).subscribe({
       next: (response: ApiResponse) => {
@@ -67,6 +69,7 @@ export class AlbumsComponent implements OnInit {
     });
   }
 
+  //lấy tất cả bài hát của mình (artist)
   fetchArtistSongs(): void {
     this.artistSongService.getArtistSongs().subscribe({
       next: (response: ApiResponse) => {
@@ -82,17 +85,20 @@ export class AlbumsComponent implements OnInit {
     });
   }
 
+  //phát bài hát được chọn
   playSelectedSong(songUrl: string): void { 
     this.dataService.setSelectedSong(songUrl); 
     this .dataService.setPlaylist(this.songs.map(song => song.secure_url)); 
   }
   
+  //phát tất cả bài hát trong album bắt đầu từ bài đầu tiên
   playAlbum(): void {
     if (this.songs.length > 0) {
       this.playSelectedSong(this.songs[0].secure_url);
     }
   }
 
+  //tắt mở khối thêm bài hát
   toggleModal(): void {
     this.showModal = !this.showModal;
     if (this.showModal) {
@@ -100,6 +106,7 @@ export class AlbumsComponent implements OnInit {
     }
   }
 
+  //danh sách bài hát được chọn để thêm 
   toggleSongSelection(songId: number): void {
     const index = this.selectedSongs.indexOf(songId);
     if (index > -1) {
@@ -109,6 +116,7 @@ export class AlbumsComponent implements OnInit {
     }
   }
 
+  //thêm bái bài hát được chọn vào album
   addSongsToAlbum(): void {
     this.artistAlbumService.addSongsToAlbum(this.albumId, this.selectedSongs).subscribe({
       next: (response: ApiResponse) => {

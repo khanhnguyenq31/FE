@@ -8,6 +8,7 @@ import { TokenService } from './token.service';
 })
 export class PlaylistService {
   private baseUrl = 'http://localhost:8088/api/v1/playlists'; // Địa chỉ API
+  private playlistInfo: any;
 
   constructor(private http: HttpClient, private tokenService: TokenService) { }
 
@@ -18,6 +19,15 @@ export class PlaylistService {
       'Authorization': `Bearer ${token}`
     });
     return this.http.get(`${this.baseUrl}`, { headers });
+  }
+
+  // 
+  getMyPlaylists(): Observable<any> {
+    const token = this.tokenService.getToken(); 
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.get(`${this.baseUrl}/listener`, { headers });
   }
 
   // Lấy playlist theo ID
@@ -70,5 +80,14 @@ export class PlaylistService {
       'Content-Type': 'application/json'
     });
     return this.http.patch(`${this.baseUrl}/${playlistId}`, { song_ids: songIds }, { headers });
+  }
+  //lưu thông tin playlist
+  setPlaylistInfo(playlist: any) {
+    this.playlistInfo = playlist;
+  }
+
+  //lấy thông tin playlist đã được lưu
+  getPlaylistInfo() {
+    return this.playlistInfo;
   }
 }

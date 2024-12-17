@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { RouterLink, Router } from '@angular/router';
-import { inject } from '@angular/core';
 import { RoleService } from '../../services/role.service';
 import { CommonModule } from '@angular/common';
 import { AlbumService } from '../../services/album.service';
@@ -30,7 +29,7 @@ export class SidebarsectionComponent {
   playlists: any[] = []; // Danh sách playlist
   showAlbums: boolean = false; // Cờ để hiển thị các album
   showPlaylists: boolean = false; // Cờ để hiển thị các playlist
-
+  
   constructor(
     private router: Router,
     private roleService: RoleService,
@@ -75,21 +74,24 @@ export class SidebarsectionComponent {
     }
   }
 
+  // Lưu danh sách album
   fetchAlbums() {
     this.artistalbumService.getArtistAlbums().subscribe((response) => {
       if (response && response.data) {
-        this.albums = response.data; // Lưu danh sách album
+        this.albums = response.data; 
       }
     });
   }
 
+  //lấy danh sách playlist
   fetchPlaylists() {
-    this.playlistService.getAllPlaylists().subscribe((response) => {
+    this.playlistService.getMyPlaylists().subscribe((response) => {
       if (response && response.data) {
         this.playlists = response.data; // Lưu danh sách playlist
       }
     });
   }
+
 
   toggleAlbumList() {
     this.showAlbums = !this.showAlbums;
@@ -99,14 +101,23 @@ export class SidebarsectionComponent {
     this.showPlaylists = !this.showPlaylists;
   }
 
+  
  navigateToAlbum(album: any) {
   this.albumService.setAlbumInfo(album);
   this.router.navigate([`/afterlogin/artistpage/albums/${album.id}`]);
   this.showAlbums=false;
   }
 
-  navigateToPlaylist(playlistId: number) {
-    this.router.navigate([`/afterlogin/artistpage/playlists/${playlistId}`]);
-    this.showPlaylists=false;
+  navigateToPlaylist(playlist: any) {
+  const role = this.roleService.getRole();
+  this.playlistService.setPlaylistInfo(playlist);
+
+  if (role === 'ARTIST') {
+    this.router.navigate([`/afterlogin/artistpage/playlists/${playlist.id}`]);
+  } else if (role === 'LISTENER') {
+    this.router.navigate([`/afterlogin/listenerpage/playlists/${playlist.id}`]);
   }
+
+  this.showPlaylists = false;
+}
 }

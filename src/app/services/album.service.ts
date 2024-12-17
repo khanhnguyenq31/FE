@@ -65,6 +65,7 @@ export class AlbumService {
     });
     return this.http.get<ApiResponse>(`${this.songsApiUrl}/${albumId}`, { headers });
   }
+  
   setAlbumInfo(album: any) {
     this.albumInfo = album;
   }

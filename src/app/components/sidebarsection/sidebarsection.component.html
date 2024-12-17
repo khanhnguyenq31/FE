@@ -46,7 +46,7 @@
                 <ul class="space-y-1 text-gray-300">
                     <li
                         *ngFor="let playlist of playlists"
-                        (click)="navigateToPlaylist(playlist.id)"
+                        (click)="navigateToPlaylist(playlist)"
                         class="cursor-pointer hover:text-white"
                     >
                         {{ playlist.name }}
