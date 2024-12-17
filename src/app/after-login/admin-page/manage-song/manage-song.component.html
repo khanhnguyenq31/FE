@@ -1,42 +1,94 @@
 <div class="container">
-    <form (ngSubmit)="submitAllSelections()">
+    <!-- Loading spinner -->
+    <div *ngIf="loadingSongList" class="spinner-container">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Form & Table khi đã tải xong -->
+    <form *ngIf="!loadingSongList" (ngSubmit)="submitAllSelections()">
         <table class="song-list">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Song Name</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let song of songs; let i = index">
-                    <td>{{ i + 1 }}</td>
-                    <td>{{ song.name }}</td>
-                    <td>
-                        <label>{{song.status}}</label>
-                    </td>
-                    <td>
-                        <label>
-                            <input 
-                                type="radio" 
-                                name="status-{{ i }}" 
-                                (change)="onChange(song.id , 'approve')"
-                                [disabled]="song.status === 'APPROVED'"  />
-                            Approve
-                        </label>
-                        <label>
-                            <input 
-                                type="radio" 
-                                name="status-{{ i }}" 
-                                (change)="onChange(song.id , 'reject')"
-                                [disabled]="song.status === 'REJECTED'"  />
-                            Reject
-                        </label>
-                    </td>
-                </tr>
-            </tbody>
+        <thead>
+            <tr>
+            <th>#</th>
+            <th>Image</th>
+            <th>Song Name</th>
+            <th>Status</th>
+            <th>Action</th>
+            <th>Detail</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let song of songs; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>
+                <img 
+                    [src]="song.public_image_id"
+                    class="song-image" />
+            </td>
+            <td>{{ song.name }}</td>
+            <td><label>{{ song.status }}</label></td>
+            <td>
+                <label>
+                <input 
+                    type="radio" 
+                    name="status-{{ i }}" 
+                    (change)="onChange(song.id , 'approve')"
+                    [disabled]="song.status === 'APPROVED'" />
+                <span>Approve</span>
+                </label>
+                <label>
+                <input 
+                    type="radio" 
+                    name="status-{{ i }}" 
+                    (change)="onChange(song.id , 'reject')"
+                    [disabled]="song.status === 'REJECTED'" />
+                <span>Reject</span>
+                </label>
+            </td>
+            <td>
+                <button type="button" (click)="viewDetails(song.id)">Xem chi tiết</button>
+            </td>
+            </tr>
+        </tbody>
         </table>
         <button type="submit">Submit</button>
     </form>
+
+    <div class="pagination">
+        <button type="button" (click)="prevPage()" [disabled]="current_page === 1">Previous</button>
+        <span>Page {{ current_page }} of {{ total_pages }}</span>
+        <button type="button" (click)="nextPage()" [disabled]="current_page === total_pages">Next</button>
+    </div>
+</div>
+
+    <!-- Modal hiển thị chi tiết bài hát -->
+<div *ngIf="selectedSong" class="modal">
+    <div class="modal-content">
+        <p><strong>{{ selectedSong.name }}</strong></p>
+        <img [src]="selectedSong.cover_image_url" class="song-image" />
+        <div *ngIf="loadingSongReport" class="spinner-container">
+            <div class="spinner"></div>
+        </div>
+        <table *ngIf="!loadingSongReport" class="song-list">
+        <thead>
+            <tr>
+            <th>#</th>
+            <th>Reason</th>
+            <th>Created At</th>
+            <th>User Name</th>
+            <th>User ID</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let songReport of songReports; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ songReport.reason }}</td>
+            <td>{{ songReport.create_at }}</td>
+            <td>{{ songReport.user.role.name }}</td>
+            <td>{{ songReport.user.role.id }}</td>
+            </tr>
+        </tbody>
+        </table>
+        <button (click)="closeModal()" id="close">Close</button>
+    </div>
 </div>
