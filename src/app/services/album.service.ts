@@ -11,8 +11,14 @@ export class AlbumService {
   private apiUrl = "http://localhost:8088/api/v1/albums"
   constructor(private http: HttpClient, private tokenService: TokenService) {}
 
-  getAllalbum(): Observable<any>  {
-    return this.http.get<ApiResponse>(`${this.apiUrl}`);
+  getAllAbum(): Observable<any>  {
+    const token = this.tokenService.getToken();
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.get(`${this.apiUrl}/admin/all` , { headers });
   }
 
   approveAlbum(album_id: number[]): Observable<any>  {
@@ -31,7 +37,7 @@ export class AlbumService {
     return this.http.patch(`${this.apiUrl}/approve`, JSON.stringify(data) , { headers });
   }
 
-  rejectalbum(album_id: number[]): Observable<any>  {
+  rejectAlbum(album_id: number[]): Observable<any>  {
     const data = {
       album_id: album_id,
     };
