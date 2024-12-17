@@ -53,35 +53,38 @@ export class ProfileEditComponent  {
   }
 
   updateUserInfo() {
-    if (this.password !== this.confirmPassword) {
-      alert("Mật khẩu và mật khẩu nhập lại không khớp!");
-      return; // Ngăn không cho submit nếu mật khẩu không khớp
-    }
     const token = this.tokenService.getToken(); // Get the token from the TokenService
-    const userInfo = {
-      username: this.username,
-      email: this.email,
-      password: this.password,
-      country: this.country,
-      date_of_birth: this.dateOfBirth
-    };
+    const userInfo: any = {}; // Khởi tạo đối tượng userInfo rỗng
+
+    // Chỉ thêm các trường có giá trị
+    if (this.username) userInfo.username = this.username;
+    if (this.email) userInfo.email = this.email;
+    if (this.password) userInfo.password = this.password;
+    if (this.country) userInfo.country = this.country;
+    if (this.dateOfBirth) userInfo.date_of_birth = this.dateOfBirth;
+
+    // Kiểm tra mật khẩu
+    if (this.password && this.password !== this.confirmPassword) {
+        alert("Mật khẩu và mật khẩu nhập lại không khớp!");
+        return; // Ngăn không cho submit nếu mật khẩu không khớp
+    }
 
     this.userUpdateInfoService.updateUserInfo(token, userInfo).subscribe({
-      next: (response: ApiResponse) => {
-        console.log('Update successful:', response);
-        alert("Cập nhập thành công!"); // Hiển thị thông báo thành công
-        // Reset lại các trường trong form
-        this.username = '';
-        this.email = '';
-        this.password = '';
-        this.country = '';
-        this.dateOfBirth = '';
-        this.confirmPassword = '';
-      },
-      error: (error: HttpErrorResponse) => {
-        console.error('Update failed:', error);
-        // Handle error response
-      }
+        next: (response: ApiResponse) => {
+            console.log('Update successful:', response);
+            alert("Cập nhập thành công!"); // Hiển thị thông báo thành công
+            // Reset lại các trường trong form
+            this.username = '';
+            this.email = '';
+            this.password = '';
+            this.country = '';
+            this.dateOfBirth = '';
+            this.confirmPassword = '';
+        },
+        error: (error: HttpErrorResponse) => {
+            console.error('Update failed:', error);
+            // Handle error response
+        }
     });
   }
 }
