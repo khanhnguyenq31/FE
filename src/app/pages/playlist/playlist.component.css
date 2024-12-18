@@ -3,186 +3,241 @@ body {
     font-family: "Roboto", sans-serif;
     background-color: #121212;
     color: white;
+    overflow-x: hidden;
 }
 
-.container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
+.header-content {
+    position: relative;
     padding: 20px;
-}
-
-.header {
+    background-size: cover;
+    background-position: center;
+    height: 400px;
     display: flex;
     align-items: center;
-    padding: 20px 0;
-    background: linear-gradient(180deg, #1DB954 0%, #121212 100%);
-    border-radius: 10px;
-    position: relative;
-    height: 250px;
-    /* Set a fixed height for the header */
+    color: white;
 }
 
-.header img {
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 100%;
-    /* Make the image take the full height of the header */
-    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.5);
 }
 
-.header .info {
-    margin-left: 20px;
-    flex-grow: 1;
+.artist-info {
+    position: relative;
+    z-index: 1;
 }
 
-.header .info h1 {
-    font-size: 72px;
+.artist-info h1 {
+    font-size: 64px;
     margin: 0;
 }
 
-.header .info p {
-    font-size: 14px;
+.artist-info p {
+    font-size: 18px;
     margin: 5px 0;
 }
 
-.edit-button {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    font-size: 30px;
-    color: #b3b3b3;
-    cursor: pointer;
-    transition: color 0.3s ease;
-}
-
-.edit-button:hover {
+.artist-info .verified {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
     color: #1DB954;
 }
 
-.controls {
-    display: flex;
-    align-items: center;
-    margin: 20px 0;
+.artist-info .verified i {
+    margin-right: 5px;
 }
 
-.controls .play-button {
+.artist-info .buttons {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.artist-info .buttons .play-button {
     background-color: #1DB954;
+    color: white;
     border: none;
     border-radius: 50%;
-    width: 60px;
-    height: 60px;
+    width: 56px;
+    height: 56px;
+    font-size: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 30px;
-    color: white;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.controls .play-button:hover {
-    background-color: #1ed760;
+.artist-info .buttons .play-button:hover {
     transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(29, 185, 84, 0.6);
 }
 
-.controls .other-buttons {
+.artist-info .buttons .more-button {
+    background-color: #282828;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin-left: 10px;
     display: flex;
     align-items: center;
-    margin-left: 20px;
-}
-
-.controls .other-buttons i {
-    font-size: 24px;
-    margin-right: 20px;
+    justify-content: center;
     cursor: pointer;
-    transition: color 0.3s ease, transform 0.3s ease;
 }
 
-.controls .other-buttons i:hover {
-    color: #1DB954;
-    transform: scale(1.1);
-}
-
-.table-container {
-    background-color: #181818;
-    border-radius: 10px;
+.content {
     padding: 20px;
+    background-color: #181818;
+    margin-top: -20px;
 }
 
-table {
+.create-song-button {
+    background-color: #1DB954;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    float: right;
+    margin-top: 20px;
+}
+
+.create-song-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(29, 185, 84, 0.6);
+}
+
+.popular h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.popular table {
     width: 100%;
     border-collapse: collapse;
 }
 
-th,
-td {
+.popular td {
     padding: 10px;
+    border-bottom: 1px solid #282828;
     text-align: left;
-}
-
-th {
-    font-size: 12px;
+    font-size: 16px;
     color: #b3b3b3;
 }
 
-td {
-    font-size: 14px;
-    position: relative;
-}
-
-td img {
-    width: 40px;
-    height: 40px;
-    border-radius: 5px;
-}
-
-.track-number {
-    width: 30px;
-    color: #b3b3b3;
-    text-align: center;
-}
-
-.track-title {
-    display: flex;
-    align-items: center;
-}
-
-.track-title img {
-    margin-right: 10px;
-}
-
-.track-artist,
-.track-album,
-.track-duration {
-    color: #b3b3b3;
-}
-
-.track-duration {
-    text-align: right;
-}
-
-tbody tr:hover {
+.popular tr:hover td {
     background-color: #282828;
+}
+
+.popular img {
+    width: 50px;
+    height: 50px;
+    border-radius: 4px;
+    margin-right: 20px;
+}
+
+.popular .song-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
     cursor: pointer;
 }
 
-tbody tr:hover .track-title div:first-child {
+.popular .song-title:hover {
     text-decoration: underline;
 }
 
-.track-number .play-icon {
-    display: none;
+.popular .song-number {
+    position: relative;
+    text-align: center;
+}
+
+.popular .song-number::before {
+    content: attr(data-number);
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    font-size: 14px;
     color: #b3b3b3;
 }
 
-tbody tr:hover .track-number .play-icon {
-    display: inline;
+.popular tr:hover .song-number::before {
+    content: '\f04b';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    color: #b3b3b3;
 }
 
-tbody tr:hover .track-number span {
-    display: none;
+.modal {
+    display: flex;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #282828;
+    color: white;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    position: relative;
+    border-radius: 8px;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+}
+
+.modal-content div {
+    margin-bottom: 10px;
+}
+
+.modal-content input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+.add-songs-button {
+    background-color: #1DB954;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-songs-button:hover {
+    background-color: #1aa34a;
 }
