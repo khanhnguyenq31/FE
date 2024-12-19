@@ -9,7 +9,7 @@
      </i>-->
      <div class="search-bar">
         <i class="fas fa-search search-icon"></i>
-        <input type="text" placeholder="Bạn muốn phát nội dung gì?">
+        <input type="text" [(ngModel)]="searchTerm" (input)="onSearch()" placeholder="Tìm kiếm bài hát, album, playlist...">
         <i class="fas fa-folder-open clear-icon"></i>
     </div>
      <app-profilemenu></app-profilemenu>
@@ -17,72 +17,40 @@
 
     
     <div class="container">
-     <h1>
-      Duyệt tìm tất cả
-     </h1>
-     <div class="grid">
-      <div class="card">
-       Nhạc
-       <img alt="Album cover of a woman with long hair" height="80" src="https://i.pinimg.com/474x/7d/a3/ed/7da3ed3054dbc5397c5489680ede3fb3.jpg" width="80"/>
-      </div>
-      <div class="card">
-       Podcasts
-       <img alt="Podcast cover with text 'SCIENCE VS'" height="80" src="https://i.pinimg.com/236x/1e/9a/06/1e9a06dd0da75e7a2e468d20ff227dd1.jpg" width="80"/>
-      </div>
-      <div class="card">
-       Sự kiện trực tiếp
-       <img alt="Live event with a person singing on stage" height="80" src="https://storage.googleapis.com/a1aa/image/aMS8wu2r6579FxbSIyO9fvasst3BMWEnla7vPb6KDThdn2xJA.jpg" width="80"/>
-      </div>
-      <div class="card">
-       Dành Cho Bạn
-       <img alt="Album cover of a woman with long hair" height="80" src="https://i.pinimg.com/236x/97/79/6f/97796ff73e5a4bec62eb95e48ac87243.jpg" width="80"/>
-      </div>
-      <div class="card">
-       Mới phát hành
-       <img alt="Album cover of a woman with blonde hair" height="80" src="https://i.pinimg.com/enabled_lo_mid/474x/80/10/3d/80103dcd20fb23f94c46b9433e5bfd26.jpg" width="80"/>
-      </div>
-      <div class="card">
-       Nhạc Việt
-       <img alt="Album cover of a man with a microphone" height="80" src="https://i.pinimg.com/236x/2f/8c/24/2f8c24b26467bbf848daefd44bae76de.jpg" width="80"/>
-      </div>
-      <div class="card">
-       Pop
-       <img alt="Album cover of a woman with blonde hair" height="80" src="https://storage.googleapis.com/a1aa/image/oTWfeC703ZqOckqLkbbyZaITVAiIgaPXw0RmqPPLdFi0OtjTA.jpg" width="80"/>
-      </div>
-      <div class="card">
-       K-Pop
-       <img alt="Album cover of a K-Pop group" height="80" src="https://storage.googleapis.com/a1aa/image/x7ys2fTMrOQaZ6pMgPzZvmL9EQTNsWfI5vGURCt3QEGCPtjTA.jpg" width="80"/>
-      </div>
-      <div class="card">
-       Hip-Hop
-       <img alt="Album cover of a man with a microphone" height="80" src="https://i.pinimg.com/236x/a4/5a/07/a45a07f9b2347f7f6b351c3c8cc7d25f.jpg" width="80"/>
-      </div>
-
-      <div class="card">
-       Sư phạm
-       <img alt="Podcast cover with text 'SCIENCE VS'" height="80" src="https://storage.googleapis.com/a1aa/image/ORqaNKRamz5sGJj2xkkZ8I0QI0NcH28PWC8l95RU0NFuT74E.jpg" width="80"/>
-      </div>
-      <div class="card">
-       Tài liệu
-       <img alt="Podcast cover with text 'SERIAL KILLERS'" height="80" src="https://storage.googleapis.com/a1aa/image/t2mcIBctvb6bDFkP8tXTPbFlOZ2HZPU72Nr1Pzy37ntvT74E.jpg" width="80"/>
-      </div>
-      <div class="card">
-       Hài kịch
-       <img alt="Podcast cover of a man laughing" height="80" src="https://storage.googleapis.com/a1aa/image/9alN4mpNREanPBe8iYDxSnvZAGgktChs0DzjY8GZ4eyfdaHnA.jpg" width="80"/>
-      </div>
-      <div class="card">
-       Bảng xếp hạng
-       <img alt="Podcast cover with text 'Top Songs Global'" height="80" src="https://storage.googleapis.com/a1aa/image/G19Ngf2eYcrbtkFeaHX3hZD0FB1Mmz5G8cAP8iGmXkd5daHnA.jpg" width="80"/>
-      </div>
-      <div class="card" routerLink="/login">
-       Tâm Trạng
-       <img alt="Album cover of a person with sunglasses" height="80" src="https://i.pinimg.com/236x/e1/50/94/e150946e352ace569b3068a7b1ccc01d.jpg" width="80"/>
-      </div>
-      <div class="card">
-       Indie
-       <img alt="Album cover of a woman with dark hair" src="https://i.pinimg.com/enabled_lo_mid/236x/ae/b0/fa/aeb0fae2a9721500db1dc6e7c1fd9445.jpg"/>
-      </div>
-     </div>
+        <div class="results" *ngIf="searchTerm">
+            <h2>Kết quả tìm kiếm cho: "{{ searchTerm }}"</h2>
+          
+            <h3>Bài hát</h3>
+            <div class="song-list">
+              <div *ngFor="let song of songs; let i = index" class="song-item" (click)="playSelectedSong(song.secure_url)" 
+                   (mouseover)="hoveredSongIndex = i" (mouseleave)="hoveredSongIndex = -1">
+                <!--<span class="song-number">{{ i + 1 }}</span>-->
+                <img [src]="song.public_image_id" class="song-image" />
+                <span class="song-name">{{ song.name }}</span>
+                <i class="fas fa-play" *ngIf="hoveredSongIndex === i"></i>
+              </div>
+            </div>
+          
+            <h3>Album</h3>
+            <div class="album-list">
+              <div *ngFor="let album of albums; let i = index" class="album-item" (click)="playAlbum()" 
+                   (mouseover)="hoveredAlbumIndex = i" (mouseleave)="hoveredAlbumIndex = -1">
+                <img [src]="album.cover_image_url" class="album-image" />
+                <span class="album-name">{{ album.name }}</span>
+                <i class="fas fa-play" *ngIf="hoveredAlbumIndex === i"></i>
+              </div>
+            </div>
+          
+            <h3>Playlist</h3>
+            <div class="playlist-list">
+              <div *ngFor="let playlist of playlists; let i = index" class="playlist-item" (click)="playPlaylist(playlist.id)" 
+                   (mouseover)="hoveredPlaylistIndex = i" (mouseleave)="hoveredPlaylistIndex = -1">
+                <img [src]="playlist.cover_url" class="playlist-image" />
+                <span class="playlist-name">{{ playlist.name }}</span>
+                <i class="fas fa-play" *ngIf="hoveredPlaylistIndex === i"></i>
+              </div>
+            </div>
+          </div>
     </div>
     <app-sidebarsection></app-sidebarsection>
    </body>

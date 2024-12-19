@@ -29,6 +29,7 @@ import { auth4ListenerGuard } from './auth4-listener.guard';
 import { auth4artistGuard } from './auth4-artist.guard';
 import { authGuard } from './auth.guard';
 
+
 export const routes: Routes = [
     {path:'', component: HomebeforeloginComponent},
     { path: 'login', component: LoginComponent },
@@ -57,7 +58,8 @@ export const routes: Routes = [
                 { path: 'createlist', component:CreatelistComponent},
                 { path: 'search', component:SearchComponent},
                 { path: 'profile/edit', component: ProfileEditComponent },
-                { path: 'reset-password', component: ResetPasswordComponent}    
+                { path: 'reset-password', component: ResetPasswordComponent},
+                  
             ]
         },
         { path: 'artistpage' , component: ListennerPageComponent, 
@@ -77,7 +79,8 @@ export const routes: Routes = [
                 { path: 'songs/new', component:NewSongComponent},
                 { path: 'albums/new', component:NewAlbumComponent},
                 { path: 'profile/edit', component: ProfileEditComponent },
-                { path: 'albums/:id', component:AlbumsComponent},   
+                { path: 'albums/:id', component:AlbumsComponent}, 
+                  
             ]
         },
         { path: '**', component: PageNotFoundComponent }
