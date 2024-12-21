@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { DataStorageService } from '../../data-storage.service';
 import { PlaylistService } from '../../services/playlist.service';
+import { AlbumService } from '../../services/album.service';
 @Component({
   selector: 'app-search',
   standalone: true,
@@ -26,7 +27,7 @@ export class SearchComponent {
   hoveredAlbumIndex: number = -1;
   hoveredPlaylistIndex: number = -1;
 
-  constructor(private searchService: SearchService, private dataService: DataStorageService, private playlistService: PlaylistService) {}
+  constructor(private searchService: SearchService, private dataService: DataStorageService, private playlistService: PlaylistService, private albumService: AlbumService) {}
 
   onSearch() {
     if (this.searchTerm) {
@@ -61,10 +62,13 @@ export class SearchComponent {
       this.dataService.setSelectedSong(songUrls[0]); // Phát bài hát đầu tiên trong playlist
     });
   }
+  
 
-  playAlbum(): void {
-    if (this.songs.length > 0) {
-      this.playSelectedSong(this.songs[0].secure_url);
-    }
+  playAlbum(albumId: number): void {
+    this.albumService.getSongsByAlbumId(albumId).subscribe((response: any) => {
+      const songUrls = response.data.map((song: { secure_url: string }) => song.secure_url);
+      this.dataService.setPlaylist(songUrls);
+      this.dataService.setSelectedSong(songUrls[0]); // Phát bài hát đầu tiên trong album
+    });
   }
 }
