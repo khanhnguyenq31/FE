@@ -30,7 +30,7 @@ export class PlaylistService {
     return this.http.get(`${this.baseUrl}/listener`, { headers });
   }
 
-  // Lấy playlist theo ID
+  // Lấy song theo ID playlist 
   getPlaylistById(playlistId: number): Observable<any> {
     const token = this.tokenService.getToken(); 
     const headers = new HttpHeaders({
