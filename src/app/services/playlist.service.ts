@@ -90,4 +90,13 @@ export class PlaylistService {
   getPlaylistInfo() {
     return this.playlistInfo;
   }
+
+  // Lấy tất cả bài hát
+  getAllSongs(): Observable<any> {
+    const token = this.tokenService.getToken(); 
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.get('http://localhost:8088/api/v1/songs/user', { headers });
+  }
 }

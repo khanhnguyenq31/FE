@@ -11,7 +11,7 @@
    <body class="bg-black text-white">
 
     <div class="header">
-         <a routerLink="/afterlogin/listennerpage/search" class="search-bar">
+         <a [routerLink]="role === 'LISTENER' ? '/afterlogin/listenerpage/search' : '/afterlogin/artistpage/search'" class="search-bar">
             <i class="fas fa-search search-icon"></i>
             <input type="text" placeholder="Bạn muốn phát nội dung gì?">
             <i class="fas fa-folder-open clear-icon"></i>
