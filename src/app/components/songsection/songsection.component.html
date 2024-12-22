@@ -1,12 +1,7 @@
 <div *ngIf="status" class="whole-container">
-  <img
-  class="song-picture"
-  src="https://i1.sndcdn.com/artworks-C1kL1ygHytMcyMJy-9L3tUQ-t500x500.jpg"
-  />
-
+  <img class="song-picture" [src]="currentSongImage" alt="Song Image" />
   <div class="song-detail">
-    <p class="song-title">Love Sand</p>
-    <p class="song-artist">HIEUTHUHAI, Ali Hoàng Dương, Vũ Thịnh, Jsol</p>
+    <p class="song-title">{{ currentSongName }}</p>
   </div>
 
   <div class="audio-control">

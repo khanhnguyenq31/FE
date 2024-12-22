@@ -7,10 +7,9 @@ export class DataStorageService {
   timePlaying: number = 0;
   play: boolean = false;
   currentSongIndex: number = 0; // Chỉ số bài hát hiện tại
-  songs: string[] = []; // Danh sách bài hát
 
   // BehaviorSubject cho bài hát được chọn
-  private selectedSongSource = new BehaviorSubject<string>('');
+  private selectedSongSource = new BehaviorSubject<any>(null); // Sử dụng any
   selectedSong$ = this.selectedSongSource.asObservable();
 
   // BehaviorSubject cho danh sách phát
@@ -19,11 +18,11 @@ export class DataStorageService {
 
   constructor() {}
 
-  setSelectedSong(songUrl: string) {
-    this.selectedSongSource.next(songUrl);
+  setSelectedSong(song: any) { // Sử dụng any
+    this.selectedSongSource.next(song);
   }
 
-  setPlaylist(songs: string[]) {
+  setPlaylist(songs: any[]) { // Sử dụng any[]
     this.playlistSource.next(songs); // Cập nhật danh sách phát
   }
 

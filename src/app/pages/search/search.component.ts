@@ -50,25 +50,42 @@ export class SearchComponent {
     }
   }
 
-  playSelectedSong(songUrl: string): void { 
-    this.dataService.setSelectedSong(songUrl); 
-    this.dataService.setPlaylist(this.songs.map(song => song.secure_url)); 
-  }
+  playSelectedSong(song: any): void {
+    this.dataService.setSelectedSong(song); 
+    this.dataService.setPlaylist(this.songs);
+  } 
 
   playPlaylist(playlistId: number): void {
-    this.playlistService.getPlaylistById(playlistId).subscribe((response: any) => {
-      const songUrls = response.data.songs.map((song: { secure_url: string }) => song.secure_url);
-      this.dataService.setPlaylist(songUrls);
-      this.dataService.setSelectedSong(songUrls[0]); // Phát bài hát đầu tiên trong playlist
-    });
-  }
-  
+  this.playlistService.getPlaylistById(playlistId).subscribe({
+    next: (response: any) => {
+      if (response.status === 'OK') {
+        const songs = response.data.songs; // Lấy toàn bộ thông tin bài hát
+        this.dataService.setPlaylist(songs); // Truyền vào mảng bài hát
+        this.dataService.setSelectedSong(songs[0]); // Phát bài hát đầu tiên trong playlist
+      } else {
+        console.error('Error fetching playlist:', response.message);
+      }
+    },
+    error: (error) => {
+      console.error('Error fetching playlist:', error);
+    }
+  });
+}
 
-  playAlbum(albumId: number): void {
-    this.albumService.getSongsByAlbumId(albumId).subscribe((response: any) => {
-      const songUrls = response.data.map((song: { secure_url: string }) => song.secure_url);
-      this.dataService.setPlaylist(songUrls);
-      this.dataService.setSelectedSong(songUrls[0]); // Phát bài hát đầu tiên trong album
-    });
+playAlbum(albumId: number): void {
+  this.albumService.getSongsByAlbumId(albumId).subscribe({
+    next: (response: any) => {
+      if (response.status === 'OK') {
+        const songs = response.data; // Lấy toàn bộ thông tin bài hát
+        this.dataService.setPlaylist(songs); // Truyền vào mảng bài hát
+        this.dataService.setSelectedSong(songs[0]); // Phát bài hát đầu tiên trong album
+      } else {
+        console.error('Error fetching album:', response.message);
+      }
+    },
+    error: (error) => {
+      console.error('Error fetching album:', error);
+    }
+  });
   }
 }

@@ -9,12 +9,9 @@
       <h1>Sơn Tùng M-TP</h1>
       <p>1.616.849 người nghe hằng tháng</p>
       <div class="buttons">
-        <button class="play-button">
-          <i class="fas fa-play"></i>
-        </button>
-        <button class="more-button">
-          <i class="fas fa-ellipsis-h"></i>
-        </button>
+        <button class="play-button" (click)="playListSong()">
+                <i class="fas fa-play"></i>
+            </button>
       </div>
     </div>
   </div>
@@ -33,7 +30,7 @@
     </div>
     <table *ngIf="songs.length > 0"> 
       <tbody> 
-        <tr *ngFor="let song of songs; let i = index" (click)="playSelectedSong(song.secure_url)"> 
+        <tr *ngFor="let song of songs; let i = index" (click)="playSelectedSong(song)"> 
           <td class="song-number" [attr.data-number]="i + 1"></td> 
           <td> 
             <img [src]="song.public_image_id" /> 

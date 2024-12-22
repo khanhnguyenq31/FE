@@ -23,7 +23,7 @@
             <h3>Bài hát</h3>
             <div class="song-list">
               <div *ngIf="songs.length === 0">Không tìm thấy kết quả</div>
-              <div *ngFor="let song of songs; let i = index" class="song-item" (click)="playSelectedSong(song.secure_url)" 
+              <div *ngFor="let song of songs; let i = index" class="song-item" (click)="playSelectedSong(song)" 
                    (mouseover)="hoveredSongIndex = i" (mouseleave)="hoveredSongIndex = -1">
                 <!--<span class="song-number">{{ i + 1 }}</span>-->
                 <img [src]="song.public_image_id" class="song-image" />

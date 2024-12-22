@@ -9,12 +9,12 @@ import { DataStorageService } from '../../data-storage.service';
 @Component({
   selector: 'app-songs',
   standalone: true,
-  imports: [RouterLink, SidebarsectionComponent, ProfilemenuComponent,CommonModule, FormsModule],
+  imports: [RouterLink, SidebarsectionComponent,CommonModule, FormsModule],
   templateUrl: './songs.component.html',
   styleUrl: './songs.component.css',
 })
 export class SongsComponent implements OnInit {
-  songs: any[] = [];
+  songs: any[] = []; // Giữ nguyên kiểu any[]
   isLoading = true;
 
   constructor(
@@ -30,7 +30,7 @@ export class SongsComponent implements OnInit {
     this.artistSongService.getArtistSongs().subscribe({
       next: (response) => {
         if (response.status === 'OK') {
-          this.songs = response.data.songs;
+          this.songs = response.data.songs; // Giữ nguyên kiểu any[]
         }
         this.isLoading = false;
       },
@@ -40,9 +40,15 @@ export class SongsComponent implements OnInit {
       },
     });
   }
-  playSelectedSong(songUrl: string): void { 
-    this.dataService.setSelectedSong(songUrl); 
-    this.dataService.setPlaylist(this.songs.map(song => song.secure_url)); 
+
+  playSelectedSong(song: any): void { // Sử dụng any cho tham số
+    this.dataService.setSelectedSong(song); 
+    this.dataService.setPlaylist(this.songs); // Truyền vào mảng bài hát
   } 
 
+  playListSong(): void {
+    if (this.songs.length > 0) {
+      this.playSelectedSong(this.songs[0]);
+    }
+  }
 }

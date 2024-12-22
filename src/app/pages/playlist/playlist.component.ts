@@ -73,14 +73,14 @@ export class PlaylistComponent {
     });
   }
 
-  playSelectedSong(songUrl: string): void { 
-    this.dataService.setSelectedSong(songUrl); 
-    this .dataService.setPlaylist(this.songs.map(song => song.secure_url)); 
-  }
+  playSelectedSong(song: any): void { // Sử dụng any cho tham số
+    this.dataService.setSelectedSong(song); 
+    this.dataService.setPlaylist(this.songs); // Truyền vào mảng bài hát
+  } 
 
   playPlaylist(): void {
     if (this.songs.length > 0) {
-      this.playSelectedSong(this.songs[0].secure_url);
+      this.playSelectedSong(this.songs[0]);
     }
   }
 

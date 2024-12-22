@@ -39,7 +39,7 @@
     <h2>Danh sách bài hát trong album</h2>
     <table *ngIf="songs.length > 0"> 
       <tbody> 
-        <tr *ngFor="let song of songs; let i = index" (click)="playSelectedSong(song.secure_url)"> 
+        <tr *ngFor="let song of songs; let i = index" (click)="playSelectedSong(song)"> 
           <td class="song-number" [attr.data-number]="i + 1"></td> 
           <td> 
             <img [src]="song.public_image_id" /> 
