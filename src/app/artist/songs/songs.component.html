@@ -1,13 +1,12 @@
 <body>
-  <div class="header-content">
+  <div class="header-content" [ngStyle]="{'background-image': 'url(' + imageUrl + ')'}">
     <div class="overlay"></div>
     <div class="artist-info">
       <div class="verified">
         <i class="fas fa-check-circle"></i>
         Nghệ sĩ được xác minh
       </div>
-      <h1>Sơn Tùng M-TP</h1>
-      <p>1.616.849 người nghe hằng tháng</p>
+      <h1>{{ username }}</h1>
       <div class="buttons">
         <button class="play-button" (click)="playListSong()">
                 <i class="fas fa-play"></i>

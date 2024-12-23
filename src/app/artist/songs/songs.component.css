@@ -9,7 +9,7 @@ body {
 .header-content {
     position: relative;
     padding: 20px;
-    background-image: url('https://storage.googleapis.com/a1aa/image/9BOiDBhBAkJSMNYftSd2XvoPgwofqZIPH0uftjLRD5zZ38mnA.jpg');
+    /*background-image: url('{{ imageUrl }}');*/
     background-size: cover;
     background-position: center;
     height: 400px;
