@@ -51,15 +51,15 @@
         />
       </div>
       <div class="form-group">
-        <label for="genreIds">Thể loại nhạc (ID cách nhau bằng dấu phẩy)</label>
-        <input
-          type="text"
-          id="genreIds"
-          name="genreIds"
-          placeholder="Nhập ID thể loại, ví dụ: 4,5"
-          [(ngModel)]="genreIds"
-          required
-        />
+        <label for="genreIds">Thể loại nhạc</label>
+        <select id="genreIds" name="genreIds" [(ngModel)]="genreIds" required>
+          <option value="" disabled selected>Chọn thể loại nhạc</option>
+          <option value="1">Nhạc trẻ</option>
+          <option value="2">Nhạc hip hop</option>
+          <option value="3">Nhạc sôi động</option>
+          <option value="4">Nhạc ballad</option>
+          <option value="5">Nhạc dân gian</option>
+        </select>
       </div>
       <div class="form-group">
         <button type="submit">Tạo album</button>

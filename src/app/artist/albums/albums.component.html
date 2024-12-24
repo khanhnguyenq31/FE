@@ -1,56 +1,100 @@
 <body>
-<div class="header-content" [ngStyle]="{'background-image': 'url(' + albumImage + ')'}">
-  <div class="overlay"></div>
-  <div class="artist-info">
-      <div class="verified">
-          <i class="fas fa-check-circle"></i> Nghệ sĩ được xác minh
+  <div class="header-content" [ngStyle]="{'background-image': 'url(' + albumImage + ')'}">
+    <div class="header-overlay"></div>
+    <div class="artist-details">
+      <div class="verified-artist">
+        <i class="fas fa-check-circle"></i> Nghệ sĩ được xác minh
       </div>
-      <h1>{{ artistName }}</h1>
-      
-      <div class="buttons">
-          <button class="play-button" (click)="playAlbum()">
-              <i class="fas fa-play"></i>
-          </button>
-          <button class="more-button" (click)="toggleModal()">
-              <i class="fas fa-ellipsis-h"></i>
-          </button>
+      <h1 class="artist-name">{{ artistName }}</h1>
+
+      <div class="action-buttons">
+        <button class="play-button" (click)="playAlbum()">
+          <i class="fas fa-play"></i>
+        </button>
+        <button class="more-button" (click)="toggleOptionsModal()">
+          <i class="fas fa-ellipsis-h"></i>
+        </button>
       </div>
+    </div>
   </div>
-</div>
-<!-- Modal để thêm bài hát -->
-<div class="modal" *ngIf="showModal">
+
+  <!-- Modal để chọn hành động -->
+  <div class="action-selection-modal" *ngIf="showOptionsModal">
     <div class="modal-content">
-        <span class="close" (click)="toggleModal()">&times;</span>
-        <h2>Chọn bài hát để thêm vào album</h2>
-        <div *ngFor="let song of artistSongs">
-            <label>
-                <input type="checkbox" [value]="song.id" (change)="toggleSongSelection(song.id)">
-                {{ song.name }} ({{ song.status }}) <!-- Hiển thị trạng thái bài hát -->
-            </label>
+        <span class="close" (click)="toggleOptionsModal()">&times;</span>
+        <h2>Chọn hành động</h2>
+        <div class="action-buttons">
+            <button (click)="toggleModal(); fetchArtistSongs()" class="action-button">Thêm bài hát</button>
         </div>
-        <button (click)="addSongsToAlbum()" class="add-songs-button">Thêm bài hát</button>
+        <div class="action-buttons">
+            <button (click)="toggleEditModal(); fetchSongs()" class="action-button">Chỉnh sửa album</button>
+        </div>
     </div>
 </div>
-<div class="content">
-  <button class="create-song-button" routerLink="/afterlogin/artistpage/albums/new">
-    Tạo album mới
-  </button>
-  <div class="popular">
-    <h2>Danh sách bài hát trong album</h2>
-    <table *ngIf="songs.length > 0"> 
-      <tbody> 
-        <tr *ngFor="let song of songs; let i = index" (click)="playSelectedSong(song)"> 
-          <td class="song-number" [attr.data-number]="i + 1"></td> 
-          <td> 
-            <img [src]="song.public_image_id" /> 
-          </td> 
-          <td class="song-title">{{ song.name }}</td> 
-          <td>{{ song.duration }}</td> 
-          <td>{{ song.status }}</td> 
-        </tr> 
-      </tbody> 
-    </table>
+
+  <!-- Modal để thêm bài hát -->
+  <div class="add-songs-modal" *ngIf="showModal">
+    <div class="modal-content">
+      <span class="close" (click)="toggleModal()">&times;</span>
+      <h2>Chọn bài hát để thêm vào album</h2>
+      <div *ngFor="let song of artistSongs">
+        <label>
+          <input type="checkbox" [value]="song.id" (change)="toggleSongSelection(song.id)">
+          {{ song.name }} ({{ song.status }})
+        </label>
+      </div>
+      <button (click)="addSongsToAlbum()" class="add-songs-button">Thêm bài hát</button>
+    </div>
   </div>
+
+  <!-- Modal để chỉnh sửa album -->
+  <div class="edit-album-modal" *ngIf="showEditModal">
+    <div class="modal-content">
+        <span class="close" (click)="toggleEditModal()">&times;</span>
+        <h2>Chỉnh sửa album</h2>
+        
+        <label>
+            Tên album:
+            <input type="text" [(ngModel)]="albumName">
+        </label>
+        
+        <label>
+            Mô tả album:
+            <textarea [(ngModel)]="albumDescription"></textarea>
+        </label>
+        
+        <h3>Chọn bài hát để xóa khỏi album</h3>
+        <div *ngFor="let song of songs">
+            <label>
+                <input type="checkbox" [value]="song.id" (change)="toggleDeleteSong(song.id)">
+                {{ song.name }} ({{ song.status }})
+            </label>
+        </div>
+        
+        <button (click)="updateAlbum()" class="update-album-button">Cập nhật album</button>
+    </div>
 </div>
-<app-sidebarsection></app-sidebarsection>
+
+  <div class="content">
+    <button class="create-song-button" routerLink="/afterlogin/artistpage/albums/new">
+      Tạo album mới
+    </button>
+    <div class="popular">
+      <h2>Danh sách bài hát trong album</h2>
+      <table *ngIf="songs.length > 0">
+        <tbody>
+          <tr *ngFor="let song of songs; let i = index" (click)="playSelectedSong(song)">
+            <td class="song-number" [attr.data-number]="i + 1"></td>
+            <td>
+              <img [src]="song.public_image_id" />
+            </td>
+            <td class="song-title">{{ song.name }}</td>
+            <td>{{ song.duration }}</td>
+            <td>{{ song.status }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <app-sidebarsection></app-sidebarsection>
 </body>

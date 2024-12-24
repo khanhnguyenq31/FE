@@ -87,12 +87,12 @@ export class SongsectionComponent implements OnInit, AfterViewInit  {
     const audioPlayer = this.audioPlayerRef.nativeElement;
     audioPlayer.src = this.songs[this.currentSongIndex].secure_url; // Giả sử mỗi bài hát có thuộc tính secure_url
     audioPlayer.play();
-    this.updateCurrentSongInfo(this.songs[this.currentSongIndex]); // Cập nhật tên và hình ảnh bài hát
+    this.updateCurrentSongInfo(this.songs[this.currentSongIndex]);
   }
 
   updateCurrentSongInfo(song: any) {
-    this.currentSongName = song.name; // Cập nhật tên bài hát
-    this.currentSongImage = song.public_image_id || 'default_image_url'; // Cập nhật hình ảnh bài hát
+    this.currentSongName = song.name;
+    this.currentSongImage = song.public_image_id || 'default_image_url';
   }
 
   shuffleSong() {
