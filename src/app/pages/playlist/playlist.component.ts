@@ -11,10 +11,11 @@ import { ArtistSongService } from '../../services/artist/song.service';
 import { ArtistAlbumService } from '../../services/artist/album.service';
 import { SongService } from '../../services/song.service';
 import { RoleService } from '../../services/role.service';
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-playlist',
   standalone: true,
-  imports: [RouterLink, SidebarsectionComponent, CommonModule],
+  imports: [RouterLink, SidebarsectionComponent, CommonModule, FormsModule],
   templateUrl: './playlist.component.html',
   styleUrl: './playlist.component.css'
 })
@@ -29,13 +30,17 @@ export class PlaylistComponent {
   selectedSongs: number[] = []; // Danh sách ID bài hát đã chọn
   showModal: boolean = false; // Cờ để hiển thị modal
   role: string = ''; // Biến để lưu vai trò của người dùng
+  showEditModal: boolean = false;
+  showOptionsModal: boolean = false;
+  playlistName: string = '';
+  playlistDescription: string = '';
+  listDelete: number[] = [];
+  listAdd: number[] = [];
+  is_public : boolean = false;
   constructor(
-      private artistAlbumService: ArtistAlbumService,
       private playlistService: PlaylistService,
       private dataService: DataStorageService,
       private route: ActivatedRoute,
-      private artistSongService: ArtistSongService,
-      private songService : SongService,
       private roleService: RoleService,
   ) {}
   
@@ -47,6 +52,11 @@ export class PlaylistComponent {
         if (this.playlistInfo) {
           this.artistName = this.playlistInfo.name;
           this.playlistImage = this.playlistInfo.cover_url;
+          this.playlistName = this.playlistInfo.name;
+          this.playlistDescription = this.playlistInfo.description;
+          this.is_public = this.playlistInfo.is_public;
+          console.log(this.playlistInfo);
+          console.log(this.playlistDescription);
         } else {
           console.log("không thấy thông tin playlist");
         }
@@ -55,7 +65,7 @@ export class PlaylistComponent {
       });
       this.role = this.roleService.getRole();
   }
-
+  
   fetchSongs(): void {
     this.playlistService.getPlaylistById(this.playlistId).subscribe({
       next: (response: ApiResponse) => {
@@ -106,6 +116,30 @@ export class PlaylistComponent {
     }
   }
 
+  toggleEditModal(): void {
+    this.showEditModal = !this.showEditModal;
+    if (this.showEditModal) {
+      this.playlistName = this.playlistInfo.name;
+      this.playlistDescription = this.playlistInfo.description;
+      this.is_public = this.playlistInfo.is_public;
+      this.listDelete = [];
+      this.fetchSongs(); // Gọi hàm fetchSongs để lấy danh sách bài hát
+    }
+  }
+
+  toggleDeleteSong(songId: number): void {
+    const index = this.listDelete.indexOf(songId);
+    if (index > -1) {
+      this.listDelete.splice(index, 1);
+    } else {
+      this.listDelete.push(songId);
+    }
+  }
+
+  toggleOptionsModal(): void {
+    this.showOptionsModal = !this.showOptionsModal;
+  }
+
   toggleSongSelection(songId: number): void {
     const index = this.selectedSongs.indexOf(songId);
     if (index > -1) {
@@ -132,4 +166,31 @@ export class PlaylistComponent {
       }
     });
   }
+  
+
+  updatePlaylist(): void {
+    const updatedPlaylist = {
+        name: this.playlistName,
+        description: this.playlistDescription,
+        is_public: this.is_public,
+        list_delete: this.listDelete.length > 0 ? this.listDelete : [],
+        list_add: []
+    };
+
+    this.playlistService.updatePlaylist(this.playlistId, updatedPlaylist).subscribe({
+        next: (response: ApiResponse) => {
+            if (response.status === 'OK') {
+                console.log('Cập nhật playlist thành công:', response);
+                this.toggleEditModal();
+                this.fetchSongs();
+            } else {
+                console.error('Lỗi khi cập nhật playlist:', response.message);
+            }
+        },
+        error: (err) => {
+            console.error('Lỗi:', err);
+        }
+    });
+  }
+
 }

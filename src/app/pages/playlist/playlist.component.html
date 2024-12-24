@@ -11,26 +11,81 @@
             <button class="play-button" (click)="playPlaylist()">
                 <i class="fas fa-play"></i>
             </button>
-            <button class="more-button" (click)="toggleModal()">
+            <button class="more-button" (click)="toggleOptionsModal()">
                 <i class="fas fa-ellipsis-h"></i>
             </button>
         </div>
     </div>
   </div>
+
+
+  <!-- Modal để chọn hành động -->
+  <div class="action-selection-modal" *ngIf="showOptionsModal">
+    <div class="modal-content">
+        <span class="close" (click)="toggleOptionsModal()">&times;</span>
+        <h2>Chọn hành động</h2>
+        <div class="action-buttons">
+            <button (click)="toggleModal(); fetchAllSongs()" class="action-button">Thêm bài hát</button>
+        </div>
+        <div class="action-buttons">
+            <button (click)="toggleEditModal(); fetchSongs()" class="action-button">Chỉnh sửa playlist</button>
+        </div>
+    </div>
+</div>
+
   <!-- Modal để thêm bài hát -->
-  <div class="modal" *ngIf="showModal">
-      <div class="modal-content">
-          <span class="close" (click)="toggleModal()">&times;</span>
-          <h2>Chọn bài hát để thêm vào playlist</h2>
-          <div *ngFor="let song of allSongs">
-              <label>
-                  <input type="checkbox" [value]="song.id" (change)="toggleSongSelection(song.id)">
-                  {{ song.name }} ({{ song.status }}) <!-- Hiển thị trạng thái bài hát -->
-              </label>
-          </div>
-          <button (click)="addSongsToPlaylist()" class="add-songs-button">Thêm bài hát</button>
+  <div class="add-songs-modal" *ngIf="showModal">
+    <div class="modal-content">
+      <span class="close" (click)="toggleModal()">&times;</span>
+      <h2>Chọn bài hát để thêm vào playlist</h2>
+      <div *ngFor="let song of allSongs">
+        <label>
+          <input type="checkbox" [value]="song.id" (change)="toggleSongSelection(song.id)">
+          {{ song.name }} ({{ song.status }})
+        </label>
       </div>
+      <button (click)="addSongsToPlaylist()" class="add-songs-button">Thêm bài hát</button>
+    </div>
   </div>
+
+  <!-- Modal để chỉnh sửa album -->
+  <div class="edit-album-modal" *ngIf="showEditModal">
+    <div class="modal-content">
+        <span class="close" (click)="toggleEditModal()">&times;</span>
+        <h2>Chỉnh sửa playlist</h2>
+        
+        <label>
+            Tên playlist:
+            <input type="text" [(ngModel)]="playlistName">
+        </label>
+        
+        <label>
+            Mô tả playlist:
+            <textarea [(ngModel)]="playlistDescription"></textarea>
+        </label>
+
+        <label>
+          Trạng thái:
+          <select [(ngModel)]="is_public">
+              <option [value]="true">Công khai</option>
+              <option [value]="false">Riêng tư</option>
+          </select>
+      </label>
+        
+        <h3>Chọn bài hát để xóa khỏi playlist</h3>
+        <div *ngFor="let song of songs">
+            <label>
+                <input type="checkbox" [value]="song.id" (change)="toggleDeleteSong(song.id)">
+                {{ song.name }} ({{ song.status }})
+            </label>
+        </div>
+        
+        <button (click)="updatePlaylist()" class="update-album-button">Cập nhật playlist</button>
+    </div>
+</div>
+
+
+
   <div class="content">
     <button class="create-song-button" [routerLink]="role === 'LISTENER' ? '/afterlogin/listenerpage/createlist' : '/afterlogin/artistpage/createlist'">
       Tạo playlist mới
