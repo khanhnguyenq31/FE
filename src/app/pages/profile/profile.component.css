@@ -90,10 +90,11 @@ body {
     text-align: left; /* Căn trái */
 }
 
-.footer {
-    height: 40rem; /* Chiều cao footer */
+/*.footer {
+    height: 50px; 
     background-color: #121212;
 }
+*/
 
 .section-header {
     display: flex; /* Sử dụng flexbox để căn chỉnh tiêu đề và nút */
