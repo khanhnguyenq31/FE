@@ -5,10 +5,11 @@
   <div *ngIf="errorMessage" class="error-message">
     {{ errorMessage }}
   </div>
-  <div *ngIf="isLoading" class="spinner-container">
+  
+  <div class="form-container">
+    <div *ngIf="isLoading" class="spinner-container">
     <div class="spinner"></div>
   </div>
-  <div class="form-container">
     <h2>Tạo album mới</h2>
 
     <form (ngSubmit)="onSubmit()" #newAlbumForm="ngForm">

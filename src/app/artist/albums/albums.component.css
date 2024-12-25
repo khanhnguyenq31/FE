@@ -9,16 +9,18 @@
     width: 100%;
     height: 100%;
     background-color: rgba(243, 234, 234, 0.1);
-    z-index: 2000;
+    z-index: 10;
 }
 
 .spinner {
-    border: 8px solid rgba(0, 0, 0, 0.1);
-    border-top: 8px solid #1DB954;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    animation: spin 1s linear infinite;
+    border: 6px solid #f3f3f3;
+        /* Light grey */
+        border-top: 6px solid #3498db;
+        /* Blue */
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 1s linear infinite;
 }
 
 @keyframes spin {
@@ -213,7 +215,7 @@ body {
 .action-selection-modal {
     display: flex;
     position: fixed;
-    z-index: 1000;
+    z-index: 5;
     left: 0;
     top: 0;
     width: 100%;
@@ -264,7 +266,7 @@ body {
 .add-songs-modal {
     display: flex;
     position: fixed;
-    z-index: 1000;
+    z-index: 5;
     left: 0;
     top: 0;
     width: 100%;
@@ -293,7 +295,7 @@ body {
 .edit-album-modal {
     display: flex;
     position: fixed;
-    z-index: 1000;
+    z-index: 5;
     left: 0;
     top: 0;
     width: 100%;

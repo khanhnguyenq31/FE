@@ -23,7 +23,7 @@ export class NewAlbumComponent {
   genreIds: string = ''; // Chuỗi chứa danh sách ID thể loại
   successMessage: string = '';
   errorMessage: string = '';
-  isLoading = true;
+  isLoading = false;
 
   constructor(private uploadAlbumService: UploadAlbumService) {}
 
