@@ -12,13 +12,15 @@ export class ArtistSongService {
 
   constructor(private http: HttpClient, private tokenService: TokenService) {}
 
-  getArtistSongs(): Observable<ApiResponse> {
+  getArtistSongs(page: number = 1, limit: number = 100): Observable<ApiResponse> {
     const token = this.tokenService.getToken();
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json'
     });
 
-    return this.http.get<ApiResponse>(this.apiUrl, { headers });
+    const urlWithParams = `${this.apiUrl}?page=${page}&limit=${limit}`;
+
+    return this.http.get<ApiResponse>(urlWithParams, { headers });
   }
 }

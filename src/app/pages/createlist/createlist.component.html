@@ -5,6 +5,9 @@
   <div *ngIf="errorMessage" class="error-message">
     {{ errorMessage }}
   </div>
+  <div *ngIf="isLoading" class="spinner-container">
+    <div class="spinner"></div>
+  </div>
   <div class="form-container">
     <h2>Tạo Playlist</h2>
     <form (ngSubmit)="onSubmit()" #newPlaylistForm="ngForm" enctype="multipart/form-data">

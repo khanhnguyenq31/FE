@@ -1,11 +1,14 @@
 <body>
+  <div *ngIf="isLoading" class="spinner-container">
+    <div class="spinner"></div>
+  </div>
   <div class="header-content" [ngStyle]="{'background-image': 'url(' + playlistImage + ')'}">
     <div class="overlay"></div>
     <div class="artist-info">
         <div class="verified">
             <i class="fas fa-check-circle"></i> Playlist được xác minh
         </div>
-        <h1>{{ artistName }}</h1>
+        <h1>{{ playlistName }}</h1>
         
         <div class="buttons">
             <button class="play-button" (click)="playPlaylist()">

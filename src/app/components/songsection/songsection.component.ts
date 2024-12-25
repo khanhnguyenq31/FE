@@ -15,12 +15,11 @@ export class SongsectionComponent implements OnInit, AfterViewInit  {
 
   @Input() status: boolean = true;
 
-
   @ViewChild('audioPlayer') audioPlayerRef!: ElementRef<HTMLAudioElement>;
   @ViewChild('progressBar') progressBarRef!: ElementRef;
 
   currentSongIndex: number = 0; 
-  songs: any[] = []; // Sử dụng any[]
+  songs: any[] = [];
   play: boolean = false; 
   currentTime: string = "0:00"; 
   totalTime: string = "0:00"; 

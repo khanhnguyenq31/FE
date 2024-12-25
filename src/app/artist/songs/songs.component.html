@@ -1,4 +1,7 @@
 <body>
+  <div *ngIf="isLoading" class="spinner-container">
+    <div class="spinner"></div>
+  </div>
   <div class="header-content" [ngStyle]="{'background-image': 'url(' + imageUrl + ')'}">
     <div class="overlay"></div>
     <div class="artist-info">

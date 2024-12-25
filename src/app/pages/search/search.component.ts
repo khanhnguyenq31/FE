@@ -1,16 +1,14 @@
 import { Component } from '@angular/core';
-import { SongsectionComponent } from '../../components/songsection/songsection.component';
 import { SidebarsectionComponent } from "../../components/sidebarsection/sidebarsection.component";
 import { ProfilemenuComponent } from '../../components/profilemenu/profilemenu.component';
-import { RouterLink } from '@angular/router';
 import { ApiResponse } from '../../responses/api.response';
 import { SearchService } from '../../services/search.service';
-import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { DataStorageService } from '../../data-storage.service';
 import { PlaylistService } from '../../services/playlist.service';
 import { AlbumService } from '../../services/album.service';
+
 @Component({
   selector: 'app-search',
   standalone: true,
@@ -53,7 +51,7 @@ export class SearchComponent {
   playSelectedSong(song: any): void {
     this.dataService.setSelectedSong(song); 
     this.dataService.setPlaylist(this.songs);
-  } 
+  }
 
   playPlaylist(playlistId: number): void {
   this.playlistService.getPlaylistById(playlistId).subscribe({

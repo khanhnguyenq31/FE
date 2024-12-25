@@ -24,10 +24,12 @@ export class NewSongComponent {
   songData: any = {};
   successMessage: string = '';
   errorMessage: string = '';
+  isLoading = false;
 
   constructor(private uploadSongService: UploadSongService) {}
 
   onSubmit() {
+    this.isLoading = true;
     if (this.songFile) {
       // Bước 1: Upload bài hát lên Cloudinary
       this.uploadSongService.uploadSongToCloudinary(this.songFile).subscribe({
@@ -65,8 +67,10 @@ export class NewSongComponent {
                     }
                   });
               } else {
+                this.isLoading = false;
                 this.successMessage = 'Tạo bài hát thành công!';
               }
+              this.isLoading = false;
 
               this.newSongForm.resetForm();
               this.songFile = null;
@@ -77,6 +81,7 @@ export class NewSongComponent {
               }, 3000);
             },
             error: (dbError: HttpErrorResponse) => {
+              this.isLoading = false;
               console.error('Lỗi khi lưu bài hát:', dbError);
               this.errorMessage =
                 'Lỗi khi lưu thông tin bài hát. Vui lòng thử lại!';
@@ -84,12 +89,14 @@ export class NewSongComponent {
           });
         },
         error: (error: HttpErrorResponse) => {
+          this.isLoading = false;
           console.error('Lỗi khi upload bài hát:', error);
           this.errorMessage =
             'Lỗi khi upload bài hát. Vui lòng kiểm tra kết nối mạng hoặc thử lại!';
         }
       });
     } else {
+      this.isLoading = false;
       console.error('Vui lòng chọn file bài hát.');
       this.errorMessage = 'Vui lòng chọn file bài hát!';
     }
