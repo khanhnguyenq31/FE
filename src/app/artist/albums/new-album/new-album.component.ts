@@ -23,6 +23,7 @@ export class NewAlbumComponent {
   genreIds: string = ''; // Chuỗi chứa danh sách ID thể loại
   successMessage: string = '';
   errorMessage: string = '';
+  isLoading = true;
 
   constructor(private uploadAlbumService: UploadAlbumService) {}
 
@@ -34,35 +35,41 @@ export class NewAlbumComponent {
       release_date: this.albumReleaseDate,
       genre_id: genreIdArray
     };
-
+    this.isLoading = true;
     this.uploadAlbumService.createAlbum(albumData).subscribe({
       next: (response: ApiResponse) => {
         const albumId = response.data?.id;
         if (!albumId) {
+          this.isLoading = false;
           console.error('Không thể lấy ID album từ phản hồi API.');
           this.errorMessage = 'Lỗi: Không thể tạo album.';
           return;
+          
         }
 
         // Upload ảnh bìa album
         if (this.albumImage) {
           this.uploadAlbumService.uploadAlbumImage(albumId, this.albumImage).subscribe({
             next: (imageResponse) => {
+              this.isLoading = false;
               console.log('Tải ảnh bìa album thành công:', imageResponse);
               this.successMessage = 'Tạo album thành công!';
               this.resetForm();
             },
             error: (imageError: HttpErrorResponse) => {
+              this.isLoading = false;
               console.error('Lỗi khi tải ảnh bìa:', imageError);
               this.errorMessage = 'Lỗi khi tải ảnh bìa album.';
             }
           });
         } else {
+          this.isLoading = false;
           this.successMessage = 'Tạo album thành công!';
           this.resetForm();
         }
       },
       error: (error: HttpErrorResponse) => {
+        this.isLoading = false;
         console.error('Lỗi khi tạo album:', error);
         this.errorMessage = 'Lỗi khi tạo album. Vui lòng thử lại!';
       }

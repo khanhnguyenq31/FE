@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SidebarsectionComponent } from '../../components/sidebarsection/sidebarsection.component';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { AlbumService } from '../../services/album.service';
 import { ApiResponse } from '../../responses/api.response';
 import { CommonModule } from '@angular/common';
@@ -42,39 +42,37 @@ export class AlbumsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.route.params.subscribe(params => {
       this.albumId = +params['id'];
-      this.albumInfo = this.albumService.getAlbumInfo();
-      if (this.albumInfo) {
-        this.artistName = this.albumInfo.name;
-        this.albumImage = this.albumInfo.cover_image_url;
-        this.albumName = this.albumInfo.name;
-        this.albumDescription = this.albumInfo.description;
-      } else {
-        console.log("Không thấy thông tin album");
-      }
       this.fetchSongs();
     });
   }
 
   fetchSongs(): void {
+    this.isLoading = true; 
     this.albumService.getSongsByAlbumId(this.albumId).subscribe({
       next: (response: ApiResponse) => {
         if (response.status === 'OK') {
-          this.songs = response.data;
+          this.songs = response.data.songs;
+          this.artistName = response.data.name;
+          this.albumImage = response.data.cover_image_url;
+          this.albumName = response.data.name;
+          this.albumDescription = response.data.description;
         } else {
           console.error('Lỗi khi lấy bài hát:', response.message);
         }
-        this.isLoading = false;
+        this.isLoading = false; 
       },
       error: (err) => {
         console.error('Lỗi:', err);
-        this.isLoading = false;
+        this.isLoading = false; 
       }
     });
   }
 
   fetchArtistSongs(): void {
+    this.isLoading = true; 
     this.artistSongService.getArtistSongs().subscribe({
       next: (response: ApiResponse) => {
         if (response.status === 'OK') {
@@ -82,9 +80,11 @@ export class AlbumsComponent implements OnInit {
         } else {
           console.error('Lỗi khi lấy bài hát của nghệ sĩ:', response.message);
         }
+        this.isLoading = false; 
       },
       error: (err) => {
         console.error('Lỗi:', err);
+        this.isLoading = false; 
       }
     });
   }
@@ -140,6 +140,7 @@ export class AlbumsComponent implements OnInit {
   }
 
   addSongsToAlbum(): void {
+    this.isLoading = true; 
     this.artistAlbumService.addSongsToAlbum(this.albumId, this.selectedSongs).subscribe({
       next: (response: ApiResponse) => {
         if (response.status === 'OK') {
@@ -150,9 +151,11 @@ export class AlbumsComponent implements OnInit {
         } else {
           console.error('Lỗi khi thêm bài hát vào album:', response.message);
         }
+        this.isLoading = false; 
       },
       error: (err) => {
         console.error('Lỗi:', err);
+        this.isLoading = false; 
       }
     });
   }
@@ -164,7 +167,7 @@ export class AlbumsComponent implements OnInit {
         list_delete: this.listDelete.length > 0 ? this.listDelete : [],
         list_add: []
     };
-
+    
     this.artistAlbumService.updateAlbum(this.albumId, updatedAlbum).subscribe({
         next: (response: ApiResponse) => {
             if (response.status === 'OK') {

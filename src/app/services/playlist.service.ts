@@ -92,11 +92,14 @@ export class PlaylistService {
   }
 
   // Lấy tất cả bài hát
-  getAllSongs(): Observable<any> {
+  getAllSongs(page: number = 1, limit: number = 100): Observable<any> {
     const token = this.tokenService.getToken(); 
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-    return this.http.get('http://localhost:8088/api/v1/songs/user', { headers });
-  }
+
+    const url = `http://localhost:8088/api/v1/songs/user?page=${page}&limit=${limit}`;
+
+    return this.http.get(url, { headers });
+}
 }

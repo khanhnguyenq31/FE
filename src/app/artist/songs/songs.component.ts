@@ -1,9 +1,8 @@
-import { Component, NgModule, OnInit } from '@angular/core';
-import { FormsModule, NgForm } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { SidebarsectionComponent } from '../../components/sidebarsection/sidebarsection.component';
-import { ProfilemenuComponent } from '../../components/profilemenu/profilemenu.component';
 import { ArtistSongService } from '../../services/artist/song.service';
 import { DataStorageService } from '../../data-storage.service';
 import { UserDetailService } from '../../services/user-detail.service';
@@ -46,6 +45,7 @@ export class SongsComponent implements OnInit {
   }
 
   loadSongs(): void {
+    this.isLoading = true;
     this.artistSongService.getArtistSongs().subscribe({
       next: (response) => {
         if (response.status === 'OK') {
@@ -63,7 +63,7 @@ export class SongsComponent implements OnInit {
   playSelectedSong(song: any): void { // Sử dụng any cho tham số
     this.dataService.setSelectedSong(song); 
     this.dataService.setPlaylist(this.songs); // Truyền vào mảng bài hát
-  } 
+  }
 
   playListSong(): void {
     if (this.songs.length > 0) {

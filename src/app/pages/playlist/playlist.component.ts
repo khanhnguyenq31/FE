@@ -1,15 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { SongsectionComponent } from "../../components/songsection/songsection.component";
 import { SidebarsectionComponent } from "../../components/sidebarsection/sidebarsection.component";
-import { ProfilemenuComponent } from '../../components/profilemenu/profilemenu.component';
 import { RouterLink, ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { PlaylistService } from '../../services/playlist.service';
 import { ApiResponse } from '../../responses/api.response';
 import { DataStorageService } from '../../data-storage.service';
-import { ArtistSongService } from '../../services/artist/song.service';
-import { ArtistAlbumService } from '../../services/artist/album.service';
-import { SongService } from '../../services/song.service';
 import { RoleService } from '../../services/role.service';
 import { FormsModule } from '@angular/forms';
 @Component({
@@ -48,18 +43,6 @@ export class PlaylistComponent {
       this.route.params.subscribe(params => {
         this.playlistId = +params['id'];
   
-        this.playlistInfo = this.playlistService.getPlaylistInfo();
-        if (this.playlistInfo) {
-          this.artistName = this.playlistInfo.name;
-          this.playlistImage = this.playlistInfo.cover_url;
-          this.playlistName = this.playlistInfo.name;
-          this.playlistDescription = this.playlistInfo.description;
-          this.is_public = this.playlistInfo.is_public;
-          console.log(this.playlistInfo);
-          console.log(this.playlistDescription);
-        } else {
-          console.log("không thấy thông tin playlist");
-        }
   
         this.fetchSongs();
       });
@@ -67,10 +50,15 @@ export class PlaylistComponent {
   }
   
   fetchSongs(): void {
+    this.isLoading=true;
     this.playlistService.getPlaylistById(this.playlistId).subscribe({
       next: (response: ApiResponse) => {
         if (response.status === 'OK') {
           this.songs = response.data.songs;
+          this.playlistImage = response.data.cover_url;
+          this.playlistName = response.data.name;
+          this.playlistDescription = response.data.description;
+          this.is_public = response.data.is_public;
         } else {
           console.error('Lỗi khi lấy bài hát:', response.message);
         }
@@ -95,6 +83,7 @@ export class PlaylistComponent {
   }
 
   fetchAllSongs(): void {
+    this.isLoading=true;
     this.playlistService.getAllSongs().subscribe({
       next: (response: ApiResponse) => {
         if (response.status === 'OK') {
@@ -102,9 +91,11 @@ export class PlaylistComponent {
         } else {
           console.error('Lỗi khi lấy bài hát:', response.message);
         }
+        this.isLoading = false;
       },
       error: (err) => {
         console.error('Lỗi:', err);
+        this.isLoading = false;
       }
     });
   }
@@ -149,23 +140,34 @@ export class PlaylistComponent {
     }
   }
   
+
   addSongsToPlaylist(): void {
-    this.playlistService.addSongsToPlaylist(this.playlistId, this.selectedSongs).subscribe({
-      next: (response: ApiResponse) => {
-        if (response.status === 'OK') {
-          console.log('Thêm bài hát vào playlist thành công:', response);
-          this.toggleModal();
-          this.selectedSongs = [];
-          this.fetchSongs();
-        } else {
-          console.error('Lỗi khi thêm bài hát vào playlist:', response.message);
+    const updatedPlaylist = {
+        name: this.playlistName, 
+        description: this.playlistDescription,
+        is_public: this.is_public,
+        list_delete: this.listDelete.length > 0 ? this.listDelete : [],
+        list_add: this.selectedSongs
+    };
+    this.isLoading=true;
+    this.playlistService.updatePlaylist(this.playlistId, updatedPlaylist).subscribe({
+        next: (response: ApiResponse) => {
+            if (response.status === 'OK') {
+                console.log('Thêm bài hát vào playlist thành công:', response);
+                this.toggleModal();
+                this.selectedSongs = [];
+                this.fetchSongs(); 
+            } else {
+                console.error('Lỗi khi thêm bài hát vào playlist:', response.message);
+            }
+            this.isLoading = false;
+        },
+        error: (err) => {
+            console.error('Lỗi:', err);
+            this.isLoading = false;
         }
-      },
-      error: (err) => {
-        console.error('Lỗi:', err);
-      }
     });
-  }
+}
   
 
   updatePlaylist(): void {
