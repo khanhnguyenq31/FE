@@ -11,15 +11,24 @@ export class SongService {
   private apiUrl = "http://localhost:8088/api/v1"
   constructor(private http: HttpClient, private tokenService: TokenService) {}
 
-  getAllSong(): Observable<any>  {
+  getAllSong4Admin(pageNumber: number, limit: number = 10): Observable<any>  {
     const token = this.tokenService.getToken();
 
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
 
-    return this.http.get(`${this.apiUrl}/songs/admin/all` , { headers });
+    return this.http.get(`${this.apiUrl}/songs/admin/all?page=${pageNumber}&limit=${limit}` , { headers });
   }
+
+    // Lấy tất cả bài hát
+    getAllSong4Listener(pageNumber: number = 1, limit: number = 10): Observable<any> {
+      const token = this.tokenService.getToken(); 
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`
+      });
+      return this.http.get(`http://localhost:8088/api/v1/songs/user?page=${pageNumber}&limit=${limit}`, { headers });
+    }
 
   approveSong(song_id: number[]): Observable<any>  {
     const data = {

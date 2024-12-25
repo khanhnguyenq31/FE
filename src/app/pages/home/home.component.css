@@ -101,7 +101,8 @@ main {
 .spotify-playlists .list img {
     width: 150px;
     height: 150px;
-    
+    object-fit: cover;
+    background-size: cover;
     border: 1px solid white;
 }
 

@@ -7,8 +7,6 @@ import { CommonModule } from '@angular/common';
 import { PlaylistService } from '../../services/playlist.service';
 import { ApiResponse } from '../../responses/api.response';
 import { DataStorageService } from '../../data-storage.service';
-import { ArtistSongService } from '../../services/artist/song.service';
-import { ArtistAlbumService } from '../../services/artist/album.service';
 import { SongService } from '../../services/song.service';
 import { RoleService } from '../../services/role.service';
 import { FormsModule } from '@angular/forms';
@@ -39,6 +37,7 @@ export class PlaylistComponent {
   is_public : boolean = false;
   constructor(
       private playlistService: PlaylistService,
+      private songService: SongService,
       private dataService: DataStorageService,
       private route: ActivatedRoute,
       private roleService: RoleService,
@@ -95,7 +94,7 @@ export class PlaylistComponent {
   }
 
   fetchAllSongs(): void {
-    this.playlistService.getAllSongs().subscribe({
+    this.songService.getAllSong4Listener().subscribe({
       next: (response: ApiResponse) => {
         if (response.status === 'OK') {
           this.allSongs = response.data.songs;
