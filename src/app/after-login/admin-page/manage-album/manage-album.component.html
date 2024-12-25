@@ -47,6 +47,12 @@
         </table>
         <button type="submit">Submit</button>
     </form>
+
+    <div class="pagination">
+        <button type="button" (click)="prevPage()" [disabled]="current_page === 1">Previous</button>
+        <span>Page {{ current_page }} of {{ total_pages }}</span>
+        <button type="button" (click)="nextPage()" [disabled]="current_page === total_pages">Next</button>
+    </div>
 </div>
 
 <!-- Modal -->

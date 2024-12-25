@@ -13,14 +13,14 @@ export class AlbumService {
   private albumInfo: any;
   constructor(private http: HttpClient, private tokenService: TokenService) {}
 
-  getAllAbum(): Observable<any>  {
+  getAllAlbum(pageNumber: number, limit: number = 10): Observable<any>  {
     const token = this.tokenService.getToken();
 
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
 
-    return this.http.get(`${this.apiUrl}/admin/all` , { headers });
+    return this.http.get(`${this.apiUrl}/admin/all?page=${pageNumber}&limit=${limit}` , { headers });
   }
 
   approveAlbum(album_id: number[]): Observable<any>  {

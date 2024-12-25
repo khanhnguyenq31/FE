@@ -5,6 +5,7 @@
     padding-right: 50px;
     min-height: 100vh;
     overflow-y: auto; /* Cho phép cuộn dọc nếu nội dung quá lớn */
+    margin-bottom: 90px;
 }
 
 .header {

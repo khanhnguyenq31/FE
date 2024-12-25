@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { SongService } from '../../../services/song.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { forkJoin, Observable } from 'rxjs';
+import { DataStorageService } from '../../../data-storage.service';
 
 @Component({
   selector: 'app-manage-song',
@@ -26,7 +27,7 @@ export class ManageSongComponent implements OnInit {
   loadingSongList: boolean = false;
   loadingSongReport: boolean = false;
 
-  constructor(private songService: SongService) {}
+  constructor(private songService: SongService, private dataStorage: DataStorageService) {}
 
   ngOnInit(): void {
     this.fetchAllSongs();
@@ -34,10 +35,9 @@ export class ManageSongComponent implements OnInit {
 
   fetchAllSongs(): void {
     this.loadingSongList = true;
-    this.songService.getAllSong().subscribe({
+    this.songService.getAllSong4Admin(this.current_page).subscribe({
       next: (response) => {
         this.total_pages = response.data.total_pages;
-        this.items_per_page = response.data.items_per_page;
         this.songs = response.data.songs;
         this.loadingSongList = false;
       },
@@ -77,6 +77,13 @@ export class ManageSongComponent implements OnInit {
     }
   }
 
+  playSong(song: any) {
+    const playedPlaylist = []
+    playedPlaylist.push(song)
+    this.dataStorage.setSelectedSong(song); 
+    this.dataStorage.setPlaylist(playedPlaylist);
+  }
+
   submitAllSelections(): void {
     this.loadingSongList = true;
     const requests: Observable<any>[] = [];
@@ -112,20 +119,14 @@ export class ManageSongComponent implements OnInit {
   nextPage() {
     if (this.current_page < this.total_pages) {
       this.current_page++;
-      this.updatePagination();
+      this.fetchAllSongs()
     }
   }
 
   prevPage() {
     if (this.current_page > 1) {
       this.current_page--;
-      this.updatePagination();
+      this.fetchAllSongs()
     }
-  }
-
-  updatePagination() {
-    const start = (this.current_page - 1) * this.items_per_page;
-    const end = start + this.items_per_page;
-    // Chưa áp dụng lọc dữ liệu dựa trên trang
   }
 }
