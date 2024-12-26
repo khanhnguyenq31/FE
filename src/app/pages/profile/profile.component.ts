@@ -64,6 +64,10 @@ export class ProfileComponent {
 
   username: string = '';
   imageUrl: string | null = null;
+  email: string = '';
+  country: string | null = null;
+  dateOfBirth: string | null = null;
+  roleName: string | null = null;
 
   constructor(private userDetailService: UserDetailService, private tokenSvc: TokenService) {}
 
@@ -74,6 +78,10 @@ export class ProfileComponent {
         if (response.status === 'OK') {
           this.username = response.data.username;
           this.imageUrl = response.data.image_url; // Lưu trữ URL hình ảnh
+          this.email = response.data.email; // Lưu trữ email
+          this.country = response.data.country; // Lưu trữ country
+          this.dateOfBirth = response.data.date_of_birth; // Lưu trữ date_of_birth
+          this.roleName = response.data.role.name; // Lưu trữ role.name
         }
       },
       error: (error) => {
