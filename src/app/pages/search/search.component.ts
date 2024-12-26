@@ -74,7 +74,7 @@ playAlbum(albumId: number): void {
   this.albumService.getSongsByAlbumId(albumId).subscribe({
     next: (response: any) => {
       if (response.status === 'OK') {
-        const songs = response.data; // Lấy toàn bộ thông tin bài hát
+        const songs = response.data.songs; // Lấy toàn bộ thông tin bài hát
         this.dataService.setPlaylist(songs); // Truyền vào mảng bài hát
         this.dataService.setSelectedSong(songs[0]); // Phát bài hát đầu tiên trong album
       } else {
