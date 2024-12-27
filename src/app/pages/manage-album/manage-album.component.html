@@ -1,0 +1,87 @@
+<div class="container">
+    <div *ngIf="loadingList" class="spinner-container">
+        <div class="spinner"></div>
+    </div>
+    
+    <form *ngIf="!loadingList" (ngSubmit)="submitAllSelections()">
+        <table class="album-list">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Image</th>
+                    <th>Album Name</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                    <th>Detail</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let album of albums; let i = index">
+                    <td>{{ i + 1 }}</td>                    
+                    <td>
+                        <button style="background-color: grey;" (click)="playAlbum(album)">
+                            <img [src]="album.cover_image_url" alt="{{ album.name }}" class="album-image" />
+                        </button>
+                    </td>
+                    <td>{{ album.name }}</td>
+                    <td>
+                        <label>{{ album.status }}</label>
+                    </td>
+                    <td>
+                        <select (change)="onChange(album.id, $event)" [value]="album.status">
+                            <option value="DRAFT">Draft</option>
+                            <option value="APPROVED">Approve</option>
+                            <option value="REJECTED">Reject</option>
+                        </select>
+                    </td>
+                    <td>
+                        <button type="button" (click)="viewDetails(album.id)">Xem chi tiết</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+<!-- Modal -->
+<div *ngIf="selectedAlbum" class="modal">
+    <div class="modal-content">
+        <div class="album-image-container">
+            <p><strong>Album:</strong> {{ selectedAlbum.name }}</p>
+            <p><strong>Artist:</strong> {{ selectedAlbum.artist.username }}</p>
+        </div>
+
+        <div class="album-image-container">
+            <img [src]="selectedAlbum.cover_image_url" alt="{{ selectedAlbum.name }}" class="album-image-modal" />    
+            <img [src]="selectedAlbum.artist.image_url" alt="{{ selectedAlbum.artist.username }}" class="artist-image" />
+        </div>
+        
+        <p><strong>Released Date:</strong> {{ selectedAlbum.release_date }}</p>
+        <p><strong>Created Date:</strong> {{ selectedAlbum.create_at }}</p>
+        <p><strong>Status:</strong> {{ selectedAlbum.status }}</p>
+        <p><strong>Description:</strong> {{ selectedAlbum.description }}</p>
+        <table class="song-list">
+            <thead>
+                <tr>
+                <th>#</th>
+                <th>Image</th>
+                <th>Song Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let song of selectedAlbum.songs; let i = index">
+                <td>{{ (current_page - 1) * 10 + i + 1 }}</td>
+                <td>
+                    <img 
+                    [src]="song.public_image_id"
+                    class="song-image" />
+                </td>
+                <td>{{ song.name }}</td>
+                </tr>
+            </tbody>
+        </table>
+    
+        <button (click)="closeModal()" id="close">Close</button>
+    </div>
+</div>

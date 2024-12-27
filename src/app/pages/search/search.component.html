@@ -1,59 +1,39 @@
 <body>
-    <div class="header">
-    <!--
-     <i class="fas fa-home">
-     </i>-->
-     <!--<input placeholder="Bạn muốn phát nội dung gì?" type="text"/>-->
-     <!--
-     <i class="fas fa-trash">
-     </i>-->
-     <div class="search-bar">
-        <i class="fas fa-search search-icon"></i>
-        <input type="text" [(ngModel)]="searchTerm" (input)="onSearch()" placeholder="Tìm kiếm bài hát, album, playlist...">
-        <i class="fas fa-folder-open clear-icon"></i>
-    </div>
-     <app-profilemenu></app-profilemenu>
-    </div>
-
-    
-    <div class="container">
-        <div class="results" *ngIf="searchTerm">
-            <h2>Kết quả tìm kiếm cho: "{{ searchTerm }}"</h2>
-          
-            <h3>Bài hát</h3>
-            <div class="song-list">
-              <div *ngIf="songs.length === 0">Không tìm thấy kết quả</div>
-              <div *ngFor="let song of songs; let i = index" class="song-item" (click)="playSelectedSong(song)" 
-                   (mouseover)="hoveredSongIndex = i" (mouseleave)="hoveredSongIndex = -1">
-                <!--<span class="song-number">{{ i + 1 }}</span>-->
-                <img [src]="song.public_image_id" class="song-image" />
-                <span class="song-name">{{ song.name }}</span>
-                <i class="fas fa-play" *ngIf="hoveredSongIndex === i"></i>
-              </div>
-            </div>
-          
-            <h3>Album</h3>
-            <div class="album-list">
-              <div *ngIf="albums.length === 0">Không tìm thấy kết quả</div>
-              <div *ngFor="let album of albums; let i = index" class="album-item" (click)="playAlbum(album.id)" 
-                   (mouseover)="hoveredAlbumIndex = i" (mouseleave)="hoveredAlbumIndex = -1">
-                <img [src]="album.cover_image_url" class="album-image" />
-                <span class="album-name">{{ album.name }}</span>
-                <i class="fas fa-play" *ngIf="hoveredAlbumIndex === i"></i>
-              </div>
-            </div>
-          
-            <h3>Playlist</h3>
-            <div class="playlist-list">
-              <div *ngIf="playlists.length === 0">Không tìm thấy kết quả</div>
-              <div *ngFor="let playlist of playlists; let i = index" class="playlist-item" (click)="playPlaylist(playlist.id)" 
-                   (mouseover)="hoveredPlaylistIndex = i" (mouseleave)="hoveredPlaylistIndex = -1">
-                <img [src]="playlist.cover_url" class="playlist-image" />
-                <span class="playlist-name">{{ playlist.name }}</span>
-                <i class="fas fa-play" *ngIf="hoveredPlaylistIndex === i"></i>
-              </div>
-            </div>
+  <div class="container">
+      <div class="results">
+        <h3>Bài hát</h3>
+        <div class="song-list">
+          <div *ngIf="songs.length === 0">Không tìm thấy kết quả</div>
+          <div *ngFor="let song of songs; let i = index" class="song-item" (click)="playSelectedSong(song)" 
+                (mouseover)="hoveredSongIndex = i" (mouseleave)="hoveredSongIndex = -1">
+            <!--<span class="song-number">{{ i + 1 }}</span>-->
+            <img [src]="song.public_image_id" class="song-image" />
+            <span class="song-name">{{ song.name }}</span>
+            <i class="fas fa-play" *ngIf="hoveredSongIndex === i"></i>
           </div>
-    </div>
-    <app-sidebarsection></app-sidebarsection>
-   </body>
+        </div>
+      
+        <h3>Album</h3>
+        <div class="album-list">
+          <div *ngIf="albums.length === 0">Không tìm thấy kết quả</div>
+          <div *ngFor="let album of albums; let i = index" class="album-item" (click)="playAlbum(album.id)" 
+                (mouseover)="hoveredAlbumIndex = i" (mouseleave)="hoveredAlbumIndex = -1">
+            <img [src]="album.cover_image_url" class="album-image" />
+            <span class="album-name">{{ album.name }}</span>
+            <i class="fas fa-play" *ngIf="hoveredAlbumIndex === i"></i>
+          </div>
+        </div>
+      
+        <h3>Playlist</h3>
+        <div class="playlist-list">
+          <div *ngIf="playlists.length === 0">Không tìm thấy kết quả</div>
+          <div *ngFor="let playlist of playlists; let i = index" class="playlist-item" (click)="playPlaylist(playlist.id)" 
+                (mouseover)="hoveredPlaylistIndex = i" (mouseleave)="hoveredPlaylistIndex = -1">
+            <img [src]="playlist.cover_url" class="playlist-image" />
+            <span class="playlist-name">{{ playlist.name }}</span>
+            <i class="fas fa-play" *ngIf="hoveredPlaylistIndex === i"></i>
+          </div>
+        </div>
+      </div>
+  </div>
+</body>

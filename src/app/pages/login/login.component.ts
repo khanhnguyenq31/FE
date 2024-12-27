@@ -115,8 +115,8 @@ export class LoginComponent extends BaseComponent implements OnInit {
         });
       },
       error: (error: HttpErrorResponse) => {
-        this.validationMessage = 'Login failed. Please check your credentials.';
-        console.error(error?.error?.message ?? '');
+        alert(error.error.message);
+        
       }
     });
   }

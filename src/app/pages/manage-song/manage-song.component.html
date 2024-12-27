@@ -1,0 +1,51 @@
+<div class="container">
+    <!-- Loading spinner -->
+    <div *ngIf="loadingList" class="spinner-container">
+        <div class="spinner"></div>
+    </div>
+
+    <div *ngIf="!loadingList" >
+        <form (ngSubmit)="submitAllSelections()">
+            <table class="song-list">
+            <thead>
+                <tr>
+                <th>#</th>
+                <th>Image</th>
+                <th>Song Name</th>
+                <th>Status</th>
+                <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let song of songs; let i = index">
+                <td>{{ (current_page - 1) * 10 + i + 1 }}</td>
+                <td>
+                    <button style="background-color: grey;" (click)="playSong(song)">
+                        <img 
+                        [src]="song.public_image_id"
+                        class="song-image" />
+                    </button>
+                </td>
+                <td>{{ song.name }}</td>
+                <td><label>{{ song.status }}</label></td>
+                <td>
+                    <select (change)="onChange(song.id, $event)" [value]="song.status">
+                        <option value="DRAFT">Draft</option>
+                        <option value="APPROVED">Approve</option>
+                        <option value="REJECTED">Reject</option>
+                    </select>
+                </td>
+                </tr>
+            </tbody>
+            </table>
+            <button type="submit">Submit</button>
+        </form>
+    
+        <div class="pagination">
+            <button type="button" (click)="prevPage()" [disabled]="current_page === 1">Previous</button>
+            <span>Page {{ current_page }} of {{ total_pages }}</span>
+            <button type="button" (click)="nextPage()" [disabled]="current_page === total_pages">Next</button>
+        </div>
+    </div>
+    
+</div>

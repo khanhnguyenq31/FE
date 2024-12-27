@@ -4,14 +4,7 @@
 </head>
 <body>
     <div class="container">
-        <app-sidebarsection></app-sidebarsection>
         <div class="content">
-            <div class="header">
-                <div class="profile-menu">
-                    <app-profilemenu></app-profilemenu>
-                </div>
-            </div>
-
             <div class="form-container">
               
               <div class="upload-container" (click)="triggerFileInput()">
@@ -22,9 +15,7 @@
               </div>
               
               <button (click)="uploadImage()">Upload Image</button>
-            </div>
 
-            <div class="form-container">
                 <form (ngSubmit)="updateUserInfo()">
                   <div class="form-group">
                     <label for="username">Username</label>
@@ -66,7 +57,5 @@
               </div>
         </div>
     </div>
-
-    <div class="footer"></div>
 </body>
 </html>

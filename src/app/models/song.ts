@@ -3,4 +3,4 @@ export interface Song {
     name: string;
     secure_url: string,
     status: string
-}
+} 

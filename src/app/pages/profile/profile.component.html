@@ -1,115 +1,31 @@
 <html>
- <head>
+<head>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
- </head>
- <body>
+</head>
+<body>
     <div class="container">
-        <app-sidebarsection></app-sidebarsection>
         <div class="content">
-            <div class="header">
-                
-                <div class="profile-menu">
-                    <app-profilemenu></app-profilemenu>
-                </div>
-            </div>
             <div class="profile-info">
                 <div class="profile-picture">
-                  <img *ngIf="imageUrl; else defaultImage" [src]="imageUrl" alt="Profile Picture" />
-                  <ng-template #defaultImage>
-                    <i class="fas fa-user default-icon"></i> <!-- Biểu tượng mặc định nếu không có hình ảnh -->
-                  </ng-template>
+                    <img *ngIf="imageUrl; else defaultImage" [src]="imageUrl" alt="Profile Picture" />
+                    <ng-template #defaultImage>
+                        <i class="fas fa-user default-icon"></i> 
+                    </ng-template>
                 </div>
                 <h1 class="profile-name">{{ username }}</h1>
-                <p class="profile-following">3 đang theo dõi</p>
-              </div>
-            <div class="top-artists">
-                <div class="section-header">
-                    <h2 class="section-title">Nghệ sĩ hàng đầu tháng này</h2>
-                    <button class="add-artist-button" (click)="navigateTo('profile/edit')">Chỉnh sửa</button>
-                </div>
-                <div class="artist-list">
-                    <!-- Danh sách nghệ sĩ -->
-                    <div class="artist">
-                        <img alt="Logo of ANH TRAI 'SAY HI'" height="150" src="https://i.pinimg.com/474x/25/e8/bf/25e8bf9ff13ff54b9d0d6a0bd74b36c9.jpg" width="150"/>
-                        <div class="artist-name">
-                         ANH TRAI "SAY HI"
-                        </div>
-                        <div class="artist-role">
-                         Nghệ sĩ
-                        </div>
-                       </div>
-                       <div class="artist">
-                        <img alt="Logo of ARTIST 2" height="150" src="https://i.pinimg.com/474x/cc/dd/3d/ccdd3d40f728c8e35e91d2278a4eed8c.jpg" width="150"/>
-                        <div class="artist-name">
-                        HIEUTHUHAI
-                        </div>
-                        <div class="artist-role">
-                         Nghệ sĩ
-                        </div>
-                       </div>
-                </div>
             </div>
-            <div class="top-songs">
-                <h2 class="section-title">Bản nhạc hàng đầu tháng này</h2>
-                <table class="song-table">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Bài hát</th>
-                            <th>Nghệ sĩ</th>
-                            <th>Thời gian</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>QUAY ĐI QUAY LẠI (feat. HIEUTHUHAI)</td>
-                            <td>ANH TRAI 'SAY HI', HIEUTHUHAI</td>
-                            <td>3:30</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>ĐẦU ĐỘI SỪNG</td>
-                            <td>ANH TRAI 'SAY HI', Quân A.P, HURRYKNG &amp; Hùng Huỳnh</td>
-                            <td>3:33</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Liệu Đến Bao Giờ</td>
-                            <td>Nguyenn, Bozitt</td>
-                            <td>4:49</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>SAO HẠNG A (feat. HIEUTHUHAI, Duong Domic, Song Luân, JSOL)</td>
-                            <td>ANH TRAI 'SAY HI', HIEUTHUHAI, Duong Domic, Song Luân, JSOL</td>
-                            <td>4:12</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="top-playlists">
-                <h2 class="section-title">Playlist Công khai</h2>
-                <!-- Thêm nội dung cho playlist ở đây nếu cần -->
-                <div class="playlist">
-                    <img alt="Music note icon" height="200" src="https://storage.googleapis.com/a1aa/image/xWooOOB8QZ4oMJpifl70xXocehMAG4vtkCJIy8CiKS0V0M0TA.jpg" width="200"/>
-                    <div class="play">              
-                        <button (click)="open()">
-                            <svg role="img" aria-hidden="true" viewBox="0 0 24 24" class="fa"><path d="m7.05 3.606 13.49 7.788a.7.7 0 0 1 0 1.212L7.05 20.394A.7.7 0 0 1 6 19.788V4.212a.7.7 0 0 1 1.05-.606z"></path></svg> 
-                        </button>
-                        </div>
-                    <div class="playlist-info">
-                     <div class="name">
-                      Danh sách phát của tôi #1
-                     </div>
-                     <div class="author">
-                      Của GEN Chovy
-                     </div>
-                    </div>
-                   </div>
+            <div class="section-header">
+                <button class="add-artist-button" (click)="navigateTo('profile/edit')">Chỉnh sửa</button>
+                <div class="infor">
+                    <p><strong>Email: </strong>{{ email }}</p>
+                    <p><strong>Type of account: </strong>{{ role }}</p>
+                    <p><strong>Date of birth: </strong>{{ date_of_birth }}</p>
+                    <p><strong>Account created at: </strong>{{ created_at }}</p>
+                    <p><strong>Country: </strong>{{ country }}</p>
+                </div>
+                
             </div>
         </div>
     </div>
-    <div class="footer"></div>
- </body>
+</body>
 </html>

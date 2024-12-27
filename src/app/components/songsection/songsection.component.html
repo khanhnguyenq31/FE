@@ -1,9 +1,11 @@
-<div *ngIf="status" class="whole-container">
-  <img class="song-picture" [src]="currentSongImage" alt="Song Image" />
-  <div class="song-detail">
-    <p class="song-title">{{ currentSongName }}</p>
+<div class="whole-container">
+  <div class="song-inf">
+    <img *ngIf="currentSongImage" class="song-picture" [src]="currentSongImage" />
+    <div class="song-detail">
+      <p class="song-title">{{ currentSongName }}</p>
+    </div>
   </div>
-
+  
   <div class="audio-control">
     <div class="buttons">
       <button *ngIf="!shuffle" class="shuffle-button-off" (click)="shuffleSong()">

@@ -21,6 +21,44 @@ export class PlaylistService {
     return this.http.get(`${this.baseUrl}`, { headers });
   }
 
+  getAllPlaylistsByAdmin(): Observable<any> {
+    const token = this.tokenService.getToken(); 
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.get(`${this.baseUrl}/admin/all`, { headers });
+  }
+
+  approvePlaylist(playlist_id: number[]): Observable<any>  {
+    const data = {
+      playlist_id: playlist_id,
+    };
+
+    const token = this.tokenService.getToken();
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.patch(`${this.baseUrl}/approve`, JSON.stringify(data) , { headers });
+  }
+
+  rejectPlaylist(playlist_id: number[]): Observable<any>  {
+    const data = {
+      playlist_id: playlist_id,
+    };
+
+    const token = this.tokenService.getToken();
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.patch(`${this.baseUrl}/reject`, JSON.stringify(data) , { headers });
+  }
+    
   // 
   getMyPlaylists(): Observable<any> {
     const token = this.tokenService.getToken(); 
@@ -91,12 +129,4 @@ export class PlaylistService {
     return this.playlistInfo;
   }
 
-  // Lấy tất cả bài hát
-  getAllSongs(): Observable<any> {
-    const token = this.tokenService.getToken(); 
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
-    return this.http.get('http://localhost:8088/api/v1/songs/user', { headers });
-  }
 }

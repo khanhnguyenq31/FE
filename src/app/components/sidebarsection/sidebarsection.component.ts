@@ -102,22 +102,22 @@ export class SidebarsectionComponent {
   }
 
   
- navigateToAlbum(album: any) {
-  this.albumService.setAlbumInfo(album);
-  this.router.navigate([`/afterlogin/artistpage/albums/${album.id}`]);
-  this.showAlbums=false;
+  navigateToAlbum(album: any) {
+    this.albumService.setAlbumInfo(album);
+    this.router.navigate([`/afterlogin/artistpage/albums/${album.id}`]);
+    this.showAlbums=false;
+    }
+
+    navigateToPlaylist(playlist: any) {
+    const role = this.roleService.getRole();
+    this.playlistService.setPlaylistInfo(playlist);
+
+    if (role === 'ARTIST') {
+      this.router.navigate([`/afterlogin/artistpage/playlists/${playlist.id}`]);
+    } else if (role === 'LISTENER') {
+      this.router.navigate([`/afterlogin/listenerpage/playlists/${playlist.id}`]);
+    }
+
+    this.showPlaylists = false;
   }
-
-  navigateToPlaylist(playlist: any) {
-  const role = this.roleService.getRole();
-  this.playlistService.setPlaylistInfo(playlist);
-
-  if (role === 'ARTIST') {
-    this.router.navigate([`/afterlogin/artistpage/playlists/${playlist.id}`]);
-  } else if (role === 'LISTENER') {
-    this.router.navigate([`/afterlogin/listenerpage/playlists/${playlist.id}`]);
-  }
-
-  this.showPlaylists = false;
-}
 }

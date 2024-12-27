@@ -19,8 +19,18 @@
   padding-right: 20px;
 }
 
+.song-inf {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  width: 300px;
+}
+
 .song-picture {
   height: 50px;
+  width: 50px;
+  object-fit: cover;
 }
 
 .song-detail {

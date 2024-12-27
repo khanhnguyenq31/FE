@@ -1,6 +1,4 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { SidebarsectionComponent } from '../../../components/sidebarsection/sidebarsection.component';
-import { ProfilemenuComponent } from '../../../components/profilemenu/profilemenu.component';
 import { TokenService } from '../../../services/token.service'; // Adjust the path as necessary
 import { ApiResponse } from '../../../responses/api.response'; // Adjust the path as necessary
 import { HttpErrorResponse } from '@angular/common/http';
@@ -10,7 +8,7 @@ import { UploadProfileImageService } from '../../../services/upload-profile-imag
 @Component({
   selector: 'app-profile-edit',
   standalone: true,
-  imports: [SidebarsectionComponent, ProfilemenuComponent, FormsModule],
+  imports: [FormsModule],
   templateUrl: './profile-edit.component.html',
   styleUrls: ['./profile-edit.component.css']
 })
@@ -62,7 +60,6 @@ export class ProfileEditComponent  {
     if (this.password) userInfo.password = this.password;
     if (this.country) userInfo.country = this.country;
     if (this.dateOfBirth) userInfo.date_of_birth = this.dateOfBirth;
-
     // Kiểm tra mật khẩu
     if (this.password && this.password !== this.confirmPassword) {
         alert("Mật khẩu và mật khẩu nhập lại không khớp!");
@@ -83,7 +80,6 @@ export class ProfileEditComponent  {
         },
         error: (error: HttpErrorResponse) => {
             console.error('Update failed:', error);
-            // Handle error response
         }
     });
   }

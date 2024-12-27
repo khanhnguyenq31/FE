@@ -1,0 +1,41 @@
+<div class="container">
+    <!-- Loading spinner -->
+    <div *ngIf="loadingList" class="spinner-container">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Form & Table khi đã tải xong -->
+    <form *ngIf="!loadingList" (ngSubmit)="submitAllSelections()">
+        <table class="song-list">
+        <thead>
+            <tr>
+            <th>#</th>
+            <th>Image</th>
+            <th>Playlist Name</th>
+            <th>Public/Private</th>
+            <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let playlist of playlists; let i = index">
+            <td> {{i + 1}}</td>
+            <td>
+                <img 
+                [src]="playlist.cover_url"
+                class="song-image" />
+            </td>
+            <td>{{ playlist.name }}</td>
+            <td><label>{{ playlist.is_public ? 'Public' : 'Private' }}</label></td>
+            <td>
+                <select (change)="onChange(playlist.id, $event)" [value]="playlist.status">
+                    <option value="DRAFT">Draft</option>
+                    <option value="APPROVED">Approve</option>
+                    <option value="REJECTED">Reject</option>
+                </select>
+            </td>
+            </tr>
+        </tbody>
+        </table>
+        <button type="submit">Submit</button>
+    </form>
+</div>

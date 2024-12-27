@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-playlist',
   standalone: true,
-  imports: [RouterLink, SidebarsectionComponent, CommonModule, FormsModule],
+  imports: [RouterLink, CommonModule, FormsModule],
   templateUrl: './playlist.component.html',
   styleUrl: './playlist.component.css'
 })
@@ -85,7 +85,7 @@ export class PlaylistComponent {
   }
 
   fetchAllSongs(): void {
-    this.playlistService.getAllSongs().subscribe({
+    this.songService.getAllSong4Listener().subscribe({
       next: (response: ApiResponse) => {
         if (response.status === 'OK') {
           this.allSongs = response.data.songs;

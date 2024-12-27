@@ -32,9 +32,7 @@ export class ProfilemenuComponent {
     // Xác định route dựa trên role và section
     switch (role) {
       case 'ADMIN':
-        if (section === 'profile') targetRoute = '/afterlogin/adminpage';
-        else if (section === 'account') targetRoute = '/afterlogin/adminpage/manageUser';
-        else if (section === 'settings') targetRoute = '/afterlogin/adminpage/manageReport';
+        targetRoute = `/afterlogin/adminpage/${section}`;
         break;
 
       case 'LISTENER':

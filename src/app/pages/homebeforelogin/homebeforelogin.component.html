@@ -3,7 +3,7 @@
   class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
   aria-label="Sidebar"
 >
-  <div class="h-full px-3 py-4 overflow-y-auto bg-[#0a0a23]">
+  <div class="h-full px-3 py-4 overflow-y-auto bg-[#000000]">
     <ul class="space-y-2 font-medium">
       <li>
         <button
@@ -105,7 +105,6 @@
   </div>
 </aside>
 
-
 <!-- serching-bar -->
 <div class="header">
    <button (click)="open()" class="search-bar">
@@ -133,264 +132,23 @@
         <button (click)="close()" id="close">Not now</button>
     </div>  
 
-    <!-- Contain all the Albums -->
     <div class="main-container">
-
-        <!-- each spotify-playlists contains 1 list, where all Albums are contained -->
-        <div class="spotify-playlists">
-            
-            <h2>Popular Albums</h2>
-
-            <div class="list">
-                <div class="item">
-                    <img src="../assets/images/Today's Top Hits.jpg" />
-                    <div class="play">              
-                        <button (click)="open()">
-                            <svg role="img" aria-hidden="true" viewBox="0 0 24 24" class="fa"><path d="m7.05 3.606 13.49 7.788a.7.7 0 0 1 0 1.212L7.05 20.394A.7.7 0 0 1 6 19.788V4.212a.7.7 0 0 1 1.05-.606z"></path></svg> 
-                        </button>
-                    </div>
-                    
-                    <!-- Name -->
-                    <h4>Today's Top Hits</h4>
-                    <!-- Des -->
-                    <p>Olivia Rodrigo is on top of the Hottest 50!</p>
-                </div>
-
-                <div class="item">
-                    <img src="../assets/images/RapCaviar.jpg" />
-                    <div class="play">
-                        <button (click)="open()">
-                            <svg role="img" aria-hidden="true" viewBox="0 0 24 24" class="fa"><path d="m7.05 3.606 13.49 7.788a.7.7 0 0 1 0 1.212L7.05 20.394A.7.7 0 0 1 6 19.788V4.212a.7.7 0 0 1 1.05-.606z"></path></svg> 
-                        </button>              
-                    </div>
-
-                    <h4>RapCaviar</h4>
-
-                    <p>New Music from Cardi B, Megan Thee Stallion an...</p>
-                </div>
-
-                <div class="item">
-                    <img src="../assets/images/All Out 2010s.jpg" />
-                    <div class="play">
-                        <button (click)="open()">
-                            <svg role="img" aria-hidden="true" viewBox="0 0 24 24" class="fa"><path d="m7.05 3.606 13.49 7.788a.7.7 0 0 1 0 1.212L7.05 20.394A.7.7 0 0 1 6 19.788V4.212a.7.7 0 0 1 1.05-.606z"></path></svg> 
-                        </button>              
-                    </div>
-
-                    <h4>All out 2010s</h4>
-
-                    <p>The biggest spmgs pf tje 2010s.</p>
-                </div>
-
-                <div class="item">
-                    <img src="../assets/images/Rock Classics.jpg" />
-                    <div class="play">
-                        <button (click)="open()">
-                            <svg role="img" aria-hidden="true" viewBox="0 0 24 24" class="fa"><path d="m7.05 3.606 13.49 7.788a.7.7 0 0 1 0 1.212L7.05 20.394A.7.7 0 0 1 6 19.788V4.212a.7.7 0 0 1 1.05-.606z"></path></svg> 
-                        </button>              
-                    </div>
-
-                    <h4>Rock Classics</h4>
-                    
-                    <p>Rock Legends & epic songs that continue to...</p>
-                </div>
-
-                <div class="item">
-                <img src="../assets/images/Chill Hits.jpg" />
-                    <div class="play">
-                        <button (click)="open()">
-                            <svg role="img" aria-hidden="true" viewBox="0 0 24 24" class="fa"><path d="m7.05 3.606 13.49 7.788a.7.7 0 0 1 0 1.212L7.05 20.394A.7.7 0 0 1 6 19.788V4.212a.7.7 0 0 1 1.05-.606z"></path></svg> 
-                        </button>              
-                    </div>
-
-                    <h4>Chill Hits</h4>
-
-                    <p>Kick back to the best new and recent chill hits</p>
-                </div>
-
-                <div class="item">
-                    <img src="../assets/images/Viva Latino.jpg" />
-                    <div class="play">
-                        <button (click)="open()">
-                            <svg role="img" aria-hidden="true" viewBox="0 0 24 24" class="fa"><path d="m7.05 3.606 13.49 7.788a.7.7 0 0 1 0 1.212L7.05 20.394A.7.7 0 0 1 6 19.788V4.212a.7.7 0 0 1 1.05-.606z"></path></svg> 
-                        </button>              
-                    </div>
-
-                    <h4>Viva Latino</h4>
-
-                    <p>Today's top Latin hits elevando nuestra...</p>
-                </div>
-            </div>
+        <div *ngIf="loadingSongList" class="spinner-container">
+            <div class="spinner"></div>
         </div>
-
-        <div class="spotify-playlists">
+    
+        <div *ngIf="!loadingSongList" class="spotify-playlists">
             
-            <h2>Popular Albums</h2>
-
-            <div class="list">
-                <div class="item">
-                    <img src="../assets/images/Today's Top Hits.jpg" />
-                    <div class="play">              
+            <h2>Popular Music</h2>
+            <div>
+                <div *ngFor="let row of songs" class="list">
+                    <div *ngFor="let song of row" class="item">
                         <button (click)="open()">
-                            <svg role="img" aria-hidden="true" viewBox="0 0 24 24" class="fa"><path d="m7.05 3.606 13.49 7.788a.7.7 0 0 1 0 1.212L7.05 20.394A.7.7 0 0 1 6 19.788V4.212a.7.7 0 0 1 1.05-.606z"></path></svg> 
+                            <img [src]="song.public_image_id" alt="">
+                            <h4>{{song.name}}</h4>
+                            <p>{{song.artist_name}}</p>
                         </button>
                     </div>
-                    
-                    <!-- Name -->
-                    <h4>Today's Top Hits</h4>
-                    <!-- Des -->
-                    <p>Olivia Rodrigo is on top of the Hottest 50!</p>
-                </div>
-
-                <div class="item">
-                    <img src="../assets/images/RapCaviar.jpg" />
-                    <div class="play">
-                        <button (click)="open()">
-                            <svg role="img" aria-hidden="true" viewBox="0 0 24 24" class="fa"><path d="m7.05 3.606 13.49 7.788a.7.7 0 0 1 0 1.212L7.05 20.394A.7.7 0 0 1 6 19.788V4.212a.7.7 0 0 1 1.05-.606z"></path></svg> 
-                        </button>              
-                    </div>
-
-                    <h4>RapCaviar</h4>
-
-                    <p>New Music from Cardi B, Megan Thee Stallion an...</p>
-                </div>
-
-                <div class="item">
-                    <img src="../assets/images/All Out 2010s.jpg" />
-                    <div class="play">
-                        <button (click)="open()">
-                            <svg role="img" aria-hidden="true" viewBox="0 0 24 24" class="fa"><path d="m7.05 3.606 13.49 7.788a.7.7 0 0 1 0 1.212L7.05 20.394A.7.7 0 0 1 6 19.788V4.212a.7.7 0 0 1 1.05-.606z"></path></svg> 
-                        </button>              
-                    </div>
-
-                    <h4>All out 2010s</h4>
-
-                    <p>The biggest spmgs pf tje 2010s.</p>
-                </div>
-
-                <div class="item">
-                    <img src="../assets/images/Rock Classics.jpg" />
-                    <div class="play">
-                        <button (click)="open()">
-                            <svg role="img" aria-hidden="true" viewBox="0 0 24 24" class="fa"><path d="m7.05 3.606 13.49 7.788a.7.7 0 0 1 0 1.212L7.05 20.394A.7.7 0 0 1 6 19.788V4.212a.7.7 0 0 1 1.05-.606z"></path></svg> 
-                        </button>              
-                    </div>
-
-                    <h4>Rock Classics</h4>
-                    
-                    <p>Rock Legends & epic songs that continue to...</p>
-                </div>
-
-                <div class="item">
-                <img src="../assets/images/Chill Hits.jpg" />
-                    <div class="play">
-                        <button (click)="open()">
-                            <svg role="img" aria-hidden="true" viewBox="0 0 24 24" class="fa"><path d="m7.05 3.606 13.49 7.788a.7.7 0 0 1 0 1.212L7.05 20.394A.7.7 0 0 1 6 19.788V4.212a.7.7 0 0 1 1.05-.606z"></path></svg> 
-                        </button>              
-                    </div>
-
-                    <h4>Chill Hits</h4>
-
-                    <p>Kick back to the best new and recent chill hits</p>
-                </div>
-
-                <div class="item">
-                    <img src="../assets/images/Viva Latino.jpg" />
-                    <div class="play">
-                        <button (click)="open()">
-                            <svg role="img" aria-hidden="true" viewBox="0 0 24 24" class="fa"><path d="m7.05 3.606 13.49 7.788a.7.7 0 0 1 0 1.212L7.05 20.394A.7.7 0 0 1 6 19.788V4.212a.7.7 0 0 1 1.05-.606z"></path></svg> 
-                        </button>              
-                    </div>
-
-                    <h4>Viva Latino</h4>
-
-                    <p>Today's top Latin hits elevando nuestra...</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="spotify-playlists">
-            
-            <h2>Popular Albums</h2>
-
-            <div class="list">
-                <div class="item">
-                    <img src="../assets/images/Today's Top Hits.jpg" />
-                    <div class="play">              
-                        <button (click)="open()">
-                            <svg role="img" aria-hidden="true" viewBox="0 0 24 24" class="fa"><path d="m7.05 3.606 13.49 7.788a.7.7 0 0 1 0 1.212L7.05 20.394A.7.7 0 0 1 6 19.788V4.212a.7.7 0 0 1 1.05-.606z"></path></svg> 
-                        </button>
-                    </div>
-                    
-                    <!-- Name -->
-                    <h4>Today's Top Hits</h4>
-                    <!-- Des -->
-                    <p>Olivia Rodrigo is on top of the Hottest 50!</p>
-                </div>
-
-                <div class="item">
-                    <img src="../assets/images/RapCaviar.jpg" />
-                    <div class="play">
-                        <button (click)="open()">
-                            <svg role="img" aria-hidden="true" viewBox="0 0 24 24" class="fa"><path d="m7.05 3.606 13.49 7.788a.7.7 0 0 1 0 1.212L7.05 20.394A.7.7 0 0 1 6 19.788V4.212a.7.7 0 0 1 1.05-.606z"></path></svg> 
-                        </button>              
-                    </div>
-
-                    <h4>RapCaviar</h4>
-
-                    <p>New Music from Cardi B, Megan Thee Stallion an...</p>
-                </div>
-
-                <div class="item">
-                    <img src="../assets/images/All Out 2010s.jpg" />
-                    <div class="play">
-                        <button (click)="open()">
-                            <svg role="img" aria-hidden="true" viewBox="0 0 24 24" class="fa"><path d="m7.05 3.606 13.49 7.788a.7.7 0 0 1 0 1.212L7.05 20.394A.7.7 0 0 1 6 19.788V4.212a.7.7 0 0 1 1.05-.606z"></path></svg> 
-                        </button>              
-                    </div>
-
-                    <h4>All out 2010s</h4>
-
-                    <p>The biggest spmgs pf tje 2010s.</p>
-                </div>
-
-                <div class="item">
-                    <img src="../assets/images/Rock Classics.jpg" />
-                    <div class="play">
-                        <button (click)="open()">
-                            <svg role="img" aria-hidden="true" viewBox="0 0 24 24" class="fa"><path d="m7.05 3.606 13.49 7.788a.7.7 0 0 1 0 1.212L7.05 20.394A.7.7 0 0 1 6 19.788V4.212a.7.7 0 0 1 1.05-.606z"></path></svg> 
-                        </button>              
-                    </div>
-
-                    <h4>Rock Classics</h4>
-                    
-                    <p>Rock Legends & epic songs that continue to...</p>
-                </div>
-
-                <div class="item">
-                <img src="../assets/images/Chill Hits.jpg" />
-                    <div class="play">
-                        <button (click)="open()">
-                            <svg role="img" aria-hidden="true" viewBox="0 0 24 24" class="fa"><path d="m7.05 3.606 13.49 7.788a.7.7 0 0 1 0 1.212L7.05 20.394A.7.7 0 0 1 6 19.788V4.212a.7.7 0 0 1 1.05-.606z"></path></svg> 
-                        </button>              
-                    </div>
-
-                    <h4>Chill Hits</h4>
-
-                    <p>Kick back to the best new and recent chill hits</p>
-                </div>
-
-                <div class="item">
-                    <img src="../assets/images/Viva Latino.jpg" />
-                    <div class="play">
-                        <button (click)="open()">
-                            <svg role="img" aria-hidden="true" viewBox="0 0 24 24" class="fa"><path d="m7.05 3.606 13.49 7.788a.7.7 0 0 1 0 1.212L7.05 20.394A.7.7 0 0 1 6 19.788V4.212a.7.7 0 0 1 1.05-.606z"></path></svg> 
-                        </button>              
-                    </div>
-
-                    <h4>Viva Latino</h4>
-
-                    <p>Today's top Latin hits elevando nuestra...</p>
                 </div>
             </div>
         </div>
@@ -405,7 +163,7 @@
     credit card needed.</p>
 </div>
 <div class="button">
-    <button type="button" routerLink="signup">Sign up free</button>
+    <button type="button"><a routerLink="signup">Sign up free</a></button>
 </div>
 </div>
 

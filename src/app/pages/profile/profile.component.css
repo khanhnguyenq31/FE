@@ -2,134 +2,128 @@ body {
     background-color: #121212;
     color: white;
     margin: 0;
+    font-family: Arial, sans-serif;
 }
 
 .container {
     display: flex;
     height: 100vh; /* Chiều cao toàn bộ màn hình */
+    justify-content: center;
+    align-items: center;
 }
 
 .content {
-    margin-left: 300px; /* Khoảng cách từ sidebar */
-    padding: 1rem; /* Padding cho nội dung */
-    flex: 1; /* Chiếm toàn bộ không gian còn lại */
-}
-
-.header {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin-bottom: 2rem; /* Khoảng cách dưới header */
-}
-
-.profile-menu {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-}
-
-.nav-button {
-    background: none;
-    border: none;
-    color: white;
-    cursor: pointer;
-    margin-right: 1rem; /* Khoảng cách giữa các nút */
+    padding: 2rem;
+    flex: 1;
+    max-width: 1200px; /* Giới hạn chiều rộng tối đa */
+    background-color: #1e1e1e; /* Nền tối cho nội dung */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Hiệu ứng bóng nhẹ */
 }
 
 .profile-info {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 2rem; /* Khoảng cách dưới thông tin profile */
+    margin-bottom: 2rem;
+    text-align: center;
 }
 
 .profile-picture {
-    width: 8rem; /* Kích thước hình ảnh */
-    height: 8rem; /* Kích thước hình ảnh */
-    background-color: #4a5568; /* Màu nền cho hình ảnh */
-    border-radius: 50%; /* Hình tròn */
+    width: 8rem;
+    height: 8rem;
+    background-color: #4a5568;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 1rem; /* Khoảng cách dưới hình ảnh */
+    margin-bottom: 1rem;
+    position: relative;
 }
 
 .profile-picture img {
-    width: 8rem; /* Kích thước giống như biểu tượng */
-    height: 8rem; /* Kích thước giống như biểu tượng */
-    border-radius: 50%; /* Hình tròn */
-    object-fit: cover; /* Đảm bảo hình ảnh không bị méo */
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
 }
-
-
 
 .profile-name {
-    font-size: 3rem; /* Kích thước chữ */
-    font-weight: bold; /* Đậm */
-    margin: 1rem 0; /* Khoảng cách trên và dưới */
-}
-
-.profile-following {
-    color: #cbd5e0; /* Màu chữ */
-    margin-top: 0.5rem; /* Khoảng cách trên */
-}
-
-.section-title {
-    font-size: 1.5rem; /* Kích thước chữ */
-    font-weight: bold; /* Đậm */
-    margin-bottom: 1rem; /* Khoảng cách dưới tiêu đề */
-}
-
-.song-table {
-    width: 100%; /* Chiều rộng bảng */
-    margin-top: 1rem; /* Khoảng cách trên bảng */
-}
-
-.song-table th, .song-table td {
-    padding: 0.5rem; /* Padding cho ô */
-    text-align: left; /* Căn trái */
-}
-
-.footer {
-    height: 40rem; /* Chiều cao footer */
-    background-color: #121212;
+    font-size: 2.5rem; /* Giảm kích thước tên */
+    font-weight: bold;
+    margin: 1rem 0;
 }
 
 .section-header {
-    display: flex; /* Sử dụng flexbox để căn chỉnh tiêu đề và nút */
-    justify-content: space-between; /* Căn giữa khoảng cách giữa tiêu đề và nút */
-    align-items: center; /* Căn giữa theo chiều dọc */
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 1.5rem;
 }
 
 .add-artist-button {
-    background-color: #1db954; /* Màu nền xanh lá */
-    color: white; /* Màu chữ */
-    border: none; /* Không có viền */
-    border-radius: 4px; /* Bo góc */
-    padding: 0.5rem 1rem; /* Padding cho nút */
-    cursor: pointer; /* Con trỏ khi hover */
+    background-color: #1db954;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
 }
 
-.artist img {
-    border-radius: 50%;
-    height: auto;
+.add-artist-button:hover {
+    background-color: #1ed760; /* Màu xanh lá sáng khi hover */
 }
 
-.artist-list {
-    display: flex; /* Sử dụng flexbox để sắp xếp các artist theo chiều ngang */
-    flex-wrap: wrap; /* Cho phép các artist xuống dòng nếu không đủ chỗ */
-    gap: 1rem; /* Khoảng cách giữa các artist */
+.infor {
+    display: flex;
+    flex-direction: column;
+    font-size: 1rem; /* Giảm kích thước chữ */
 }
 
-.artist {
-    display: flex; /* Sử dụng flexbox cho từng artist */
-    flex-direction: column; /* Sắp xếp hình ảnh và tên theo chiều dọc */
-    align-items: center; /* Căn giữa các phần tử theo chiều ngang */
+.infor p {
+    margin: 0.5rem 0; /* Khoảng cách giữa các mục thông tin */
+}
+
+.infor strong {
+    font-weight: bold;
+}
+
+.default-icon {
+    font-size: 4rem;
+    color: white;
+}
+
+.footer {
+    height: 40rem;
+    background-color: #121212;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.song-table {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.song-table th,
+.song-table td {
+    padding: 0.5rem;
+    text-align: left;
 }
 
 .playlist {
-  width: 150px;  
+    width: 150px;
+    margin-right: 20px;
 }
+
 .playlist img {
     width: 150px;
     height: 150px;
@@ -145,16 +139,12 @@ body {
     position: absolute;
     right: 10px;
     top: -40px;
-
     padding: 7px;
-    
     background-color: #ffffff;
     border-radius: 100%;
-    
     opacity: 0;
     width: 40px;
     height: 40px;
-    
     transition: all ease 0.4s;
 }
 
@@ -166,13 +156,43 @@ body {
 .playlist .play .fa:hover {
     opacity: 1;
     border: 1px rgb(119, 119, 119);
-}                                  
+}
 
 .playlist:hover {
     background-color: #b4b4b4;
 }
 
-.default-icon {
-    font-size: 4rem; /* Kích thước biểu tượng lớn hơn */
-    color: white; /* Màu sắc của biểu tượng */
+.artist-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
 }
+
+.artist {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.artist img {
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+}
+
+.profile-menu {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.nav-button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-right: 1rem;
+}
+

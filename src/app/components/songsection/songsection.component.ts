@@ -11,10 +11,6 @@ import { Router} from '@angular/router';
 })
 
 export class SongsectionComponent implements OnInit, AfterViewInit  {
-  
-
-  @Input() status: boolean = true;
-
   @ViewChild('audioPlayer') audioPlayerRef!: ElementRef<HTMLAudioElement>;
   @ViewChild('progressBar') progressBarRef!: ElementRef;
 
