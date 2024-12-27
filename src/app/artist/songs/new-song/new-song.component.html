@@ -11,7 +11,7 @@
   <div class="form-container">
     <h2>Tạo bài hát mới</h2>
 
-    <form (ngSubmit)="onSubmit()" #newSongForm="ngForm">
+    <form *ngIf="!isLoading" (ngSubmit)="onSubmit()" #newSongForm="ngForm">
       <div class="form-group">
         <label for="songTitle">Tên bài hát</label>
         <input

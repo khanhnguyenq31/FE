@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { SidebarsectionComponent } from "../../components/sidebarsection/sidebarsection.component";
-import { RouterLink, ActivatedRoute, Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { RouterLink, ActivatedRoute} from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { PlaylistService } from '../../services/playlist.service';
 import { ApiResponse } from '../../responses/api.response';

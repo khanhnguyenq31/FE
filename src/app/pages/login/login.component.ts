@@ -7,11 +7,12 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { UserResponse } from '../../responses/user.response';
 import { LoginDTO } from '../../dtos/login.dto';
 import { BaseComponent } from '../base/base.component';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [RouterLink, FormsModule],
+  imports: [RouterLink, FormsModule, NgIf],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -26,7 +27,7 @@ export class LoginComponent extends BaseComponent implements OnInit {
 
   roles: Role[] = [];
   selectedRole !: number; 
-
+  loadingList: boolean = false;
   userResponse?: UserResponse;
 
   constructor() {
@@ -52,28 +53,22 @@ export class LoginComponent extends BaseComponent implements OnInit {
   }
 
   login(): void {
-    // Ensure the form is valid before proceeding
-    //debugger;
     if (this.loginForm.invalid) {
-      this.validationMessage = 'Please enter valid email and password.';
+      alert('Please enter valid email and password.');
       return;
     }
 
     if (!this.email || !this.password) {
-      this.validationMessage = 'Please enter both email and password.';
+      alert('Please enter both email and password.');
       return;
     }
-    //debugger;
-    ///////////////////////////////
-    // Kiểm tra xem username có đuôi @gmail.com không
+
     if (this.email.endsWith('@gmail.com')) {
       this.email = this.email; // Gán giá trị vào email
     } else {
       this.email = '';
       this.username = this.email; // Nếu không, gán email là rỗng
     }
-    //////////////////////////////
-    //debugger;
 
     const loginDTO: LoginDTO = {
       email: this.email,
@@ -83,6 +78,7 @@ export class LoginComponent extends BaseComponent implements OnInit {
     };
     //debugger;
 
+    this.loadingList = true;
     this.userService.login(loginDTO).subscribe({
       next: (apiResponse: ApiResponse) => {
         //debugger;
@@ -91,6 +87,7 @@ export class LoginComponent extends BaseComponent implements OnInit {
         //debugger;
         this.userService.getUserDetail(token).subscribe({
           next: (apiResponse2: ApiResponse) => {
+            this.loadingList = false
             this.userResponse = {
               ...apiResponse2.data,
               date_of_birth: new Date(apiResponse2.data.date_of_birth),
@@ -110,13 +107,14 @@ export class LoginComponent extends BaseComponent implements OnInit {
             }
           },
           error: (error: HttpErrorResponse) => {
+            this.loadingList = false;
             console.error(error?.error?.message ?? '');
           }
         });
       },
       error: (error: HttpErrorResponse) => {
         alert(error.error.message);
-        
+        this.loadingList = false
       }
     });
   }

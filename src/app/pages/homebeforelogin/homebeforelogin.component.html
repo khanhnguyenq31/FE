@@ -59,28 +59,6 @@
           <span class="ms-3">Create Playlist</span>
         </button>
       </li>
-
-      <li>
-        <button
-            (click)="open()"
-            class="flex items-center p-2 text-white rounded-lg dark:text-gray-200 hover:bg-gray-700 w-full"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            fill="currentColor"
-            class="bi bi-heart-fill"
-            viewBox="0 0 16 16"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"
-            />
-          </svg>
-          <span class="ms-3">Like Songs</span>
-        </button>
-      </li>
       <li>
         <button
             (click)="open()"
@@ -117,42 +95,39 @@
 
 
 <main>
-    <!-- Using for notification to login -->
-    <div class="overlap" *ngIf="!hiddenFlag"></div>
-    <div class="notification" *ngIf="!hiddenFlag">
-        <span class="catch-phrase">Join us today and unlock exclusive features</span>
-        <div class="container">
-        <img class="logo">
-        <div>
+  <!-- Using for notification to login -->
+  <div class="overlap" *ngIf="!hiddenFlag"></div>
+  <div class="notification" *ngIf="!hiddenFlag">
+      <span class="catch-phrase">Join us today and unlock exclusive features</span>
+      <div class="container">
+        <img class="logo" src="../../../assets/images/logo.jpg">
+        <div> 
             <button class="login-button" routerLink="/signup">Sign up</button>
             <button class="login-button" routerLink="/login">Login</button>
-            <a class="forgot-password" href="#">Forgot your password</a>
         </div>
-        </div>
-        <button (click)="close()" id="close">Not now</button>
-    </div>  
+      </div>
+      <button (click)="close()" id="close">Not now</button>
+  </div>  
 
-    <div class="main-container">
-        <div *ngIf="loadingSongList" class="spinner-container">
-            <div class="spinner"></div>
-        </div>
-    
-        <div *ngIf="!loadingSongList" class="spotify-playlists">
-            
-            <h2>Popular Music</h2>
-            <div>
-                <div *ngFor="let row of songs" class="list">
-                    <div *ngFor="let song of row" class="item">
-                        <button (click)="open()">
-                            <img [src]="song.public_image_id" alt="">
-                            <h4>{{song.name}}</h4>
-                            <p>{{song.artist_name}}</p>
-                        </button>
-                    </div>
+  <div class="main-container">
+    <div *ngIf="loadingSongList" class="spinner-container">
+        <div class="spinner"></div>
+    </div>
+    <div *ngIf="!loadingSongList" class="spotify-playlists">  
+        <h2>Popular Music</h2>
+        <div>
+            <div *ngFor="let row of songs" class="list">
+                <div *ngFor="let song of row" class="item">
+                    <button (click)="open()">
+                        <img [src]="song.public_image_id" alt="">
+                        <h4>{{song.name}}</h4>
+                        <p>{{song.artist_name}}</p>
+                    </button>
                 </div>
             </div>
         </div>
     </div>
+  </div>
 </main>
 
 <!-- using when not login -->

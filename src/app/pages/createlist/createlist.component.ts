@@ -3,14 +3,12 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { PlaylistService } from '../../services/playlist.service'; 
 import { ApiResponse } from '../../responses/api.response';
-import { SidebarsectionComponent } from "../../components/sidebarsection/sidebarsection.component";
-import { ProfilemenuComponent } from '../../components/profilemenu/profilemenu.component';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-createlist',
   standalone: true,
-  imports: [SidebarsectionComponent, CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './createlist.component.html',
   styleUrls: ['./createlist.component.css']
 })

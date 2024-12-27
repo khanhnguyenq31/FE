@@ -1,7 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
 import { SidebarsectionComponent } from '../../../components/sidebarsection/sidebarsection.component';
 import { HttpErrorResponse } from '@angular/common/http';
 import { UploadSongService } from '../../../services/artist/upload-song.service';
@@ -10,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-new-song',
   standalone: true,
-  imports: [RouterLink, SidebarsectionComponent, FormsModule, CommonModule],
+  imports: [ SidebarsectionComponent, FormsModule, CommonModule],
   templateUrl: './new-song.component.html',
   styleUrls: ['./new-song.component.css']
 })
@@ -32,6 +31,7 @@ export class NewSongComponent {
     this.isLoading = true;
     if (this.songFile) {
       // Bước 1: Upload bài hát lên Cloudinary
+      
       this.uploadSongService.uploadSongToCloudinary(this.songFile).subscribe({
         next: (response) => {
           console.log('Upload bài hát thành công:', response);
@@ -67,18 +67,16 @@ export class NewSongComponent {
                     }
                   });
               } else {
-                this.isLoading = false;
                 this.successMessage = 'Tạo bài hát thành công!';
               }
-              this.isLoading = false;
-
-              this.newSongForm.resetForm();
               this.songFile = null;
               this.songImage = null;
 
               setTimeout(() => {
+                this.isLoading = false;
                 this.successMessage = '';
               }, 3000);
+              
             },
             error: (dbError: HttpErrorResponse) => {
               this.isLoading = false;
@@ -100,6 +98,7 @@ export class NewSongComponent {
       console.error('Vui lòng chọn file bài hát.');
       this.errorMessage = 'Vui lòng chọn file bài hát!';
     }
+    
   }
 
   onFileChange(event: any, type: 'song' | 'image') {

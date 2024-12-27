@@ -1,21 +1,23 @@
-<div class="main-container">
-    <div *ngIf="loadingSongList" class="spinner-container">
-        <div class="spinner"></div>
-    </div>
-
-    <div *ngIf="!loadingSongList" class="spotify-playlists">
-        
-        <h2>Popular Music</h2>
-        <div>
-            <div *ngFor="let row of songs" class="list">
-                <div *ngFor="let song of row" class="item">
-                    <button (click)="playSong(song)">
-                        <img [src]="song.public_image_id" alt="">
-                        <h4>{{song.name}}</h4>
-                        <p>{{song.artist_name}}</p>
-                    </button>
+<main>
+    <div class="main-container">
+        <div *ngIf="loadingSongList" class="spinner-container">
+            <div class="spinner"></div>
+        </div>
+    
+        <div *ngIf="!loadingSongList" class="spotify-playlists">
+            
+            <h2>Popular Music</h2>
+            <div>
+                <div *ngFor="let row of songs" class="list">
+                    <div *ngFor="let song of row" class="item">
+                        <button (click)="playSong(song)">
+                            <img [src]="song.public_image_id" alt="">
+                            <h4>{{song.name}}</h4>
+                            <p>{{song.artist_name}}</p>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</main>

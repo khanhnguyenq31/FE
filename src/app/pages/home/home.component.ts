@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
-import { SidebarsectionComponent } from '../../components/sidebarsection/sidebarsection.component';
-import { RouterLink } from '@angular/router';
-import { ProfilemenuComponent } from '../../components/profilemenu/profilemenu.component';
 import { RoleService } from '../../services/role.service';
 import { SongService } from '../../services/song.service';
 import { HttpErrorResponse } from '@angular/common/http';

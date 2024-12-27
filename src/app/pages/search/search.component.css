@@ -2,22 +2,15 @@ body {
     font-family: 'Roboto', sans-serif;
     background-color: #121212;
     color: white;
-    min-height: 100vh;
-    width: 100vw;
     overflow-x: hidden;
-    overflow-y: auto;
-    position: relative;
-    margin: 0;
-    padding: 0;
+    height: 100vh;
 }
 
 .container {
     max-width: 1200px;
-    /*margin: 0 auto;*/
-    margin-left: 300px;
     padding: 20px;
     overflow: hidden;
-    margin-bottom: 150px;
+    margin-left: 50px;
 }
 
 .song-list, .album-list, .playlist-list {
@@ -29,7 +22,7 @@ body {
 .song-item, .album-item, .playlist-item {
     flex: 0 0 calc(20% - 16px);
     box-sizing: border-box;
-    min-width: 150px;
+    max-width: 200px;
 }
 
 .song-item {
