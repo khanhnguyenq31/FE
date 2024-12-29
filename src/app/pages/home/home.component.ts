@@ -4,7 +4,7 @@ import { RoleService } from '../../services/role.service';
 import { SongService } from '../../services/song.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { DataStorageService } from '../../data-storage.service';
+import { PlaySongService } from '../../services/play-song.service';
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
 
   constructor(private roleService: RoleService, 
     private songService: SongService, 
-    private dataStorage: DataStorageService) {
+    private dataStorage: PlaySongService) {
       this.role = roleService.getRole();
     }
 
@@ -50,7 +50,6 @@ export class HomeComponent implements OnInit {
   }
 
   playSong(song: any) {
-    this.dataStorage.setSelectedSong(song); 
-    this.dataStorage.setPlaylist(this.songs);
+    this.dataStorage.setSelectedSong(song, this.songs);
   }
 }

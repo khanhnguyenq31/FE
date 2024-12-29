@@ -11,7 +11,6 @@ import { SongsComponent } from './artist/songs/songs.component';
 import { AlbumsComponent } from './artist/albums/albums.component';
 import { NewSongComponent } from './artist/songs/new-song/new-song.component';
 import { NewAlbumComponent } from './artist/albums/new-album/new-album.component';
-import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 import { ProfileEditComponent } from './pages/profile/profile-edit/profile-edit.component';
 import { AfterLoginComponent } from './pages/after-login/after-login.component';
 import { AdminPageComponent } from './pages/admin-page/admin-page.component';
@@ -29,7 +28,6 @@ export const routes: Routes = [
     {path:'', component: HomebeforeloginComponent},
     { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignupComponent },
-    { path: 'reset-password', component: ResetPasswordComponent},
     { 
         path: 'afterlogin', component: AfterLoginComponent, 
         canActivate: [authGuard],
@@ -52,7 +50,6 @@ export const routes: Routes = [
                 { path: 'createlist', component:CreatelistComponent},
                 { path: 'search', component: SearchComponent},
                 { path: 'profile/edit', component: ProfileEditComponent },
-                { path: 'reset-password', component: ResetPasswordComponent},
                   
             ]
         },
@@ -65,7 +62,6 @@ export const routes: Routes = [
                 { path: 'playlists/:id', component: PlaylistComponent},
                 { path: 'createlist', component:CreatelistComponent},
                 { path: 'search', component:SearchComponent},
-                { path: 'reset-password', component: ResetPasswordComponent},
                 { path: 'songs', component:SongsComponent},
                 { path: 'songs/new', component:NewSongComponent},
                 { path: 'albums/new', component:NewAlbumComponent},

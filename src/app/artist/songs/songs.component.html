@@ -2,49 +2,49 @@
   <div *ngIf="isLoading" class="spinner-container">
     <div class="spinner"></div>
   </div>
-  <div class="header-content" [ngStyle]="{'background-image': 'url(' + imageUrl + ')'}">
+
+  <div *ngIf="!isLoading" class="header-content" [ngStyle]="{'background-image': 'url(' + imageUrl + ')'}">
     <div class="overlay"></div>
     <div class="artist-info">
       <div class="verified">
         <i class="fas fa-check-circle"></i>
-        Nghệ sĩ được xác minh
+        Verified Artist
       </div>
       <h1>{{ username }}</h1>
       <div class="buttons">
         <button class="play-button" (click)="playListSong()">
-                <i class="fas fa-play"></i>
-            </button>
+          <i class="fas fa-play"></i>
+        </button>
       </div>
     </div>
   </div>
-  <div class="content">
-  <button
-    class="create-song-button"
-    routerLink="/afterlogin/artistpage/songs/new"
-  >
-    Tạo bài hát mới
-  </button>
-  <div class="popular">
-    <h2>Danh sách bài hát</h2>
-    <div *ngIf="isLoading" class="loading">Đang tải...</div>
-    <div *ngIf="!isLoading && songs.length === 0" class="no-songs">
-      Không có bài hát nào.
-    </div>
-    <table *ngIf="songs.length > 0"> 
-      <tbody> 
-        <tr *ngFor="let song of songs; let i = index" (click)="playSelectedSong(song)"> 
-          <td class="song-number" [attr.data-number]="i + 1"></td> 
-          <td> 
-            <img [src]="song.public_image_id" /> 
-          </td> 
-          <td class="song-title">{{ song.name }}</td> 
-          <td>{{ song.duration }}</td> 
-          <td>{{ song.status }}</td> 
-        </tr> 
-      </tbody> 
-    </table>
-  </div>
-</div>
 
-  <app-sidebarsection></app-sidebarsection>
+  <div *ngIf="!isLoading" class="content">
+    <button
+      class="create-song-button"
+      routerLink="/afterlogin/artistpage/songs/new"
+    >
+      Create New Song
+    </button>
+    <div class="popular">
+      <h2>Song List</h2>
+      <div *ngIf="isLoading" class="loading">Loading...</div>
+      <div *ngIf="!isLoading && songs.length === 0" class="no-songs">
+        No songs available.
+      </div>
+      <table *ngIf="songs.length > 0">
+        <tbody>
+          <tr *ngFor="let song of songs; let i = index" (click)="playSelectedSong(song)">
+            <td class="song-number" [attr.data-number]="i + 1"></td>
+            <td>
+              <img [src]="song.public_image_id" />
+            </td>
+            <td class="song-title">{{ song.name }}</td>
+            <td>{{ song.duration }}</td>
+            <td>{{ song.status }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </body>

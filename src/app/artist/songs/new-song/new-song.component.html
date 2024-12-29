@@ -9,11 +9,11 @@
     <div class="spinner"></div>
   </div>
   <div class="form-container">
-    <h2>Tạo bài hát mới</h2>
+    <h2>Create New Song</h2>
 
     <form *ngIf="!isLoading" (ngSubmit)="onSubmit()" #newSongForm="ngForm">
       <div class="form-group">
-        <label for="songTitle">Tên bài hát</label>
+        <label for="songTitle">Song Title</label>
         <input
           type="text"
           id="songTitle"
@@ -23,7 +23,7 @@
         />
       </div>
       <div class="form-group">
-        <label for="songDescription">Mô tả</label>
+        <label for="songDescription">Description</label>
         <input
           type="text"
           id="songDescription"
@@ -33,7 +33,7 @@
         />
       </div>
       <div class="form-group">
-        <label for="releaseDate">Ngày phát hành</label>
+        <label for="releaseDate">Release Date</label>
         <input
           type="date"
           id="releaseDate"
@@ -43,7 +43,7 @@
         />
       </div>
       <div class="form-group">
-        <label for="songFile">Tệp bài hát</label>
+        <label for="songFile">Song File</label>
         <input
           type="file"
           id="songFile"
@@ -54,7 +54,7 @@
         />
       </div>
       <div class="form-group">
-        <label for="songImage">Hình ảnh bài hát</label>
+        <label for="songImage">Song Image</label>
         <input
           type="file"
           id="songImage"
@@ -64,7 +64,7 @@
         />
       </div>
       <div class="form-group">
-        <button type="submit">Tạo bài hát</button>
+        <button type="submit">Create Song</button>
       </div>
     </form>
   </div>

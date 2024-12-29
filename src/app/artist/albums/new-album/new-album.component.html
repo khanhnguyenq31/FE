@@ -8,12 +8,13 @@
   <div *ngIf="isLoading" class="spinner-container">
     <div class="spinner"></div>
   </div>
+
   <div class="form-container">
-    <h2>Tạo album mới</h2>
+    <h2>Create New Album</h2>
 
     <form (ngSubmit)="onSubmit()" #newAlbumForm="ngForm">
       <div class="form-group">
-        <label for="albumTitle">Tên album</label>
+        <label for="albumTitle">Name of album</label>
         <input
           type="text"
           id="albumTitle"
@@ -23,7 +24,7 @@
         />
       </div>
       <div class="form-group">
-        <label for="albumDescription">Mô tả album</label>
+        <label for="albumDescription">Description of album</label>
         <input
           type="text"
           id="albumDescription"
@@ -33,7 +34,7 @@
         />
       </div>
       <div class="form-group">
-        <label for="albumReleaseDate">Ngày phát hành</label>
+        <label for="albumReleaseDate">Release Date</label>
         <input
           type="date"
           id="albumReleaseDate"
@@ -43,7 +44,7 @@
         />
       </div>
       <div class="form-group">
-        <label for="albumImage">Ảnh bìa album</label>
+        <label for="albumImage">Album's picture</label>
         <input
           type="file"
           id="albumImage"
@@ -54,20 +55,19 @@
         />
       </div>
       <div class="form-group">
-        <label for="genreIds">Thể loại nhạc</label>
+        <label for="genreIds">Music genre</label>
         <select id="genreIds" name="genreIds" [(ngModel)]="genreIds" required>
-          <option value="" disabled selected>Chọn thể loại nhạc</option>
-          <option value="1">Nhạc trẻ</option>
-          <option value="2">Nhạc hip hop</option>
-          <option value="3">Nhạc sôi động</option>
-          <option value="4">Nhạc ballad</option>
-          <option value="5">Nhạc dân gian</option>
+          <option value="" disabled selected>Choose music genre</option>
+          <option value="1">Youth music</option>
+          <option value="2">Hip hop music</option>
+          <option value="3">Pop music</option>
+          <option value="4">Ballad music</option>
+          <option value="5">Folk music</option>
         </select>
       </div>
       <div class="form-group">
-        <button type="submit">Tạo album</button>
+        <button type="submit">Create Album</button>
       </div>
     </form>
   </div>
-  <app-sidebarsection></app-sidebarsection>
 </body>

@@ -4,6 +4,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { forkJoin, Observable } from 'rxjs';
 import { NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { PlaySongService } from '../../services/play-song.service';
 
 @Component({
   selector: 'app-mange-playlist',
@@ -16,13 +17,19 @@ export class ManagePlaylistComponent {
   playlists: Array<{id: number; 
                     name: string; 
                     cover_url: string; 
-                    is_public: boolean
+                    is_public: boolean;
+                    user: string;
                     status: string }> = [];
 
   playlists_list_approved: number[] = [];
   playlists_list_rejected: number[] = [];
+  selectedPlaylist: any = null;
   loadingList: boolean = false;
-  constructor(private playlistService: PlaylistService) {}
+  loadingSongList: boolean = false;
+  songs: any = null;
+  constructor(private playlistService: PlaylistService,
+              private dataStorage: PlaySongService
+  ) {}
   
   ngOnInit(): void {
     this.fetchAllPlaylists();
@@ -53,6 +60,34 @@ export class ManagePlaylistComponent {
     }
   }
   
+  closeModal(): void {
+    this.selectedPlaylist = null;
+  }
+
+  viewDetails(playlistId: number, play: boolean = false): void {
+    this.selectedPlaylist = this.playlists.find((Playlist) => Playlist.id === playlistId);
+    this.loadingSongList = true;
+    this.playlistService.getPlaylistById(playlistId).subscribe({
+      next: (response: any) => {
+        if (response.status === 'OK') {
+          this.songs = response.data.songs;
+          this.loadingSongList = false;
+        } else {
+          this.loadingSongList = false;
+          console.error('Error fetching playlist:', response.message);
+        }
+      },
+      error: (error) => {
+        this.loadingSongList = false;
+        console.error('Error fetching playlist:', error);
+      }
+    });
+  }
+
+  playPlaylist() {
+    this.dataStorage.setSelectedSong(this.songs[0], this.songs); 
+  }
+
   submitAllSelections(): void {
     this.loadingList = true;
     const requests: Observable<any>[] = [];

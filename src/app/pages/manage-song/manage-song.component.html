@@ -12,6 +12,7 @@
                 <th>#</th>
                 <th>Image</th>
                 <th>Song Name</th>
+                <th>Artist Name</th>
                 <th>Status</th>
                 <th>Action</th>
                 </tr>
@@ -20,13 +21,14 @@
                 <tr *ngFor="let song of songs; let i = index">
                 <td>{{ (current_page - 1) * 10 + i + 1 }}</td>
                 <td>
-                    <button style="background-color: grey;" (click)="playSong(song)">
+                    <button type="button" class="playButton" (click)="playSong(song)">
                         <img 
                         [src]="song.public_image_id"
                         class="song-image" />
                     </button>
                 </td>
                 <td>{{ song.name }}</td>
+                <td>{{ song.artist_name }}</td>
                 <td><label>{{ song.status }}</label></td>
                 <td>
                     <select (change)="onChange(song.id, $event)" [value]="song.status">

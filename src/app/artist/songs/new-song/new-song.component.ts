@@ -30,11 +30,10 @@ export class NewSongComponent {
   onSubmit() {
     this.isLoading = true;
     if (this.songFile) {
-      // Bước 1: Upload bài hát lên Cloudinary
-      
+      // Step 1: Upload song to Cloudinary
       this.uploadSongService.uploadSongToCloudinary(this.songFile).subscribe({
         next: (response) => {
-          console.log('Upload bài hát thành công:', response);
+          console.log('Song upload successful:', response);
 
           this.songData = {
             name: this.songTitle,
@@ -46,28 +45,27 @@ export class NewSongComponent {
             cloudinary_version: response.data.cloudinary_version
           };
 
-          // Bước 2: Lưu thông tin bài hát vào cơ sở dữ liệu
+          // Step 2: Save song information to the database
           this.uploadSongService.saveSongToDb(this.songData).subscribe({
             next: (dbResponse) => {
-              console.log('Lưu bài hát thành công:', dbResponse);
+              console.log('Song saved successfully:', dbResponse);
 
               if (this.songImage) {
-                // Bước 3: Upload hình ảnh bài hát nếu có
+                // Step 3: Upload song image if present
                 this.uploadSongService
                   .uploadSongImage(dbResponse.data.id, this.songImage)
                   .subscribe({
                     next: (imageResponse) => {
-                      console.log('Upload hình ảnh thành công:', imageResponse);
-                      this.successMessage = 'Tạo bài hát và tải ảnh thành công!';
+                      console.log('Image upload successful:', imageResponse);
+                      this.successMessage = 'Song and image created successfully!';
                     },
                     error: (imageError: HttpErrorResponse) => {
-                      console.error('Lỗi khi tải hình ảnh:', imageError);
-                      this.errorMessage =
-                        'Bài hát đã được tạo, nhưng lỗi khi tải ảnh.';
+                      console.error('Error uploading image:', imageError);
+                      this.errorMessage = 'Song created, but error uploading image.';
                     }
                   });
               } else {
-                this.successMessage = 'Tạo bài hát thành công!';
+                this.successMessage = 'Song created successfully!';
               }
               this.songFile = null;
               this.songImage = null;
@@ -80,25 +78,22 @@ export class NewSongComponent {
             },
             error: (dbError: HttpErrorResponse) => {
               this.isLoading = false;
-              console.error('Lỗi khi lưu bài hát:', dbError);
-              this.errorMessage =
-                'Lỗi khi lưu thông tin bài hát. Vui lòng thử lại!';
+              console.error('Error saving song:', dbError);
+              this.errorMessage = 'Error saving song information. Please try again!';
             }
           });
         },
         error: (error: HttpErrorResponse) => {
           this.isLoading = false;
-          console.error('Lỗi khi upload bài hát:', error);
-          this.errorMessage =
-            'Lỗi khi upload bài hát. Vui lòng kiểm tra kết nối mạng hoặc thử lại!';
+          console.error('Error uploading song:', error);
+          this.errorMessage = 'Error uploading song. Please check your network connection or try again!';
         }
       });
     } else {
       this.isLoading = false;
-      console.error('Vui lòng chọn file bài hát.');
-      this.errorMessage = 'Vui lòng chọn file bài hát!';
+      console.error('Please select a song file.');
+      this.errorMessage = 'Please select a song file!';
     }
-    
   }
 
   onFileChange(event: any, type: 'song' | 'image') {

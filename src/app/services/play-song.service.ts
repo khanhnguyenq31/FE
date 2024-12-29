@@ -3,9 +3,10 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class DataStorageService {
-  timePlaying: number = 0;
-  play: boolean = false;
+export class PlaySongService {
+  play: boolean = false; 
+  currentTime: string = "0:00";
+  totalTime: string = "0:00"; 
 
   // BehaviorSubject cho bài hát được chọn
   private selectedSongSource = new BehaviorSubject<any>(null); 
@@ -16,13 +17,9 @@ export class DataStorageService {
   playlist$ = this.playlistSource.asObservable();
 
   constructor() {}
-
-  setSelectedSong(song: any) {
+ 
+  setSelectedSong(song: any, songs: any[]) {
     this.selectedSongSource.next(song);
-  }
-
-  setPlaylist(songs: any[]) {
     this.playlistSource.next(songs);
-  }
-
+  } 
 }

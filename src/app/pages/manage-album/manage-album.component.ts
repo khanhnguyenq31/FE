@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { AlbumService } from '../../services/album.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { forkJoin, Observable } from 'rxjs';
-import { DataStorageService } from '../../data-storage.service';
+import { PlaySongService } from '../../services/play-song.service';
 
 @Component({
   selector: 'app-manage-album',
@@ -35,7 +35,7 @@ export class ManageAlbumComponent {
 
   loadingList: boolean = false;
 
-  constructor(private AlbumService: AlbumService, private dataStorage: DataStorageService) {}
+  constructor(private AlbumService: AlbumService, private dataStorage: PlaySongService) {}
 
   ngOnInit(): void {
     this.fetchAllAlbums();
@@ -77,8 +77,7 @@ export class ManageAlbumComponent {
   }
 
   playAlbum(Album: any) {
-    this.dataStorage.setSelectedSong(Album.songs[0]); 
-    this.dataStorage.setPlaylist(Album.songs);
+    this.dataStorage.setSelectedSong(Album.songs[0], Album.songs); 
   }
 
   submitAllSelections(): void {

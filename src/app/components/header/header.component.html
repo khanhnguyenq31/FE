@@ -2,7 +2,7 @@
     <a [routerLink]="role === 'LISTENER' ? '/afterlogin/listenerpage/search' : '/afterlogin/artistpage/search'">
         <div class="search-bar">
             <i class="fas fa-search search-icon"></i>
-            <input type="text" [(ngModel)]="searchTerm" (input)="onSearch()" placeholder="Tìm kiếm bài hát, album, playlist...">
+            <input type="text" [(ngModel)]="searchTerm" (input)="onSearch()" placeholder="Search for songs, albums, playlists...">
         </div>
     </a>
     <app-profilemenu></app-profilemenu>

@@ -7,23 +7,24 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { UploadAlbumService } from '../../../services/artist/upload-album.service'; 
 import { ApiResponse } from '../../../responses/api.response';
+
 @Component({
   selector: 'app-new-album',
   standalone: true,
-  imports: [RouterLink, SidebarsectionComponent,FormsModule ,CommonModule],
+  imports: [ SidebarsectionComponent, FormsModule, CommonModule],
   templateUrl: './new-album.component.html',
   styleUrl: './new-album.component.css'
 })
 export class NewAlbumComponent {
- @ViewChild('newAlbumForm') newAlbumForm!: NgForm;
+  @ViewChild('newAlbumForm') newAlbumForm!: NgForm;
   albumTitle: string = '';
   albumDescription: string = '';
   albumReleaseDate: string = '';
   albumImage: File | null = null;
-  genreIds: string = ''; // Chuỗi chứa danh sách ID thể loại
+  genreIds: string = ''; // String containing genre IDs
   successMessage: string = '';
   errorMessage: string = '';
-  isLoading = true;
+  isLoading = false;
 
   constructor(private uploadAlbumService: UploadAlbumService) {}
 
@@ -36,42 +37,42 @@ export class NewAlbumComponent {
       genre_id: genreIdArray
     };
     this.isLoading = true;
+
     this.uploadAlbumService.createAlbum(albumData).subscribe({
       next: (response: ApiResponse) => {
         const albumId = response.data?.id;
         if (!albumId) {
           this.isLoading = false;
-          console.error('Không thể lấy ID album từ phản hồi API.');
-          this.errorMessage = 'Lỗi: Không thể tạo album.';
+          console.error('Unable to retrieve album ID from API response.');
+          this.errorMessage = 'Failed to create album!';
           return;
-          
         }
 
-        // Upload ảnh bìa album
+        // Upload album cover image
         if (this.albumImage) {
           this.uploadAlbumService.uploadAlbumImage(albumId, this.albumImage).subscribe({
             next: (imageResponse) => {
               this.isLoading = false;
-              console.log('Tải ảnh bìa album thành công:', imageResponse);
-              this.successMessage = 'Tạo album thành công!';
+              console.log('Album cover image uploaded successfully:', imageResponse);
+              this.successMessage = 'Succeeded in creating album';
               this.resetForm();
             },
             error: (imageError: HttpErrorResponse) => {
               this.isLoading = false;
-              console.error('Lỗi khi tải ảnh bìa:', imageError);
-              this.errorMessage = 'Lỗi khi tải ảnh bìa album.';
+              console.error('Error uploading album cover image:', imageError);
+              this.errorMessage = "Failed to upload album's picture";
             }
           });
         } else {
           this.isLoading = false;
-          this.successMessage = 'Tạo album thành công!';
+          this.successMessage = 'Succeeded in creating album';
           this.resetForm();
         }
       },
       error: (error: HttpErrorResponse) => {
         this.isLoading = false;
-        console.error('Lỗi khi tạo album:', error);
-        this.errorMessage = 'Lỗi khi tạo album. Vui lòng thử lại!';
+        console.error('Error creating album:', error);
+        this.errorMessage = `Failed to create album due to "${error.error.message}". Please try again!`;
       }
     });
   }
@@ -79,7 +80,7 @@ export class NewAlbumComponent {
   onFileChange(event: any) {
     const file = event.target.files[0];
     if (file) {
-      this.albumImage = file; // Lưu file ảnh bìa
+      this.albumImage = file; // Save album cover image file
     }
   }
 
@@ -95,5 +96,4 @@ export class NewAlbumComponent {
       this.errorMessage = '';
     }, 3000);
   }
-
 }

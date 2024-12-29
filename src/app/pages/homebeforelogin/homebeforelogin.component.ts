@@ -3,7 +3,6 @@ import { RoleService } from '../../services/role.service';
 import { SongService } from '../../services/song.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgFor, NgIf } from '@angular/common';
-import { DataStorageService } from '../../data-storage.service';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -36,8 +35,7 @@ export class HomebeforeloginComponent {
   
   
     constructor(private roleService: RoleService, 
-      private songService: SongService, 
-      private dataStorage: DataStorageService) {
+      private songService: SongService) {
         this.role = roleService.getRole();
       }
   
@@ -58,6 +56,6 @@ export class HomebeforeloginComponent {
               console.error('Lỗi khi tải danh sách nhạc:', error);
               this.loadingSongList = false;
             },
-          });
+    });
   }
 }

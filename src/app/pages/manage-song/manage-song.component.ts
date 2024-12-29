@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { SongService } from '../../services/song.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { forkJoin, Observable } from 'rxjs';
-import { DataStorageService } from '../../data-storage.service';
+import { PlaySongService } from '../../services/play-song.service';
 
 @Component({
   selector: 'app-manage-song',
@@ -18,7 +18,8 @@ export class ManageSongComponent implements OnInit {
                 name: string; 
                 secure_url: string; 
                 status: string; 
-                public_image_id: string }> = [];
+                public_image_id: string;
+                artist_name: string; }> = [];
                 
   total_pages: number = 0;
   current_page: number = 1;
@@ -31,7 +32,7 @@ export class ManageSongComponent implements OnInit {
 
   loadingList: boolean = false;
 
-  constructor(private songService: SongService, private dataStorage: DataStorageService) {}
+  constructor(private songService: SongService, private dataStorage: PlaySongService) {}
 
   ngOnInit(): void {
     this.fetchAllSongs();
@@ -54,7 +55,6 @@ export class ManageSongComponent implements OnInit {
 
   onChange(song_id: number, event: Event): void {
     const status = event.target as HTMLSelectElement;
-    console.log(status.value)
     if (status.value === 'APPROVED') {
       this.songs_list_approved.push(song_id);
     } else if (status.value === 'REJECTED') {
@@ -65,8 +65,7 @@ export class ManageSongComponent implements OnInit {
   playSong(song: any) {
     const playedPlaylist = []
     playedPlaylist.push(song)
-    this.dataStorage.setSelectedSong(song); 
-    this.dataStorage.setPlaylist(playedPlaylist);
+    this.dataStorage.setSelectedSong(song, playedPlaylist); 
   }
 
   submitAllSelections(): void {

@@ -4,14 +4,14 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { SidebarsectionComponent } from '../../components/sidebarsection/sidebarsection.component';
 import { ArtistSongService } from '../../services/artist/song.service';
-import { DataStorageService } from '../../data-storage.service';
+import { PlaySongService } from '../../services/play-song.service';
 import { UserDetailService } from '../../services/user-detail.service';
 import { ApiResponse } from '../../responses/api.response';
 import { TokenService } from '../../services/token.service';
 @Component({
   selector: 'app-songs',
   standalone: true,
-  imports: [RouterLink, SidebarsectionComponent,CommonModule, FormsModule],
+  imports: [RouterLink, CommonModule, FormsModule],
   templateUrl: './songs.component.html',
   styleUrls: ['./songs.component.css'],
 })
@@ -23,7 +23,7 @@ export class SongsComponent implements OnInit {
 
   constructor(
     private artistSongService: ArtistSongService,
-    private dataService: DataStorageService,
+    private dataService: PlaySongService,
     private userDetailService: UserDetailService,
     private tokenSvc: TokenService
   ) {}
@@ -61,8 +61,7 @@ export class SongsComponent implements OnInit {
   }
 
   playSelectedSong(song: any): void { // Sử dụng any cho tham số
-    this.dataService.setSelectedSong(song); 
-    this.dataService.setPlaylist(this.songs); // Truyền vào mảng bài hát
+    this.dataService.setSelectedSong(song, this.songs); 
   }
 
   playListSong(): void {

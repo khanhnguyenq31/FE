@@ -45,7 +45,7 @@
     border: 1px solid #555;
 }
   
-  /* Button Styling */
+/* Button Styling */
 button {
     padding: 8px 12px;
     background-color: #007bff;
@@ -53,24 +53,28 @@ button {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-}
+    transition: 0.3s;
+  }
   
-button:hover {
+  button:hover {
     background-color: #0056b3;
-}
+  }
   
+  .playButton {
+  background-color: grey;
+  }
   /* Submit Button */
-button[type="submit"] {
+  button[type="submit"] {
     width: 100%;
     padding: 12px;
     font-size: 16px;
     background-color: #28a745;
-}
+  }
   
-button[type="submit"]:hover {
+  button[type="submit"]:hover {
     background-color: #218838;
-}
+    scale: 1.01;
+  }
   
 .spinner-container {
     display: flex;
@@ -123,4 +127,95 @@ select option:hover {
   
 select, option {
     border-radius: 4px;
+}
+
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    overflow: auto;
+}
+
+.modal-content {
+    background-color: #2c2c2c;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 90%;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    overflow-y: auto;
+}
+
+.song-list {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.song-list th,
+.song-list td {
+    border: 1px solid #333;
+    padding: 12px 15px;
+    text-align: left;
+}
+  
+.song-list th {
+    background-color: #333;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+  
+.song-list tbody tr:nth-child(odd) {
+    background-color: #1e1e1e;
+} 
+  
+.song-list tbody tr:nth-child(even) {
+    background-color: #262626;
+}
+  
+  /* song Image Styling */
+.song-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 1px solid #555;
+}
+  
+  
+.album-image-container {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.album-image-modal {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid #444;
+}
+  
+.artist-image {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+  
+    display: block;
+    border: 2px solid #555;
 }

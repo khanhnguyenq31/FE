@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SearchService } from '../../services/search.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { DataStorageService } from '../../data-storage.service';
+import { PlaySongService } from '../../services/play-song.service';
 import { PlaylistService } from '../../services/playlist.service';
 import { AlbumService } from '../../services/album.service';
 
@@ -15,7 +15,7 @@ import { AlbumService } from '../../services/album.service';
 })
 export class SearchComponent implements OnInit{
   constructor(private searchService: SearchService,
-              private dataService: DataStorageService, 
+              private dataService: PlaySongService, 
               private playlistService: PlaylistService, 
               private albumService: AlbumService) {
   }
@@ -44,8 +44,7 @@ export class SearchComponent implements OnInit{
   }
 
   playSelectedSong(song: any): void {
-    this.dataService.setSelectedSong(song); 
-    this.dataService.setPlaylist(this.songs);
+    this.dataService.setSelectedSong(song, this.songs); 
   }
 
   playPlaylist(playlistId: number): void {
@@ -53,8 +52,7 @@ export class SearchComponent implements OnInit{
     next: (response: any) => {
       if (response.status === 'OK') {
         const songs = response.data.songs; 
-        this.dataService.setPlaylist(songs); 
-        this.dataService.setSelectedSong(songs[0]);
+        this.dataService.setSelectedSong(songs[0], songs);
       } else {
         console.error('Error fetching playlist:', response.message);
       }
@@ -70,8 +68,7 @@ playAlbum(albumId: number): void {
     next: (response: any) => {
       if (response.status === 'OK') {
         const songs = response.data; // Lấy toàn bộ thông tin bài hát
-        this.dataService.setPlaylist(songs); // Truyền vào mảng bài hát
-        this.dataService.setSelectedSong(songs[0]); // Phát bài hát đầu tiên trong album
+        this.dataService.setSelectedSong(songs[0], songs); // Phát bài hát đầu tiên trong album
       } else {
         console.error('Error fetching album:', response.message);
       }

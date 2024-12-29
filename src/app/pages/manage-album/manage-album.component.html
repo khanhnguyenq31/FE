@@ -19,7 +19,7 @@
                 <tr *ngFor="let album of albums; let i = index">
                     <td>{{ i + 1 }}</td>                    
                     <td>
-                        <button style="background-color: grey;" (click)="playAlbum(album)">
+                        <button type="button" class="playButton" (click)="playAlbum(album)">
                             <img [src]="album.cover_image_url" alt="{{ album.name }}" class="album-image" />
                         </button>
                     </td>
@@ -30,6 +30,7 @@
                     <td>
                         <select (change)="onChange(album.id, $event)" [value]="album.status">
                             <option value="DRAFT">Draft</option>
+                            <option value="PENDING">Pending</option>
                             <option value="APPROVED">Approve</option>
                             <option value="REJECTED">Reject</option>
                         </select>
@@ -71,7 +72,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let song of selectedAlbum.songs; let i = index">
-                <td>{{ (current_page - 1) * 10 + i + 1 }}</td>
+                <td>{{ i + 1}}</td>
                 <td>
                     <img 
                     [src]="song.public_image_id"
