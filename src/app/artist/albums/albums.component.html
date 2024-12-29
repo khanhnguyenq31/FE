@@ -1,7 +1,5 @@
 <body>
-  
-  <div class="header-content" [ngStyle]="{'background-image': 'url(' + albumImage + ')'}">
-    <div *ngIf="isLoading" class="spinner-container">
+  <div *ngIf="isLoading" class="spinner-container">
     <div class="spinner"></div>
   </div>
   <div *ngIf="!isLoading" class="header-content" [ngStyle]="{'background-image': 'url(' + albumImage + ')'}">

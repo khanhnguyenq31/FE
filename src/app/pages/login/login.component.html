@@ -1,9 +1,8 @@
 <!-- Header Section -->
 <header>
   <img
-    src="https://res.cloudinary.com/dlt4ash36/image/upload/v1700793822/Spotify_Logo_zhfwpq.png"
-    alt="Spotify-Logo"
-    id="spotify-logo"
+    src="../../../assets/images/logo.jpg"
+    id="app-logo"
   />
   <p><strong>Music Web</strong></p>
 </header>
@@ -46,44 +45,28 @@
             />
           </div>
         </div>
-        <button id="login-btn" type="submit">LOG IN</button>
+  
+        <div id="checkbox-login-container">
+          <div class="role-container">
+            <label for="role">Select Role</label>
+            <select id="role" [(ngModel)]="selectedRole" name="role" required>
+              <option value="1">Admin</option>
+              <option value="2">Artist</option>
+              <option value="3">Listener</option>
+            </select>
+          </div>
+          <button id="login-btn" type="submit">LOG IN</button>
+        </div>
       </div>
-      <!-- Dropdown for Role Selection -->
-      <div class="role-container">
-        <label for="role">Select Role</label>
-        <select id="role" [(ngModel)]="selectedRole" name="role" required>
-          <option value="1">Admin</option>
-          <option value="2">Artist</option>
-          <option value="3">Listener</option>
-        </select>
-      </div>
+    </form>
+  
+    <hr class="bottom-line" />
+    <!-- Sign Up -->
+    <div id="sign-up-section">
+      <h3>Don't have an account ?</h3>
+      <button id="signup-btn" routerLink="/signup">Sign up for Spotify</button>
     </div>
-  </form>
-
-  <hr class="bottom-line" />
-  <!-- Sign Up -->
-  <div id="sign-up-section">
-    <h3>Don't have an account ?</h3>
-    <button id="signup-btn" routerLink="/signup">Sign up for Spotify</button>
-  </div>
-
-  <!-- reCAPTCHA -->
-  <div class="captcha-container">
-    <aside class="recaptcha-section">
-      <div class="outside-recaptcha">
-        <img
-          src="https://res.cloudinary.com/dlt4ash36/image/upload/v1700793821/recaptcha_b1yccf.png"
-          alt="reCAPTCHA"
-        />
-        <p class="outside-para">Privacy - Terms</p>
-      </div>
-      <div class="inside-recaptcha">
-        <span class="inside-span"
-          >protected by <span class="re">re</span
-          ><span class="re-cap-span">captcha</span></span
-        >
-        <p class="inside-para">Privacy - Terms</p>
-      </div>
-    </aside>
-  </div>
+  </section>
+  
+  <img class="thumbnail" src="../../../assets/images/login.jpg">
 </section>

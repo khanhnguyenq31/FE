@@ -253,6 +253,7 @@ body {
 
 /* Khối modal thêm bài hát */
 .add-songs-modal {
+    
     display: flex;
     position: fixed;
     z-index: 5;
@@ -272,15 +273,25 @@ body {
     border: 1px solid #888;
     width: 80%;
     max-width: 500px;
+    max-height: 450px;
+    overflow-y: scroll;
+    overflow-x: hidden;
     position: relative;
     border-radius: 8px;
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.add-songs-modal .modal-content::-webkit-scrollbar {
+    display: none;
 }
 
 .add-songs-modal h2 {
     margin-top: 0;
 }
 
-/* Khối modal chỉnh sửa album */
+/* Khối modal chỉnh sửa playlist */
 .edit-album-modal {
     display: flex;
     position: fixed;
@@ -301,8 +312,18 @@ body {
     border: 1px solid #888;
     width: 80%;
     max-width: 500px;
+    max-height: 450px;
+    overflow-y: scroll;
+    overflow-x: hidden;
     position: relative;
     border-radius: 8px;
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.edit-album-modal .modal-content::-webkit-scrollbar {
+    display: none;
 }
 
 .edit-album-modal h2 {
