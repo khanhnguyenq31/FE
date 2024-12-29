@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, ViewChild, ElementRef , Input, OnInit, AfterViewInit } from '@angular/core';
-import { DataStorageService } from '../../data-storage.service';
+import { PlaySongService } from '../../services/play-song.service';
 import { Router} from '@angular/router';
 @Component({
   selector: 'app-songsection',
@@ -11,18 +11,12 @@ import { Router} from '@angular/router';
 })
 
 export class SongsectionComponent implements OnInit, AfterViewInit  {
-  
-
-  @Input() status: boolean = true;
-
   @ViewChild('audioPlayer') audioPlayerRef!: ElementRef<HTMLAudioElement>;
   @ViewChild('progressBar') progressBarRef!: ElementRef;
 
   currentSongIndex: number = 0; 
   songs: any[] = [];
-  play: boolean = false; 
-  currentTime: string = "0:00"; 
-  totalTime: string = "0:00"; 
+
   isMuted: boolean = false; 
   shuffle: boolean = false; 
   repeat1song: boolean = false; 
@@ -31,28 +25,23 @@ export class SongsectionComponent implements OnInit, AfterViewInit  {
   currentSongName: string = ''; // Tên bài hát
   currentSongImage: string = ''; // Hình ảnh bài hát
 
-  constructor(private dataService: DataStorageService, private router: Router) {
-    console.log(router.url);
-  }
+  constructor(public playService: PlaySongService, private router: Router) {}
 
   ngOnInit() { 
-    this.dataService.playlist$.subscribe(songs => { 
+    this.playService.playlist$.subscribe(songs => {
       this.songs = songs; 
     });
 
-    this.dataService.selectedSong$.subscribe(song => { 
+    this.playService.selectedSong$.subscribe(song => { 
       if (song) {
-        this.playSong(song.secure_url); // Giả sử song có thuộc tính secure_url
-        this.updateCurrentSongInfo(song); // Cập nhật tên và hình ảnh bài hát
+        this.playSongByUrl(song.secure_url); 
+        this.updateCurrentSongInfo(song);
       }
     });
   }
 
   ngAfterViewInit() {
     const audioPlayer = this.audioPlayerRef.nativeElement;
-    audioPlayer.currentTime = this.dataService.timePlaying;
-    this.play = this.dataService.play;
-    if (this.play) audioPlayer.play();
 
     audioPlayer.addEventListener('ended', () => {
       if (this.currentSongIndex === this.songs.length - 1) {
@@ -60,7 +49,7 @@ export class SongsectionComponent implements OnInit, AfterViewInit  {
           this.currentSongIndex = 0;
           this.playNextSong();
         } else {
-          this.dataService.play = this.play = false;
+          this.playService.play = false;
         }
       } else {
         this.currentSongIndex++;
@@ -73,18 +62,36 @@ export class SongsectionComponent implements OnInit, AfterViewInit  {
       const currentTime = audioPlayer.currentTime;
       const duration = audioPlayer.duration;
 
-      this.dataService.timePlaying = currentTime;
       progressBar.value = (currentTime / duration) * 100;
-      this.currentTime = Math.floor(currentTime / 60).toString() + ":" + Math.floor(currentTime % 60).toString().padStart(2, '0');
+      this.playService.currentTime = Math.floor(currentTime / 60).toString() + ":" + Math.floor(currentTime % 60).toString().padStart(2, '0');
       const minute = Math.floor(duration / 60).toString();
       const second = Math.floor(duration % 60).toString().padStart(2, '0');
-      this.totalTime = (minute === 'NaN' ? "0" : minute) + ":" + (second === 'NaN' ? "00" : second);
+      this.playService.totalTime = (minute === 'NaN' ? "0" : minute) + ":" + (second === 'NaN' ? "00" : second);
     });
+  }
+  
+  playSongByUrl(songUrl: string) {
+    const audioPlayer = this.audioPlayerRef.nativeElement;
+    audioPlayer.src = songUrl;
+    audioPlayer.load();
+    audioPlayer.play();
+    this.playService.play = true;
+  }
+
+  playOrPause() {
+    const audioPlayer = this.audioPlayerRef.nativeElement;
+    if (!this.playService.play) {
+      audioPlayer.play();
+    } else {
+      audioPlayer.pause();
+    }
+    this.playService.play = !this.playService.play;
   }
 
   playNextSong() {
     const audioPlayer = this.audioPlayerRef.nativeElement;
-    audioPlayer.src = this.songs[this.currentSongIndex].secure_url; // Giả sử mỗi bài hát có thuộc tính secure_url
+    audioPlayer.src = this.songs[this.currentSongIndex].secure_url;
+    audioPlayer.load();
     audioPlayer.play();
     this.updateCurrentSongInfo(this.songs[this.currentSongIndex]);
   }
@@ -102,23 +109,6 @@ export class SongsectionComponent implements OnInit, AfterViewInit  {
       }
     }
     this.shuffle = !this.shuffle;
-  }
-  
-  playSong(songUrl: string) {
-    const audioPlayer = this.audioPlayerRef.nativeElement;
-    audioPlayer.src = songUrl;
-    audioPlayer.play();
-    this.play = true;
-  }
-
-  playMusic() {
-    const audioPlayer = this.audioPlayerRef.nativeElement;
-    if (!this.play) {
-      audioPlayer.play();
-    } else {
-      audioPlayer.pause();
-    }
-    this.dataService.play = this.play = !this.play;
   }
 
   mute() {
@@ -156,7 +146,7 @@ export class SongsectionComponent implements OnInit, AfterViewInit  {
       this.currentSongIndex = (this.currentSongIndex - 1 + this.songs.length) % this.songs.length;
     }
 
-    this.playNextSong(); // Gọi hàm để phát bài hát tiếp theo
+    this.playNextSong();
   }
   
   onSeek(event: any) {

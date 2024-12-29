@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { SidebarsectionComponent } from '../../components/sidebarsection/sidebarsection.component';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { AlbumService } from '../../services/album.service';
 import { ApiResponse } from '../../responses/api.response';
 import { CommonModule } from '@angular/common';
-import { DataStorageService } from '../../data-storage.service';
+import { PlaySongService } from '../../services/play-song.service';
 import { ArtistSongService } from '../../services/artist/song.service';
 import { ArtistAlbumService } from '../../services/artist/album.service';
 import { FormsModule } from '@angular/forms';
@@ -12,7 +11,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-albums',
   standalone: true,
-  imports: [SidebarsectionComponent, RouterLink, CommonModule, FormsModule],
+  imports: [RouterLink, CommonModule, FormsModule],
   templateUrl: './albums.component.html',
   styleUrls: ['./albums.component.css']
 })
@@ -36,7 +35,7 @@ export class AlbumsComponent implements OnInit {
   constructor(
     private artistAlbumService: ArtistAlbumService,
     private albumService: AlbumService,
-    private dataService: DataStorageService,
+    private dataService: PlaySongService,
     private route: ActivatedRoute,
     private artistSongService: ArtistSongService,
   ) {}
@@ -90,8 +89,7 @@ export class AlbumsComponent implements OnInit {
   }
 
   playSelectedSong(song: any): void {
-    this.dataService.setSelectedSong(song);
-    this.dataService.setPlaylist(this.songs);
+    this.dataService.setSelectedSong(song, this.songs);
   }
 
   playAlbum(): void {

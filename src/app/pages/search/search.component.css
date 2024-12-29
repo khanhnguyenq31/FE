@@ -2,76 +2,15 @@ body {
     font-family: 'Roboto', sans-serif;
     background-color: #121212;
     color: white;
-    min-height: 100vh;
-    width: 100vw;
     overflow-x: hidden;
-    overflow-y: auto;
-    position: relative;
-    margin: 0;
-    padding: 0;
+    height: 100vh;
 }
 
-.search-bar {
-    margin-left: 300px;
-    background-color: #1c1c1c;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    padding: 10px 20px;
-    width: 500px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-}
-.search-bar input {
-    background: none;
-    border: none;
-    color: #ccc;
-    font-size: 16px;
-    flex-grow: 1;
-    margin-left: 10px;
-    outline: none;
-}
-.search-bar i {
-    color: #ccc;
-    font-size: 20px;
-}
-.search-bar .search-icon {
-    margin-right: 10px;
-}
-.search-bar .clear-icon {
-    margin-left: 10px;
-}
-
-.header {
-    justify-content: space-between;
-    margin-left: 250px;
-    display: flex;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #000;
-}
-.header i {
-    font-size: 24px;
-    margin-right: 10px;
-}
-.header input {
-    flex: 1;
-    padding: 10px;
-    border: none;
-    border-radius: 20px;
-    background-color: #333;
-    color: white;
-    margin-right: 10px;
-}
-.header .fa-trash {
-    font-size: 24px;
-}
 .container {
     max-width: 1200px;
-    /*margin: 0 auto;*/
-    margin-left: 300px;
     padding: 20px;
     overflow: hidden;
-    margin-bottom: 150px;
+    margin-left: 50px;
 }
 
 .song-list, .album-list, .playlist-list {
@@ -83,7 +22,7 @@ body {
 .song-item, .album-item, .playlist-item {
     flex: 0 0 calc(20% - 16px);
     box-sizing: border-box;
-    min-width: 150px;
+    max-width: 200px;
 }
 
 .song-item {

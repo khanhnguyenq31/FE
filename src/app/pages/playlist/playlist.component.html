@@ -2,114 +2,111 @@
   <div *ngIf="isLoading" class="spinner-container">
     <div class="spinner"></div>
   </div>
-  <div class="header-content" [ngStyle]="{'background-image': 'url(' + playlistImage + ')'}">
-    <div class="overlay"></div>
-    <div class="artist-info">
+
+  <section *ngIf="!isLoading" class="main">
+    <div class="header-content" [ngStyle]="{'background-image': 'url(' + playlistImage + ')'}">
+      <div class="artist-info">
         <div class="verified">
-            <i class="fas fa-check-circle"></i> Playlist được xác minh
+            <i class="fas fa-check-circle"></i> Verified Playlist
         </div>
         <h1>{{ playlistName }}</h1>
-        
-        <div class="buttons">
-            <button class="play-button" (click)="playPlaylist()">
-                <i class="fas fa-play"></i>
-            </button>
-            <button class="more-button" (click)="toggleOptionsModal()">
-                <i class="fas fa-ellipsis-h"></i>
-            </button>
-        </div>
-    </div>
-  </div>
-
-
-  <!-- Modal để chọn hành động -->
-  <div class="action-selection-modal" *ngIf="showOptionsModal">
-    <div class="modal-content">
-        <span class="close" (click)="toggleOptionsModal()">&times;</span>
-        <h2>Chọn hành động</h2>
-        <div class="action-buttons">
-            <button (click)="toggleModal(); fetchAllSongs()" class="action-button">Thêm bài hát</button>
-        </div>
-        <div class="action-buttons">
-            <button (click)="toggleEditModal(); fetchSongs()" class="action-button">Chỉnh sửa playlist</button>
-        </div>
-    </div>
-</div>
-
-  <!-- Modal để thêm bài hát -->
-  <div class="add-songs-modal" *ngIf="showModal">
-    <div class="modal-content">
-      <span class="close" (click)="toggleModal()">&times;</span>
-      <h2>Chọn bài hát để thêm vào playlist</h2>
-      <div *ngFor="let song of allSongs">
-        <label>
-          <input type="checkbox" [value]="song.id" (change)="toggleSongSelection(song.id)">
-          {{ song.name }} ({{ song.status }})
-        </label>
+          <div class="buttons">
+              <button class="play-button" (click)="playPlaylist()">
+                  <i class="fas fa-play"></i>
+              </button>
+              <button class="more-button" (click)="toggleOptionsModal()">
+                  <i class="fas fa-ellipsis-h"></i>
+              </button>
+          </div>
       </div>
-      <button (click)="addSongsToPlaylist()" class="add-songs-button">Thêm bài hát</button>
     </div>
-  </div>
-
-  <!-- Modal để chỉnh sửa album -->
-  <div class="edit-album-modal" *ngIf="showEditModal">
-    <div class="modal-content">
-        <span class="close" (click)="toggleEditModal()">&times;</span>
-        <h2>Chỉnh sửa playlist</h2>
-        
-        <label>
-            Tên playlist:
-            <input type="text" [(ngModel)]="playlistName">
-        </label>
-        
-        <label>
-            Mô tả playlist:
-            <textarea [(ngModel)]="playlistDescription"></textarea>
-        </label>
-
-        <label>
-          Trạng thái:
-          <select [(ngModel)]="is_public">
-              <option [value]="true">Công khai</option>
-              <option [value]="false">Riêng tư</option>
-          </select>
-      </label>
-        
-        <h3>Chọn bài hát để xóa khỏi playlist</h3>
-        <div *ngFor="let song of songs">
-            <label>
-                <input type="checkbox" [value]="song.id" (change)="toggleDeleteSong(song.id)">
-                {{ song.name }} ({{ song.status }})
-            </label>
-        </div>
-        
-        <button (click)="updatePlaylist()" class="update-album-button">Cập nhật playlist</button>
-    </div>
-</div>
-
-
-
-  <div class="content">
-    <button class="create-song-button" [routerLink]="role === 'LISTENER' ? '/afterlogin/listenerpage/createlist' : '/afterlogin/artistpage/createlist'">
-      Tạo playlist mới
-    </button>
-    <div class="popular">
-      <h2>Danh sách bài hát trong playlist</h2>
-      <table *ngIf="songs.length > 0"> 
-        <tbody> 
-          <tr *ngFor="let song of songs; let i = index" (click)="playSelectedSong(song)"> 
-            <td class="song-number" [attr.data-number]="i + 1"></td> 
-            <td> 
-              <img [src]="song.public_image_id" /> 
-            </td> 
-            <td class="song-title">{{ song.name }}</td> 
-            <td>{{ song.duration }}</td> 
-            <td>{{ song.status }}</td> 
-          </tr> 
-        </tbody> 
-      </table>
-    </div>
-  </div>
-  <app-sidebarsection></app-sidebarsection>
-  </body>
   
+    <!-- Modal for selecting actions -->
+    <div class="action-selection-modal" *ngIf="showOptionsModal">
+      <div class="modal-content">
+          <span class="close" (click)="toggleOptionsModal()">&times;</span>
+          <h2>Select Action</h2>
+          <div class="action-buttons">
+              <button (click)="toggleModal(); fetchAllSongs()" class="action-button">Add Songs</button>
+          </div>
+          <div class="action-buttons">
+              <button (click)="toggleEditModal(); fetchSongs()" class="action-button">Edit Playlist</button>
+          </div>
+      </div>
+    </div>
+  
+    <!-- Modal for adding songs -->
+    <div class="add-songs-modal" *ngIf="showModal">
+      <div class="modal-content">
+        <span class="close" (click)="toggleModal()">&times;</span>
+        <h2>Select Songs to Add to Playlist</h2>
+        <div *ngFor="let song of allSongs">
+          <label>
+            <input type="checkbox" [value]="song.id" (change)="toggleSongSelection(song.id)">
+            {{ song.name }} ({{ song.status }})
+          </label>
+        </div>
+        <button (click)="addSongsToPlaylist()" class="add-songs-button">Add Songs</button>
+      </div>
+    </div>
+  
+    <!-- Modal for editing playlist -->
+    <div class="edit-album-modal" *ngIf="showEditModal">
+      <div class="modal-content">
+          <span class="close" (click)="toggleEditModal()">&times;</span>
+          <h2>Edit Playlist</h2>
+          
+          <label>
+              Playlist Name:
+              <input type="text" [(ngModel)]="playlistName">
+          </label>
+          
+          <label>
+              Playlist Description:
+              <textarea [(ngModel)]="playlistDescription"></textarea>
+          </label>
+  
+          <label>
+            Status:
+            <select [(ngModel)]="is_public">
+                <option [value]="true">Public</option>
+                <option [value]="false">Private</option>
+            </select>
+        </label>
+          
+          <h3>Select Songs to Remove from Playlist</h3>
+          <div *ngFor="let song of songs">
+              <label>
+                  <input type="checkbox" [value]="song.id" (change)="toggleDeleteSong(song.id)">
+                  {{ song.name }} ({{ song.status }})
+              </label>
+          </div>
+          
+          <button (click)="updatePlaylist()" class="update-album-button">Update Playlist</button>
+      </div>
+    </div>
+  
+    <div *ngIf="!isLoading" class="content">
+      <button class="create-song-button" [routerLink]="role === 'LISTENER' ? '/afterlogin/listenerpage/createlist' : '/afterlogin/artistpage/createlist'">
+        Create New Playlist
+      </button>
+      <div class="popular">
+        <h2>Song List in Playlist</h2>
+        <table *ngIf="songs.length > 0"> 
+          <tbody> 
+            <tr *ngFor="let song of songs; let i = index" (click)="playSelectedSong(song)"> 
+              <td class="song-number" [attr.data-number]="i + 1"></td> 
+              <td> 
+                <img [src]="song.public_image_id" /> 
+              </td> 
+              <td class="song-title">{{ song.name }}</td> 
+              <td>{{ song.duration }}</td> 
+              <td>{{ song.status }}</td> 
+            </tr> 
+          </tbody> 
+        </table>
+      </div>
+    </div>
+  </section>
+  
+</body>

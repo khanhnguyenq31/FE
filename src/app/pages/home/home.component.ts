@@ -1,18 +1,14 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
-import { SidebarsectionComponent } from '../../components/sidebarsection/sidebarsection.component';
-import { RouterLink } from '@angular/router';
-import { ProfilemenuComponent } from '../../components/profilemenu/profilemenu.component';
 import { RoleService } from '../../services/role.service';
 import { SongService } from '../../services/song.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { DataStorageService } from '../../data-storage.service';
-
+import { PlaySongService } from '../../services/play-song.service';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [SidebarsectionComponent, RouterLink , ProfilemenuComponent, CommonModule],
+  imports: [CommonModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -25,9 +21,13 @@ export class HomeComponent implements OnInit {
   songs: Array<Array<{ id: number; name: string; secure_url: string; status: string; public_image_id: string; artist_name: string }>> = [];
   rows: number = 3;
   songPerRow: number = 6;
+
+
   constructor(private roleService: RoleService, 
     private songService: SongService, 
-    private dataStorage: DataStorageService) {}
+    private dataStorage: PlaySongService) {
+      this.role = roleService.getRole();
+    }
 
   ngOnInit(): void {
     this.fetchAllSongs();
@@ -50,7 +50,6 @@ export class HomeComponent implements OnInit {
   }
 
   playSong(song: any) {
-    this.dataStorage.setSelectedSong(song); 
-    this.dataStorage.setPlaylist(this.songs);
+    this.dataStorage.setSelectedSong(song, this.songs);
   }
 }

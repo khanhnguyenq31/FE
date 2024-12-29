@@ -1,17 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { SidebarsectionComponent } from "../../components/sidebarsection/sidebarsection.component";
-import { RouterLink, ActivatedRoute, Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { RouterLink, ActivatedRoute} from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { PlaylistService } from '../../services/playlist.service';
 import { ApiResponse } from '../../responses/api.response';
-import { DataStorageService } from '../../data-storage.service';
+import { PlaySongService } from '../../services/play-song.service';
 import { SongService } from '../../services/song.service';
 import { RoleService } from '../../services/role.service';
 import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-playlist',
   standalone: true,
-  imports: [RouterLink, SidebarsectionComponent, CommonModule, FormsModule],
+  imports: [RouterLink, CommonModule, FormsModule],
   templateUrl: './playlist.component.html',
   styleUrl: './playlist.component.css'
 })
@@ -36,7 +35,7 @@ export class PlaylistComponent {
   constructor(
       private playlistService: PlaylistService,
       private songService: SongService,
-      private dataService: DataStorageService,
+      private dataService: PlaySongService,
       private route: ActivatedRoute,
       private roleService: RoleService,
   ) {}
@@ -74,8 +73,7 @@ export class PlaylistComponent {
   }
 
   playSelectedSong(song: any): void { // Sử dụng any cho tham số
-    this.dataService.setSelectedSong(song); 
-    this.dataService.setPlaylist(this.songs); // Truyền vào mảng bài hát
+    this.dataService.setSelectedSong(song, this.songs); 
   } 
 
   playPlaylist(): void {
@@ -85,7 +83,7 @@ export class PlaylistComponent {
   }
 
   fetchAllSongs(): void {
-    this.playlistService.getAllSongs().subscribe({
+    this.songService.getAllSong4Listener().subscribe({
       next: (response: ApiResponse) => {
         if (response.status === 'OK') {
           this.allSongs = response.data.songs;

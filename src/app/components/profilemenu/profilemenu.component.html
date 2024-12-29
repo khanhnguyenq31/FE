@@ -12,9 +12,7 @@
     <div *ngIf="isMenuOpen" class="menu">
         <ul>
             <li (click)="navigateTo('profile')">Profile</li>
-            <li (click)="navigateTo('account')">Account</li>
-            <li (click)="navigateTo('settings')">Settings</li>
-            <li (click)="logout()">Log out</li>
+            <li><a href="/" (click)="logout()">Log out</a></li>
         </ul>
     </div>
 </div>

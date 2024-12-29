@@ -1,8 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { SongsectionComponent } from '../../components/songsection/songsection.component';
-import { SidebarsectionComponent } from '../../components/sidebarsection/sidebarsection.component';
-import { ProfilemenuComponent } from '../../components/profilemenu/profilemenu.component';
-import { RouterLink } from '@angular/router';
+import { Component } from '@angular/core';
 import { UserDetailService } from '../../services/user-detail.service';
 import { TokenService } from '../../services/token.service';
 import { ApiResponse } from '../../responses/api.response';
@@ -14,23 +10,21 @@ import { RoleService } from '../../services/role.service';
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [ SidebarsectionComponent, ProfilemenuComponent, RouterLink, CommonModule],
+  imports: [ CommonModule],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent {
-  tokenService = inject(TokenService); // Inject AuthService
-  roleService = inject(RoleService); // Inject AuthService
-  router = inject(Router); // Inject Router
+  tokenService = inject(TokenService); 
+  roleService = inject(RoleService); 
+  router = inject(Router); 
   navigateTo(section: 'profile/edit' | 'reset-password') {
-    const role = this.roleService.getRole(); // Lấy role hiện tại của người dùng
+    const role = this.roleService.getRole(); 
     let targetRoute = '';
 
-    // Xác định route dựa trên role và section
     switch (role) {
       case 'ADMIN':
-        if (section === 'profile/edit') targetRoute = '/afterlogin/adminpage';
-        else if (section === 'reset-password') targetRoute = '/afterlogin/adminpage/manageUser';
+        targetRoute = `/afterlogin/adminpage/${section}`;
         break;
 
       case 'LISTENER':
@@ -45,43 +39,30 @@ export class ProfileComponent {
         console.error('Unknown role:', role);
         return;
     }
-
-    // Điều hướng tới route mục tiêu
     this.router.navigate([targetRoute]);
   }
-  hiddenFlag = true;
-  iddenFlag = true;
-  
-  // open the notification
-  open() {
-    this.hiddenFlag = false;
-  }
-  
-  // close the notification
-  close() {
-    this.hiddenFlag = true;
-  }
-
   username: string = '';
   imageUrl: string | null = null;
-  email: string = '';
-  country: string | null = null;
-  dateOfBirth: string | null = null;
-  roleName: string | null = null;
-
+  country: string = ''
+  created_at: string =''
+  date_of_birth: string = ''
+  email: string ='' 
+  role: string =''
   constructor(private userDetailService: UserDetailService, private tokenSvc: TokenService) {}
 
   ngOnInit() {
     const token = this.tokenSvc.getToken();
     this.userDetailService.getUserDetails(token).subscribe({
       next: (response: ApiResponse) => {
+        console.log(response)
         if (response.status === 'OK') {
           this.username = response.data.username;
-          this.imageUrl = response.data.image_url; // Lưu trữ URL hình ảnh
-          this.email = response.data.email; // Lưu trữ email
-          this.country = response.data.country; // Lưu trữ country
-          this.dateOfBirth = response.data.date_of_birth; // Lưu trữ date_of_birth
-          this.roleName = response.data.role.name; // Lưu trữ role.name
+          this.imageUrl = response.data.image_url;
+          this.country = response.data.country;
+          this.created_at = response.data.created_at;
+          this.email = response.data.email;
+          this.date_of_birth = response.data.date_of_birth;
+          this.role = response.data.role.name;
         }
       },
       error: (error) => {

@@ -1,9 +1,11 @@
-<div *ngIf="status" class="whole-container">
-  <img class="song-picture" [src]="currentSongImage" alt="Song Image" />
-  <div class="song-detail">
-    <p class="song-title">{{ currentSongName }}</p>
+<div class="whole-container">
+  <div class="song-inf">
+    <img *ngIf="currentSongImage" class="song-picture" [src]="currentSongImage" />
+    <div class="song-detail">
+      <p class="song-title">{{ currentSongName }}</p>
+    </div>
   </div>
-
+  
   <div class="audio-control">
     <div class="buttons">
       <button *ngIf="!shuffle" class="shuffle-button-off" (click)="shuffleSong()">
@@ -19,13 +21,13 @@
       </button>
 
     <!-- Start of play/stop -->
-      <button *ngIf="!play" class="play-button" (click)="playMusic()">
+      <button *ngIf="!playService.play" class="play-button" (click)="playOrPause()">
         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#FFFFFF" version="1.1" id="Capa_1" viewBox="0 0 490.718 490.718" xml:space="preserve">
           <path d="M245.359,0.359C109.852,0.359,0,110.049,0,245.358s109.852,245,245.359,245s245.359-109.691,245.359-245   S380.866,0.359,245.359,0.359z M176.828,341.011V140.824l187.489,100.098L176.828,341.011z"/>
         </svg>
       </button>  
 
-      <button *ngIf="play" class="stop-button" (click)="playMusic()">
+      <button *ngIf="playService.play" class="stop-button" (click)="playOrPause()">
         <svg fill="#FFFFFF" height="200px" width="200px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 60 60" xml:space="preserve" transform="matrix(-1, 0, 0, 1, 0, 0)" stroke="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M30,0C13.458,0,0,13.458,0,30s13.458,30,30,30s30-13.458,30-30S46.542,0,30,0z M27,46h-8V14h8V46z M41,46h-8V14h8V46z"></path> </g></svg>
       </button>  
     <!-- End of play/stop -->  
@@ -48,9 +50,9 @@
     </div>
   
     <div class="song-bar">
-      <p class="song-minute">{{currentTime}}</p>
+      <p class="song-minute">{{playService.currentTime}}</p>
       <input type="range" #progressBar min="0" max="100" step="0.1" value="0" (input)="onSeek($event)" />
-      <p class="song-minute">{{totalTime}}</p>
+      <p class="song-minute">{{playService.totalTime}}</p>
     </div>
   </div>
 
@@ -75,6 +77,5 @@
 
 
 <audio #audioPlayer class="file-mp3">
-  <source [src]="songs[currentSongIndex]" type="audio/mp3">
+  <source type="audio/mp3">
 </audio>
-  

@@ -2,12 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterLink } from '@angular/router';
 import { TokenService } from '../../services/token.service';
 import { RoleService } from '../../services/role.service';
 import { inject } from '@angular/core';
 import { ApiResponse } from '../../responses/api.response';
 import { UserDetailService } from '../../services/user-detail.service';
+import { PlaySongService } from '../../services/play-song.service';
 
 @Component({
   selector: 'app-profilemenu',
@@ -32,9 +32,7 @@ export class ProfilemenuComponent {
     // Xác định route dựa trên role và section
     switch (role) {
       case 'ADMIN':
-        if (section === 'profile') targetRoute = '/afterlogin/adminpage';
-        else if (section === 'account') targetRoute = '/afterlogin/adminpage/manageUser';
-        else if (section === 'settings') targetRoute = '/afterlogin/adminpage/manageReport';
+        targetRoute = `/afterlogin/adminpage/${section}`;
         break;
 
       case 'LISTENER':
@@ -60,14 +58,20 @@ export class ProfilemenuComponent {
     console.log('Logging out');
     this.tokenService.removeToken();
     this.roleService.removeRole();
+
+    this.playSongService.play = false;
+    this.playSongService.currentTime = "0:00";
+    this.playSongService.totalTime = "0:00";
+
     this.isMenuOpen = false; // Đóng menu sau khi chọn
-    this.router.navigate(['/']); // Điều hướng về trang beforelogin
   }
 
   username: string = '';
   imageUrl: string | null = null;
 
-  constructor(private userDetailService: UserDetailService, private tokenSvc: TokenService) {}
+  constructor(private userDetailService: UserDetailService, 
+              private tokenSvc: TokenService,
+              private playSongService: PlaySongService) {}
 
   ngOnInit() {
     const token = this.tokenSvc.getToken();

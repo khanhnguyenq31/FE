@@ -4,14 +4,7 @@
 </head>
 <body>
     <div class="container">
-        <app-sidebarsection></app-sidebarsection>
         <div class="content">
-            <div class="header">
-                <div class="profile-menu">
-                    <app-profilemenu></app-profilemenu>
-                </div>
-            </div>
-
             <div class="form-container">
               
               <div class="upload-container" (click)="triggerFileInput()">
@@ -22,9 +15,7 @@
               </div>
               
               <button (click)="uploadImage()">Upload Image</button>
-            </div>
 
-            <div class="form-container">
                 <form (ngSubmit)="updateUserInfo()">
                   <div class="form-group">
                     <label for="username">Username</label>
@@ -39,34 +30,32 @@
                     <input id="password" type="password" [(ngModel)]="password" name="password" required />
                   </div>
                   <div class="form-group">
-                    <label for="confirm_password">Confirm password</label>
+                    <label for="confirm_password">Confirm Password</label>
                     <input id="confirm_password" type="password" [(ngModel)]="confirmPassword" name="confirm_password" required />
                   </div>
                   <div class="form-group">
                     <label for="country">Country</label>
                     <select id="country" [(ngModel)]="country" name="country" required>
-                        <option value="" disabled selected>Chọn quốc gia</option>
-                        <option value="Vietnam">Việt Nam</option>
-                        <option value="Chile">Chi Lê</option>
-                        <option value="USA">Mỹ</option>
-                        <option value="South Korea">Hàn Quốc</option>
-                        <option value="China">Trung Quốc</option>
-                        <option value="Thailand">Thái Lan</option>
-                        <option value="Japan">Nhật Bản</option>
-                        <option value="Australia">Úc</option>
-                        <option value="UK">Anh</option>
+                        <option value="" disabled selected>Select a country</option>
+                        <option value="Vietnam">Vietnam</option>
+                        <option value="Chile">Chile</option>
+                        <option value="USA">United States</option>
+                        <option value="South Korea">South Korea</option>
+                        <option value="China">China</option>
+                        <option value="Thailand">Thailand</option>
+                        <option value="Japan">Japan</option>
+                        <option value="Australia">Australia</option>
+                        <option value="UK">United Kingdom</option>
                     </select>
                 </div>
                   <div class="form-group">
                     <label for="date_of_birth">Date of Birth</label>
                     <input id="date_of_birth" type="date" [(ngModel)]="dateOfBirth" name="date_of_birth" required />
                   </div>
-                  <button type="submit">Cập nhật thông tin</button>
+                  <button type="submit">Update Information</button>
                 </form>
               </div>
         </div>
     </div>
-
-    <div class="footer"></div>
 </body>
 </html>

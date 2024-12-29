@@ -1,57 +1,49 @@
 <!-- Header Section -->
 <header>
   <img
-    src="https://i.pinimg.com/236x/b0/51/a9/b051a93df2f9d343e2b7f835c2a8310a.jpg"
+    src="https://res.cloudinary.com/dlt4ash36/image/upload/v1700793822/Spotify_Logo_zhfwpq.png"
     alt="Spotify-Logo"
     id="spotify-logo"
   />
-  <div class="mode-container">
-    <i class="bi bi-brightness-high-fill" id="themeIcon"></i>
-    <p id="toggle-paragraph">Toggle Light Mode</p>
-  </div>
+  <p><strong>Music Web</strong></p>
 </header>
 <div id="nav-line"></div>
 <!-- Login Section -->
-<section id="main-container">
-  <p id="validationMessage">Incorrect username or password.</p>
 
-  <!-- Login Form -->
-  <form #loginForm="ngForm" (ngSubmit)="login()" novalidate>
-    <div id="login-form">
-      <div class="email-container">
-        <label>Email address</label>
-        <!-- Thêm name="email" -->
-        <input
-          type="text"
-          placeholder="Email address..."
-          id="email"
-          [(ngModel)]="email"
-          name="email"
-          required
-        />
-      </div>
-      <div id="password-container">
-        <label>Password</label>
-        <div id="password-elements">
-          <!-- Thêm name="password" -->
+<div *ngIf="loadingList" class="spinner-container">
+  <div class="spinner"></div>
+</div>
+
+<section *ngIf="!loadingList" class="container">
+  <section id="main-container">
+  
+    <!-- Login Form -->
+    <form #loginForm="ngForm" (ngSubmit)="login()" novalidate>
+      <div id="login-form">
+        <div class="email-container">
+          <label>Email address</label>
+          <!-- Thêm name="email" -->
           <input
-            type="password"
-            placeholder="Password..."
-            id="login-password"
-            [(ngModel)]="password"
-            name="password"
+            type="text"
+            placeholder="Email address..."
+            id="email"
+            [(ngModel)]="email"
+            name="email"
             required
           />
-          <i class="fa-solid fa-eye-slash" id="eye-icon"></i>
         </div>
-      </div>
-
-      <div id="checkbox-login-container">
-        <div>
-          <p class="forgot-paragraph">Forgot your password?</p>
-          <div class="checkbox-container">
-            <input type="checkbox" id="check-box" checked />
-            <p>Remember me</p>
+        <div id="password-container">
+          <label>Password</label>
+          <div id="password-elements">
+            <!-- Thêm name="password" -->
+            <input
+              type="password"
+              placeholder="Password..."
+              id="login-password"
+              [(ngModel)]="password"
+              name="password"
+              required
+            />
           </div>
         </div>
         <button id="login-btn" type="submit">LOG IN</button>
@@ -72,7 +64,7 @@
   <!-- Sign Up -->
   <div id="sign-up-section">
     <h3>Don't have an account ?</h3>
-    <button id="signup-btn" routerLink="/signup">Sign up for BK Music</button>
+    <button id="signup-btn" routerLink="/signup">Sign up for Spotify</button>
   </div>
 
   <!-- reCAPTCHA -->

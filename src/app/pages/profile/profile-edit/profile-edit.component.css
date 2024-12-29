@@ -6,26 +6,11 @@ body {
 
 .container {
     display: flex;
-    height: 100vh; /* Chiều cao toàn bộ màn hình */
 }
 
 .content {
-    margin-left: 300px; /* Khoảng cách từ sidebar */
     padding: 1rem; /* Padding cho nội dung */
     flex: 1; /* Chiếm toàn bộ không gian còn lại */
-}
-
-.header {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin-bottom: 2rem; /* Khoảng cách dưới header */
-}
-
-.profile-menu {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
 }
 
 .form-container {
@@ -98,10 +83,7 @@ select {
     border: none; /* Không có viền */
     border-radius: 4px; /* Bo góc */
     background-color: #2d2d2d; /* Màu nền cho ô nhập */
-    color: white; /* Màu chữ */
-    /*appearance: none;*/ /* Ẩn kiểu mặc định của trình duyệt */
-    /*-webkit-appearance: none;*/ /* Ẩn kiểu mặc định trên Safari */
-    /*-moz-appearance: none;*/ /* Ẩn kiểu mặc định trên Firefox */
+    color: white; 
 }
 
 .edit-text {
@@ -112,14 +94,6 @@ select {
     color: black; /* Màu chữ */
     opacity: 0; /* Ẩn chữ ban đầu */
     transition: opacity 0.3s; /* Hiệu ứng chuyển tiếp */
-}
-
-.profile-picture:hover .edit-text {
-    opacity: 1; /* Hiện chữ khi rê chuột vào */
-}
-
-.footer {
-    height: 300px;
 }
 
 /* src/app/pages/profile/profile-edit/profile-edit.component.css */

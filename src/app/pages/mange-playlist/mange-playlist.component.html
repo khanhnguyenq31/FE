@@ -1,0 +1,90 @@
+<div class="container">
+    <!-- Loading spinner -->
+    <div *ngIf="loadingList" class="spinner-container">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Form & Table khi đã tải xong -->
+    <form *ngIf="!loadingList" (ngSubmit)="submitAllSelections()">
+        <table class="song-list">
+        <thead>
+            <tr>
+            <th>#</th>
+            <th>Image</th>
+            <th>Playlist Name</th>
+            <th>User Name</th>
+            <th>Public/Private</th>
+            <th>Status</th>
+            <th>Detail</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let playlist of playlists; let i = index">
+            <td> {{i + 1}}</td>
+            <td>
+                <img 
+                [src]="playlist.cover_url"
+                class="song-image" />
+            </td>
+            <td>{{ playlist.name }}</td>
+            <td>{{ playlist.user }}</td>
+            <td><label>{{ playlist.is_public ? 'Public' : 'Private' }}</label></td>
+            <td>
+                <select (change)="onChange(playlist.id, $event)" [value]="playlist.status">
+                    <option value="DRAFT">Draft</option>
+                    <option value="PENDING">Pending</option>
+                    <option value="APPROVED">Approve</option>
+                    <option value="REJECTED">Reject</option>
+                </select>
+            </td>
+            <td>
+                <button type="button" (click)="viewDetails(playlist.id)">Xem chi tiết</button>
+            </td>
+            </tr>
+        </tbody>
+        </table>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+<!-- Modal -->
+<div *ngIf="selectedPlaylist" class="modal">
+    <div class="modal-content">
+        <div *ngIf="!loadingSongList" class="album-image-container">
+            <p><strong>Album:</strong> {{ selectedPlaylist.name }}</p>
+        </div>
+
+        <div *ngIf="!loadingSongList" class="album-image-container">
+            <button type="button" class="playButton" (click)="playPlaylist()">
+                <img [src]="selectedPlaylist.cover_url" alt="{{ selectedPlaylist.name }}" class="album-image-modal" />    
+            </button>
+        </div>
+
+        <div *ngIf="loadingSongList" class="spinner-container">
+            <div class="spinner"></div>
+        </div>
+
+        <table *ngIf="!loadingSongList" class="song-list">
+            <thead>
+                <tr>
+                <th>#</th>
+                <th>Image</th>
+                <th>Song Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let song of songs; let i = index">
+                <td>{{ i + 1}}</td>
+                <td>
+                    <img 
+                    [src]="song.public_image_id"
+                    class="song-image" />
+                </td>
+                <td>{{ song.name }}</td>
+                </tr>
+            </tbody>
+        </table>
+    
+        <button (click)="closeModal()" id="close">Close</button>
+    </div>
+</div>

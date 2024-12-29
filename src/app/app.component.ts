@@ -1,23 +1,13 @@
 import { Component, NgModule } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
+import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { SongsectionComponent } from "./components/songsection/songsection.component";
-import { CreatelistComponent } from './pages/createlist/createlist.component';
-import { PlaylistComponent } from './pages/playlist/playlist.component';
-import { SidebarsectionComponent } from "./components/sidebarsection/sidebarsection.component";
 import { Router, NavigationEnd } from '@angular/router';
-import { NewAlbumComponent } from './artist/albums/new-album/new-album.component';
-import { SongsComponent } from './artist/songs/songs.component';
-import { AlbumsComponent } from './artist/albums/albums.component';
-import { NewSongComponent } from './artist/songs/new-song/new-song.component';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterLink, RouterOutlet, HomeComponent, CommonModule, SongsectionComponent, CreatelistComponent, PlaylistComponent, 
-    SidebarsectionComponent,FormsModule, NewAlbumComponent, SongsComponent, AlbumsComponent,NewSongComponent],
+  imports: [ RouterOutlet, CommonModule,FormsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

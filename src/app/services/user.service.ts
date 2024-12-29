@@ -61,8 +61,6 @@ export class UserService {
         });
     }
 
-    
-
     private apiResetPassword = `${environment.apiBaseUrl}/users/reset-password`;
     resetPassword(userId: number, token: string): Observable<ApiResponse> {
         this.apiResetPassword += `${userId}`;

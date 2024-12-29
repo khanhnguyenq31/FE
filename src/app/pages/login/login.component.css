@@ -1,55 +1,53 @@
-
 header {
     height: 14vh;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     gap: 1rem;
     padding: 0 4rem;
+
+    margin-bottom: 20px;
 }
 
-#spotify-logo {
-    width: 75px;
+header p {
+    font-size: 30px;
 }
 
-.mode-container {
-    position: relative;
-}
-
-#themeIcon {
-    font-size: 25px;
-    cursor: pointer;
-}
-
-#toggle-paragraph {
-    display: none;
-    font-size: 13px;
-    position: absolute;
-    top: -1rem;
-    right: -2.5rem;
-    width: 115px;
-}
-
-@media (max-width:768px) {
-    header {
-        padding: 0 3rem 0 1rem;
-    }
+#app-logo {
+    width: 60px;
+    border-radius: 100%;
 }
 
 #nav-line {
     width: 100%;
     border-top: 0.5px solid #dfdcdc;
+    
+    margin-bottom: 5px;
 }
 
-/* Login Section */
+.container {
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+}
+
+.thumbnail {
+    height: 600px;
+}
 
 #main-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 2rem 2rem 0rem 2rem;
-    position: relative;
+    padding: 2rem;
+
+    margin: auto;
+    border-radius: 1rem;
+    width: fit-content;
+    background-color: #000000;
+
+    color: white;
 }
 
 #validationMessage {
@@ -65,19 +63,18 @@ header {
 .email-container {
     display: flex;
     flex-direction: column;
-    
 }
 
 #email,
 #password-elements {
     outline: none;
     background-color: transparent;
-    color: black;
+    color: rgb(255, 255, 255);
     border: 1px solid #757676;
     border-radius: 8px;
     width: 30rem;
     padding: 14px 15px;
-    margin: 10px 0px;
+    margin: 10px 0;
     font-size: 15px;
     font-weight: 500;
 }
@@ -90,16 +87,12 @@ header {
 
 #login-password {
     background-color: transparent;
-    color: black;
+    color: rgb(255, 255, 255);
     border: none;
     outline: none;
     font-size: 15px;
     font-weight: 500;
     width: 80%;
-}
-
-#eye-icon {
-    color: #ff0000;
 }
 
 label {
@@ -109,7 +102,7 @@ label {
 a {
     color: #000000;
     font-weight: 600;
-    margin: 12px 0px;
+    margin: 12px 0;
 }
 
 #checkbox-login-container {
@@ -124,37 +117,32 @@ a {
     gap: 1rem;
 }
 
-#checkbox-login-container p {
-    font-size: 14px;
-    font-weight: 600;
-}
-
-#check-box {
-    width: 16px;
-    height: 16px;
-    accent-color: #169b45;
-}
-
-input[type="checkbox"]:focus {
-    outline: 2.5px solid black;
-    outline-offset: 4px;
+.role-container select {
+  margin-left: 10px;
+  color: #000000;
+  padding: 10px;
+  border-radius: 1rem;
 }
 
 #login-btn {
-    background-color: #1ed760;
+    background-color: #ffffff;
     width: 7rem;
     padding: 13px 10px;
     border: none;
     border-radius: 25px;
     font-size: 16px;
     font-weight: 600;
-    transition: ease-in-out 0.2s;
+    transition: transform 0.2s ease-in-out;
     cursor: pointer;
+    color: rgb(0, 0, 0);
+}
+
+#login-btn:hover {
+    transform: scale(1.05);
 }
 
 .bottom-line {
-    margin-top: 20px;
-    margin-bottom: 30px;
+    margin: 20px 0 30px;
     border: 1px solid #d9dadc;
     width: 470px;
 }
@@ -164,13 +152,12 @@ input[type="checkbox"]:focus {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 5px;
-    margin-bottom: 15px;
+    margin: 5px 0 15px;
 }
 
 #signup-btn {
     width: 30rem;
-    padding: 12px 0px;
+    padding: 12px 0;
     margin-top: 25px;
     font-size: 15px;
     font-weight: 700;
@@ -178,111 +165,54 @@ input[type="checkbox"]:focus {
     letter-spacing: 0.5px;
     cursor: pointer;
     background-color: transparent;
-    color: #757676;
+    color: #000000;
     border: 1px solid #757676;
+    background-color: white;
     text-transform: uppercase;
 }
 
-@media (max-width: 550px) {
+@media (max-width: 768px) {
+    header {
+        padding: 0 3rem 0 1rem;
+    }
 
+    .thumbnail {
+        display: none;
+    }
+}
+
+@media (max-width: 550px) {
     #signup-btn,
     #email,
     #password-elements,
     #validationMessage,
+    #main-container
     .bottom-line {
         width: 90vw;
     }
+    #main-container {
+        border-radius: 0;
+    }
 }
 
-/* Captcha */
-
-.recaptcha-section {     
-    position: absolute;
-    right: 0;
-    bottom: -4rem;
+.spinner-container {
     display: flex;
-    align-items: center;
     justify-content: center;
-}
-
-.outside-recaptcha {
-    width: 80px;
-    height: 60px;
-    box-shadow: #757676 0 0 10px;
-    display: flex;
     align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    transition: 0.5s ease-in-out;
+    height: 200px; /* Chiều cao của container */
+  }
+  
+.spinner {
+    border: 6px solid #f3f3f3; /* Light grey */
+    border-top: 6px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
 }
 
-.outside-recaptcha img {
-    width: 40px;
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
-
-.outside-recaptcha p {
-    font-size: 9px;
-    color: #757676;
-}
-
-.inside-recaptcha {
-    background-color: #1877f2;
-    color: #ffffff;
-    height: 60px;
-    width: 200px;
-    padding-top: 10px;
-    padding-left: 15px;
-    position: absolute;
-    right: 0;
-    transition: 0.5s ease-in-out;
-}
-
-.inside-recaptcha {
-    opacity: 0;
-}
-
-.recaptcha-section:hover .inside-recaptcha {
-    opacity: 1;
-    transform: translate(0%);
-}
-
-.recaptcha-section:hover .outside-recaptcha {
-    transform: translate(-250%);
-}
-
-
-.inside-span {
-    font-size: 14px;
-}
-
-.re-cap-span {
-    font-size: 12px;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 0.6px;
-}
-
-.re {
-    font-size: 14px;
-    font-weight: bold;
-    letter-spacing: 0.5px;
-}
-
-.inside-recaptcha p {
-    font-size: 11px;
-    padding-top: 4px;
-}
-
-/* Hover Efect */
-
-.forgot-paragraph {
-    margin-bottom: 1rem;
-}
-
-.forgot-paragraph:hover {
-    color: #169b45;
-}
-
-#login-btn:hover {
-    transform: scale(1.05);
-}
+  

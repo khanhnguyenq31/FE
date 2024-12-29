@@ -1,27 +1,23 @@
-<div class="header">
-        <a [routerLink]="role === 'LISTENER' ? '/afterlogin/listenerpage/search' : '/afterlogin/artistpage/search'" class="search-bar">
-        <i class="fas fa-search search-icon"></i>
-        <input type="text" placeholder="Bạn muốn phát nội dung gì?">
-        <i class="fas fa-folder-open clear-icon"></i>
-        </a>
-        <app-profilemenu></app-profilemenu> 
-</div>
-
-<app-sidebarsection></app-sidebarsection>
-
-<div class="main-container">
-    <div class="spotify-playlists">
-        <h2>Popular Music</h2>
-        <div>
-            <div *ngFor="let row of songs" class="list">
-                <div *ngFor="let song of row" class="item">
-                    <button (click)="playSong(song)">
-                        <img [src]="song.public_image_id" alt="">
-                        <h4>{{song.name}}</h4>
-                        <p>{{song.artist_name}}</p>
-                    </button>
+<main>
+    <div class="main-container">
+        <div *ngIf="loadingSongList" class="spinner-container">
+            <div class="spinner"></div>
+        </div>
+    
+        <div *ngIf="!loadingSongList" class="spotify-playlists">
+            
+            <h2>Popular Music</h2>
+            <div>
+                <div *ngFor="let row of songs" class="list">
+                    <div *ngFor="let song of row" class="item">
+                        <button (click)="playSong(song)">
+                            <img [src]="song.public_image_id" alt="">
+                            <h4>{{song.name}}</h4>
+                            <p>{{song.artist_name}}</p>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-        </div>
-</div>
+    </div>
+</main>

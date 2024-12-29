@@ -2,64 +2,54 @@ header {
     height: 14vh;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     gap: 1rem;
     padding: 0 4rem;
+
+    margin-bottom: 20px;
 }
 
-#spotify-logo {
-    width: 75px;
+header p {
+    font-size: 30px;
 }
 
-.mode-container {
-    position: relative;
-}
-
-#themeIcon {
-    font-size: 25px;
-    cursor: pointer;
-}
-
-#toggle-paragraph {
-    display: none;
-    font-size: 13px;
-    position: absolute;
-    top: -1rem;
-    right: -2.5rem;
-    width: 115px;
+#app-logo {
+    width: 60px;
+    border-radius: 100%;
 }
 
 #nav-line {
     width: 100%;
     border-top: 0.5px solid #dfdcdc;
+    
+    margin-bottom: 5px;
 }
 
-@media (max-width:768px) {
-    header {
-        padding: 0 3rem 0 1rem;
-    }
+.container {
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
 }
 
-/* Signup Section */
+.thumbnail {
+    height: 600px;
+}
 
 #main-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 2rem 2rem 5rem 2rem;
-    position: relative;
+    padding: 2rem;
+
+    margin: 20px auto;
+    border-radius: 1rem;
+    width: fit-content;
+    background-color: #000000;
+
+    color: white;
 }
 
-#validationMessage {
-    background-color: #ff0000;
-    color: #ffffff;
-    width: 30rem;
-    padding: 15px;
-    margin: 15px 0;
-    font-weight: 600;
-    display: none;
-}
 
 .avatar-container {
     display: flex;
@@ -80,7 +70,7 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 2px solid #1ed760;
+    border: 2px solid #ffffff;
 }
 
 .avatar-preview-image {
@@ -99,23 +89,32 @@ header {
     display: none;
 }
 
-.email-container,
-.user-container {
+
+#validationMessage {
+    background-color: #ff0000;
+    color: #ffffff;
+    width: 30rem;
+    padding: 15px;
+    margin: 15px 0;
+    font-weight: 600;
+    display: none;
+}
+
+.email-container {
     display: flex;
     flex-direction: column;
 }
 
-#username,
 #email,
 #password-elements {
     outline: none;
     background-color: transparent;
-    color: black;
+    color: rgb(255, 255, 255);
     border: 1px solid #757676;
     border-radius: 8px;
     width: 30rem;
     padding: 14px 15px;
-    margin: 10px 0px;
+    margin: 10px 0;
     font-size: 15px;
     font-weight: 500;
 }
@@ -126,18 +125,13 @@ header {
     justify-content: space-between;
 }
 
-#password {
+#login-password {
     background-color: transparent;
-    color: black;
     border: none;
     outline: none;
     font-size: 15px;
     font-weight: 500;
     width: 80%;
-}
-
-#eye-icon {
-    color: #ff0000;
 }
 
 label {
@@ -147,42 +141,62 @@ label {
 a {
     color: #000000;
     font-weight: 600;
-    margin: 12px 0px;
+    margin: 12px 0;
 }
 
+#checkbox-login-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
-#signup-btn {
-    background-color: #1ed760;
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.role-container select {
+  margin-left: 10px;
+  color: #000000;
+  padding: 10px;
+  border-radius: 1rem;
+}
+
+#login-btn {
+    background-color: #ffffff;
     width: 7rem;
     padding: 13px 10px;
     border: none;
     border-radius: 25px;
     font-size: 16px;
     font-weight: 600;
-    transition: ease-in-out 0.2s;
+    transition: transform 0.2s ease-in-out;
     cursor: pointer;
-    text-transform: uppercase;
+    color: rgb(0, 0, 0);
+}
+
+#login-btn:hover {
+    transform: scale(1.05);
 }
 
 .bottom-line {
-    margin-top: 20px;
-    margin-bottom: 30px;
+    margin: 20px 0 30px;
     border: 1px solid #d9dadc;
     width: 470px;
 }
 
-#login-section {
+#sign-up-section {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 5px;
-    margin-bottom: 15px;
+    margin: 5px 0 15px;
 }
 
-#login-btn {
+#signup-btn {
     width: 30rem;
-    padding: 12px 0px;
+    padding: 12px 0;
     margin-top: 25px;
     font-size: 15px;
     font-weight: 700;
@@ -190,103 +204,42 @@ a {
     letter-spacing: 0.5px;
     cursor: pointer;
     background-color: transparent;
-    color: #757676;
+    color: #000000;
     border: 1px solid #757676;
+    background-color: white;
     text-transform: uppercase;
 }
 
-@media (max-width: 550px) {
+#dateOfBirth {
+    margin-left: 10px;
+    color: #000000;
+    padding: 10px;
+    border-radius: 1rem;
 
-    #username,
-    #email,
-    #password-elements,
-    #validationMessage,
-    #login-btn,
-    .bottom-line {
-        width: 90vw;
+    margin: 10px;
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 0 3rem 0 1rem;
+    }
+
+    .thumbnail {
+        display: none;
     }
 }
 
-/* Captcha */
-
-.recaptcha-section {
-    position: absolute;
-    right: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+@media (max-width: 550px) {
+    #signup-btn,
+    #email,
+    #password-elements,
+    #validationMessage,
+    #main-container
+    .bottom-line {
+        width: 90vw;
+    }
+    #main-container {
+        border-radius: 0;
+    }
 }
 
-.outside-recaptcha {
-    width: 80px;
-    height: 60px;
-    box-shadow: #757676 0 0 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    transition: 0.5s ease-in-out;
-}
-
-.outside-recaptcha img {
-    width: 40px;
-}
-
-.outside-recaptcha p {
-    font-size: 9px;
-    color: #757676;
-}
-
-.inside-recaptcha {
-    background-color: #1877f2;
-    color: #ffffff;
-    height: 60px;
-    width: 200px;
-    padding-top: 10px;
-    padding-left: 15px;
-    position: absolute;
-    right: 0;
-    transition: 0.5s ease-in-out;
-}
-
-.inside-recaptcha {
-    opacity: 0;
-}
-
-.recaptcha-section:hover .inside-recaptcha {
-    opacity: 1;
-    transform: translate(0%);
-}
-
-.recaptcha-section:hover .outside-recaptcha {
-    transform: translate(-250%);
-}
-
-
-.inside-span {
-    font-size: 14px;
-}
-
-.re-cap-span {
-    font-size: 12px;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 0.6px;
-}
-
-.re {
-    font-size: 14px;
-    font-weight: bold;
-    letter-spacing: 0.5px;
-}
-
-.inside-recaptcha p {
-    font-size: 11px;
-    padding-top: 4px;
-}
-
-/* Hover Efect */
-
-#signup-btn:hover {
-    transform: scale(1.05);
-}

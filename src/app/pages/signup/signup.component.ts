@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [RouterLink, LoginComponent, FormsModule],
+  imports: [RouterLink, FormsModule],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.css'
 })
