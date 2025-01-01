@@ -33,17 +33,21 @@
             <button (click)="toggleEditModal(); fetchSongs()" class="action-button">Edit Album</button>
         </div>
     </div>
-</div>
+  </div>
 
   <!-- Modal for adding songs -->
   <div class="add-songs-modal" *ngIf="showModal">
     <div class="modal-content">
       <span class="close" (click)="toggleModal()">&times;</span>
       <h2>Select Songs to Add to Album</h2>
-      <div *ngFor="let song of artistSongs">
+      
+      <!-- Input for search -->
+      <input type="text" [(ngModel)]="searchTermForAdd" (input)="filterSongsForAdd()" placeholder="Search songs..." />
+
+      <div *ngFor="let song of filteredSongsForAdd">
         <label>
-          <input type="checkbox" [value]="song.id" (change)="toggleSongSelection(song.id)">
-          {{ song.name }} ({{ song.status }})
+          <input type="checkbox" [checked]="selectedSongs.includes(song.id)" (change)="toggleSongSelection(song.id)">
+          {{ song.name }} 
         </label>
       </div>
       <button (click)="addSongsToAlbum()" class="add-songs-button">Add Songs</button>
@@ -53,30 +57,34 @@
   <!-- Modal for editing album -->
   <div class="edit-album-modal" *ngIf="showEditModal">
     <div class="modal-content">
-        <span class="close" (click)="toggleEditModal()">&times;</span>
-        <h2>Edit Album</h2>
-        
+      <span class="close" (click)="toggleEditModal()">&times;</span>
+      <h2>Edit Album</h2>
+      
+      <label>
+        Album Name:
+        <input type="text" [(ngModel)]="albumName">
+      </label>
+      
+      <label>
+        Album Description:
+        <textarea [(ngModel)]="albumDescription"></textarea>
+      </label>
+      
+      <h3>Select Songs to Remove from Album</h3>
+      
+      <!-- Input for search -->
+      <input type="text" [(ngModel)]="searchTermForEdit" (input)="filterSongsForEdit()" placeholder="Search songs..." />
+
+      <div *ngFor="let song of filteredSongsForEdit">
         <label>
-            Album Name:
-            <input type="text" [(ngModel)]="albumName">
+          <input type="checkbox" [checked]="listDelete.includes(song.id)" (change)="toggleDeleteSong(song.id)">
+          {{ song.name }} 
         </label>
-        
-        <label>
-            Album Description:
-            <textarea [(ngModel)]="albumDescription"></textarea>
-        </label>
-        
-        <h3>Select Songs to Remove from Album</h3>
-        <div *ngFor="let song of songs">
-            <label>
-                <input type="checkbox" [value]="song.id" (change)="toggleDeleteSong(song.id)">
-                {{ song.name }} ({{ song.status }})
-            </label>
-        </div>
-        
-        <button (click)="updateAlbum()" class="update-album-button">Update Album</button>
+      </div>
+      
+      <button (click)="updateAlbum()" class="update-album-button">Update Album</button>
     </div>
-</div>
+  </div>
 
   <div *ngIf="!isLoading" class="content">
     <button class="create-song-button" routerLink="/afterlogin/artistpage/albums/new">

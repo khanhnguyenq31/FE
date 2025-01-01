@@ -7,82 +7,90 @@
     <div class="header-content" [ngStyle]="{'background-image': 'url(' + playlistImage + ')'}">
       <div class="artist-info">
         <div class="verified">
-            <i class="fas fa-check-circle"></i> Verified Playlist
+          <i class="fas fa-check-circle"></i> Verified Playlist
         </div>
         <h1>{{ playlistName }}</h1>
-          <div class="buttons">
-              <button class="play-button" (click)="playPlaylist()">
-                  <i class="fas fa-play"></i>
-              </button>
-              <button class="more-button" (click)="toggleOptionsModal()">
-                  <i class="fas fa-ellipsis-h"></i>
-              </button>
-          </div>
+        <div class="buttons">
+          <button class="play-button" (click)="playPlaylist()">
+            <i class="fas fa-play"></i>
+          </button>
+          <button class="more-button" (click)="toggleOptionsModal()">
+            <i class="fas fa-ellipsis-h"></i>
+          </button>
+        </div>
       </div>
     </div>
-  
+
     <!-- Modal for selecting actions -->
     <div class="action-selection-modal" *ngIf="showOptionsModal">
       <div class="modal-content">
-          <span class="close" (click)="toggleOptionsModal()">&times;</span>
-          <h2>Select Action</h2>
-          <div class="action-buttons">
-              <button (click)="toggleModal(); fetchAllSongs()" class="action-button">Add Songs</button>
-          </div>
-          <div class="action-buttons">
-              <button (click)="toggleEditModal(); fetchSongs()" class="action-button">Edit Playlist</button>
-          </div>
+        <span class="close" (click)="toggleOptionsModal()">&times;</span>
+        <h2>Select Action</h2>
+        <div class="action-buttons">
+          <button (click)="toggleModal(); fetchAllSongs()" class="action-button">Add Songs</button>
+        </div>
+        <div class="action-buttons">
+          <button (click)="toggleEditModal(); fetchSongs()" class="action-button">Edit Playlist</button>
+        </div>
       </div>
     </div>
-  
+
     <!-- Modal for adding songs -->
     <div class="add-songs-modal" *ngIf="showModal">
       <div class="modal-content">
         <span class="close" (click)="toggleModal()">&times;</span>
         <h2>Select Songs to Add to Playlist</h2>
-        <div *ngFor="let song of allSongs">
+        
+        <!-- Input for search -->
+        <input type="text" [(ngModel)]="searchTermForAdd" (input)="filterSongsForAdd()" placeholder="Search songs..." />
+
+        <div *ngFor="let song of filteredSongsForAdd">
           <label>
-            <input type="checkbox" [value]="song.id" (change)="toggleSongSelection(song.id)">
-            {{ song.name }} ({{ song.status }})
+            <input type="checkbox" [checked]="selectedSongs.includes(song.id)" (change)="toggleSongSelection(song.id)">
+            {{ song.name }}
           </label>
         </div>
         <button (click)="addSongsToPlaylist()" class="add-songs-button">Add Songs</button>
       </div>
     </div>
-  
+
     <!-- Modal for editing playlist -->
     <div class="edit-album-modal" *ngIf="showEditModal">
       <div class="modal-content">
-          <span class="close" (click)="toggleEditModal()">&times;</span>
-          <h2>Edit Playlist</h2>
-          
-          <label>
-              Playlist Name:
-              <input type="text" [(ngModel)]="playlistName">
-          </label>
-          
-          <label>
-              Playlist Description:
-              <textarea [(ngModel)]="playlistDescription"></textarea>
-          </label>
-  
-          <label>
-            Status:
-            <select [(ngModel)]="is_public">
-                <option [value]="true">Public</option>
-                <option [value]="false">Private</option>
-            </select>
+        <span class="close" (click)="toggleEditModal()">&times;</span>
+        <h2>Edit Playlist</h2>
+        
+        <label>
+          Playlist Name:
+          <input type="text" [(ngModel)]="playlistName">
         </label>
-          
-          <h3>Select Songs to Remove from Playlist</h3>
-          <div *ngFor="let song of songs">
-              <label>
-                  <input type="checkbox" [value]="song.id" (change)="toggleDeleteSong(song.id)">
-                  {{ song.name }} ({{ song.status }})
-              </label>
-          </div>
-          
-          <button (click)="updatePlaylist()" class="update-album-button">Update Playlist</button>
+        
+        <label>
+          Playlist Description:
+          <textarea [(ngModel)]="playlistDescription"></textarea>
+        </label>
+
+        <label>
+          Status:
+          <select [(ngModel)]="is_public">
+            <option [value]="true">Public</option>
+            <option [value]="false">Private</option>
+          </select>
+        </label>
+        
+        <h3>Select Songs to Remove from Playlist</h3>
+        
+        <!-- Input for search -->
+        <input type="text" [(ngModel)]="searchTermForEdit" (input)="filterSongsForEdit()" placeholder="Search songs..." />
+
+        <div *ngFor="let song of filteredSongsForEdit">
+          <label>
+            <input type="checkbox" [checked]="listDelete.includes(song.id)" (change)="toggleDeleteSong(song.id)">
+            {{ song.name }}
+          </label>
+        </div>
+        
+        <button (click)="updatePlaylist()" class="update-album-button">Update Playlist</button>
       </div>
     </div>
   
@@ -92,7 +100,7 @@
       </button>
       <div class="popular">
         <h2>Song List in Playlist</h2>
-        <table *ngIf="songs.length > 0"> 
+        <table *ngIf="songs.length >  0"> 
           <tbody> 
             <tr *ngFor="let song of songs; let i = index" (click)="playSelectedSong(song)"> 
               <td class="song-number" [attr.data-number]="i + 1"></td> 
@@ -108,5 +116,4 @@
       </div>
     </div>
   </section>
-  
 </body>
