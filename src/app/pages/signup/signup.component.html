@@ -1,15 +1,15 @@
 <!-- Header Section -->
 <header>
-    <img
-      src="../../../assets/images/logo.jpg"
-      id="app-logo"
-    />
+    <img src="../../../assets/images/logo.jpg" id="app-logo" />
     <p><strong>Music Web</strong></p>
-  </header>
+</header>
 <div id="nav-line"></div>
 <!-- Signup Section -->
- 
-<section class="container">
+<div *ngIf="loadingList" class="spinner-container">
+    <div class="spinner"></div>
+</div>
+
+<section *ngIf="!loadingList" class="container">
     <section id="main-container">
         <p id="validationMessage">All input field is required.</p>
         <!-- Signup Form -->
@@ -28,59 +28,74 @@
                         class="avatar-upload-input"
                         name="imageUpload"
                         id="imageUpload"
-                        accept=".jpg, .jpeg, .png, .svg" />
+                        accept=".jpg, .jpeg, .png, .svg"
+                    />
                 </div>
 
                 <!-- Username -->
                 <div class="email-container">
                     <label for="username">User name</label>
-                    <input type="text" placeholder="User name..." id="email"
-                        name="username" [(ngModel)]="username" required>
+                    <input
+                        type="text"
+                        placeholder="User name..."
+                        id="username"
+                        name="username"
+                        [(ngModel)]="username"
+                        required
+                    />
                 </div>
 
                 <!-- Email Address -->
                 <div class="email-container">
                     <label for="email">Email address</label>
-                    <input type="email" placeholder="Email address..." id="email"
-                        name="email" [(ngModel)]="email" required>
+                    <input
+                        type="email"
+                        placeholder="Email address..."
+                        id="email"
+                        name="email"
+                        [(ngModel)]="email"
+                        required
+                    />
                 </div>
 
                 <!-- Password -->
-                <div id="password-container">
+                <div class="email-container">
                     <label>Password</label>
-                    <div id="password-elements">
-                      <!-- Thêm name="password" -->
-                      <input
-                        type="password"
-                        placeholder="Password..."
-                        id="login-password"
-                        [(ngModel)]="password"
-                        name="password"
-                        required
-                      />
-                    </div>
-                </div>
-
-                <div id="password-container">
-                    <label>Password</label>
-                    <div id="password-elements">
-                      <!-- Thêm name="password" -->
                         <input
-                            type="password" 
-                            placeholder="Retype password..."
-                            id="login-password" 
-                            [(ngModel)]="retypePassword"
+                            type="password"
+                            placeholder="Password..."
+                            id="password"
+                            [(ngModel)]="password"
+                            name="password"
                             required
                         />
-                    </div>
+                </div>
+
+                <!-- Retype Password -->
+                <div class="email-container">
+                    <label>Retype Password</label>
+                    <input
+                        type="password"
+                        placeholder="Retype password..."
+                        id="retype-password"
+                        [(ngModel)]="retypePassword"
+                        name="retypePassword"
+                        required
+                    />
                 </div>
 
                 <!-- Country -->
                 <div class="role-container">
                     <label for="country">Country</label>
-                    <select id="country" name="country" [(ngModel)]="country"
-                        required>
-                        <option value disabled selected>Select your country</option>
+                    <select
+                        id="country"
+                        name="country"
+                        [(ngModel)]="country"
+                        required
+                    >
+                        <option value disabled selected>
+                            Select your country
+                        </option>
                         <option value="USA">USA</option>
                         <option value="UK">UK</option>
                         <option value="Vietnam">Vietnam</option>
@@ -91,27 +106,40 @@
                 <!-- Date of Birth -->
                 <div class="dob-container">
                     <label for="dateOfBirth">Date of Birth</label>
-                    <input type="date" id="dateOfBirth" name="dateOfBirth"
-                        [(ngModel)]="dateOfBirth" required>
+                    <input
+                        type="date"
+                        id="dateOfBirth"
+                        name="dateOfBirth"
+                        [(ngModel)]="dateOfBirth"
+                        required
+                    />
                 </div>
 
+                <!-- Role -->
                 <div class="role-container">
                     <label for="role">Select role</label>
-                    <select id="role" [(ngModel)]="roleId" name="role" required>
+                    <select
+                        id="role"
+                        [(ngModel)]="roleId"
+                        name="role"
+                        required
+                    >
                         <option value="2">Artist</option>
                         <option value="3">Listener</option>
                     </select>
                 </div>
-                
-                <button id="signup-btn" (click)="register()">signup</button>
+
+                <button id="signup-btn" (click)="register()">Signup</button>
             </div>
         </form>
 
-        <hr class="bottom-line">
+        <hr class="bottom-line" />
         <!-- Sign Up -->
         <div id="sign-up-section">
-            <h3>Already have an account ?</h3>
-            <button id="signup-btn" routerLink="/login">LogIn for Spotify</button>
+            <h3>Already have an account?</h3>
+            <button id="signup-btn" routerLink="/login">
+                LogIn for Spotify
+            </button>
         </div>
     </section>
 </section>

@@ -63,7 +63,8 @@ export class ProfilemenuComponent {
     this.playSongService.currentTime = "0:00";
     this.playSongService.totalTime = "0:00";
 
-    this.isMenuOpen = false; // Đóng menu sau khi chọn
+    this.isMenuOpen = false; 
+    window.location.href = "/"; 
   }
 
   username: string = '';

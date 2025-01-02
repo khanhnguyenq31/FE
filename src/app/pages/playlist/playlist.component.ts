@@ -83,7 +83,7 @@ export class PlaylistComponent {
   }
 
   fetchAllSongs(): void {
-    this.songService.getAllSong4Listener().subscribe({
+    this.songService.getAllSong4Listener(1, 100).subscribe({
       next: (response: ApiResponse) => {
         if (response.status === 'OK') {
           this.allSongs = response.data.songs;
@@ -139,7 +139,6 @@ export class PlaylistComponent {
     }
   }
   
-
   addSongsToPlaylist(): void {
     const updatedPlaylist = {
         name: this.playlistName, 
@@ -166,9 +165,8 @@ export class PlaylistComponent {
             this.isLoading = false;
         }
     });
-}
+  }
   
-
   updatePlaylist(): void {
     const updatedPlaylist = {
         name: this.playlistName,

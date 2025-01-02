@@ -1,18 +1,16 @@
-<div class="profile-menu" (click)="toggleMenu()">
+<div *ngIf="username" class="profile-menu" (click)="toggleMenu()">
     <div class="profile-info">
-        <img *ngIf="imageUrl; else defaultImage" [src]="imageUrl" alt="Profile" class="profile-image" />
-        <ng-template #defaultImage>
-            <div class="profile-image-container">
-                <i class="fas fa-user"></i>
-            </div>
-        </ng-template>
+        <img *ngIf="imageUrl"  [src]="imageUrl" alt="" class="profile-image" />
+        <div *ngIf="!imageUrl" class="profile-image-container">
+            <i class="fas fa-user"></i>
+        </div>
         <span class="profile-name">{{ username }}</span>
         <mat-icon class="dropdown-icon">arrow_drop_down</mat-icon>
     </div>
     <div *ngIf="isMenuOpen" class="menu">
         <ul>
             <li (click)="navigateTo('profile')">Profile</li>
-            <li><a href="/" (click)="logout()">Log out</a></li>
+            <li><a (click)="logout()">Log out</a></li>
         </ul>
     </div>
 </div>

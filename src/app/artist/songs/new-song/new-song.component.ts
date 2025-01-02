@@ -70,10 +70,7 @@ export class NewSongComponent {
               this.songFile = null;
               this.songImage = null;
 
-              setTimeout(() => {
-                this.isLoading = false;
-                this.successMessage = '';
-              }, 3000);
+              this.isLoading = false;
               
             },
             error: (dbError: HttpErrorResponse) => {

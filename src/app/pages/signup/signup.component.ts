@@ -7,11 +7,12 @@ import { BaseComponent } from '../base/base.component';
 import { ApiResponse } from '../../responses/api.response';
 import { HttpErrorResponse } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [RouterLink, FormsModule],
+  imports: [RouterLink, FormsModule, NgIf],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.css'
 })
@@ -25,6 +26,7 @@ export class SignupComponent extends BaseComponent {
   country: string;
   dateOfBirth: Date;
   roleId: number;
+  loadingList: boolean = false;
 
   constructor() {
     super();
@@ -75,7 +77,6 @@ export class SignupComponent extends BaseComponent {
       `dateOfBirth: ${this.dateOfBirth}` +
       `roleId: ${this.roleId}`;
     //console.error(message);
-    debugger
 
     const registerDTO: RegisterDTO = {
       email: this.email,
@@ -86,21 +87,21 @@ export class SignupComponent extends BaseComponent {
       date_of_birth: this.dateOfBirth,
       role_id: this.roleId
     }
-    debugger
+    
+    this.loadingList = true;
     this.userService.register(registerDTO).subscribe({
       next: (apiResponse: ApiResponse) => {
-        debugger;
+        this.loadingList = false;
+        console.log(registerDTO)
         const confirmation = window
-          .confirm('Đăng ký thành công, mời bạn đăng nhập. Bấm "OK" để chuyển đến trang đăng nhập.');
+          .confirm('Sign up successfully. Log in to discover more songs!!!');
         if (confirmation) {
           this.router.navigate(['/login']);
         }
       },
-      complete: () => {
-        debugger;
-      },
       error: (error: HttpErrorResponse) => {
-        debugger;
+        this.loadingList = false;
+        console.log(error)
       }
     });
   }

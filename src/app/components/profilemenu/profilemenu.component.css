@@ -1,37 +1,47 @@
 .profile-menu {
     position: relative;
-    display: inline-block;
+    display: flex;
     cursor: pointer;
+    width: fit-content;
 }
 
 .profile-info {
     display: flex;
     align-items: center;
-    background-color: #1a1a1a; /* Màu nền */
-    padding: 8px 12px;
-    border-radius: 20px;
+    background-color: #1a1a1a; /* Màu nền tối */
+    padding: 8px 16px; /* Thêm không gian xung quanh */
+    border-radius: 24px; /* Bo góc đẹp hơn */
     color: white;
+    transition: background-color 0.3s ease;
+}
+
+.profile-info:hover {
+    background-color: #292929; /* Hiệu ứng hover */
 }
 
 .profile-image {
     width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin-right: 8px;
+    height: 40px; /* Đảm bảo hình ảnh luôn là hình vuông */
+    border-radius: 50%; /* Làm tròn */
+    margin-right: 12px; /* Khoảng cách so với tên */
+    object-fit: cover; /* Cắt hình hợp lý */
 }
 
 .dropdown-icon {
-    color: white; /* Màu cho biểu tượng dropdown */
+    color: white;
+    font-size: 20px; /* Tăng kích thước biểu tượng */
+    margin-left: 8px; /* Thêm khoảng cách với tên */
 }
 
 .menu {
     position: absolute;
-    top: 100%; /* Xuống dưới profile info */
+    top: calc(100% + 8px); /* Cách profile-info một khoảng */
     right: 0;
-    background-color: #2d2d2d; /* Màu nền cho menu */
-    border-radius: 4px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    z-index: 1000; /* Đảm bảo menu nằm trên các phần tử khác */
+    background-color: #2d2d2d;
+    border-radius: 8px; /* Bo góc mềm mại hơn */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Bóng mềm mại */
+    z-index: 1000;
+    min-width: 150px; /* Đảm bảo chiều rộng tối thiểu */
 }
 
 .menu ul {
@@ -41,22 +51,35 @@
 }
 
 .menu li {
-    padding: 10px 15px;
+    padding: 12px 16px; /* Thêm không gian */
     color: white;
     cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-size: 14px; /* Văn bản rõ ràng */
 }
 
 .menu li:hover {
-    background-color: #444; /* Màu nền khi hover */
+    background-color: #444;
+    color: #f0f0f0; /* Làm nổi bật hơn khi hover */
 }
 
 .profile-image-container {
-    width: 40px; /* Kích thước hình tròn */
-    height: 40px; /* Kích thước hình tròn */
-    background-color: #4a5568; /* Màu nền */
-    border-radius: 50%; /* Hình tròn */
+    width: 40px;
+    height: 40px;
+    background-color: #4a5568;
+    border-radius: 50%;
     display: flex;
     align-items: center;
-    justify-content: center; /* Căn giữa biểu tượng */
-    margin-right: 8px;
+    justify-content: center;
+    color: white;
+    font-size: 20px; /* Kích thước biểu tượng */
+}
+
+.profile-name {
+    font-size: 16px;
+    font-weight: 500; /* Làm chữ đậm vừa phải */
+    white-space: nowrap; /* Tránh bị xuống dòng */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Thêm dấu "..." nếu quá dài */
+    max-width: 120px; /* Giới hạn chiều dài */
 }
