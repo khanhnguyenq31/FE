@@ -32,6 +32,12 @@ export class AlbumsComponent implements OnInit {
   listDelete: number[] = [];
   listAdd: number[] = [];
 
+  searchTermForAdd: string = ''; // Biến để lưu từ khóa tìm kiếm cho modal thêm bài hát
+  filteredSongsForAdd: any[] = []; // Danh sách bài hát đã lọc cho modal thêm bài hát
+
+  searchTermForEdit: string = ''; // Biến để lưu từ khóa tìm kiếm cho modal chỉnh sửa album
+  filteredSongsForEdit: any[] = []; // Danh sách bài hát đã lọc cho modal chỉnh sửa album
+
   constructor(
     private artistAlbumService: ArtistAlbumService,
     private albumService: AlbumService,
@@ -49,45 +55,44 @@ export class AlbumsComponent implements OnInit {
   }
 
   fetchSongs(): void {
-    this.isLoading = true; 
-    this.albumService.getSongsByAlbumId(this.albumId).subscribe({
-      next: (response: ApiResponse) => {
-        if (response.status === 'OK') {
-          this.songs = response.data.songs;
-          this.artistName = response.data.name;
-          this.albumImage = response.data.cover_image_url;
-          this.albumName = response.data.name;
-          this.albumDescription = response.data.description;
-        } else {
-          console.error('Lỗi khi lấy bài hát:', response.message);
-        }
-        this.isLoading = false; 
-      },
-      error: (err) => {
-        console.error('Lỗi:', err);
-        this.isLoading = false; 
+  this.isLoading = true; 
+  this.albumService.getSongsByAlbumId(this.albumId).subscribe({
+    next: (response: ApiResponse) => {
+      if (response.status === 'OK') {
+        console.log(response);
+        this.songs = response.data.songs;
+        this.artistName = response.data.name;
+        this.albumImage = response.data.cover_image_url;
+        this.albumName = response.data.name;
+        this.albumDescription = response.data.description;
+        this.filteredSongsForEdit = this.songs; // Khởi tạo danh sách bài hát đã lọc cho modal chỉnh sửa ```typescript
+      } else {
+        console.error('Lỗi khi lấy bài hát:', response.message);
       }
-    });
-  }
+      this.isLoading = false; 
+    },
+    error: (err) => {
+      console.error('Lỗi:', err);
+      this.isLoading = false; 
+    }
+  });
+}
 
   fetchArtistSongs(): void {
-    this.isLoading = true; 
-    this.artistSongService.getArtistSongs().subscribe({
-      next: (response: ApiResponse) => {
-        if (response.status === 'OK') {
-          this.artistSongs = response.data.songs;
-        } else {
-          console.error('Lỗi khi lấy bài hát của nghệ sĩ:', response.message);
-        }
-        this.isLoading = false; 
-      },
-      error: (err) => {
-        console.error('Lỗi:', err);
-        this.isLoading = false; 
+  this.artistSongService.getArtistSongs().subscribe({
+    next: (response: ApiResponse) => {
+      if (response.status === 'OK') {
+        this.artistSongs = response.data.songs;
+        this.filteredSongsForAdd = this.artistSongs; // Khởi tạo danh sách bài hát đã lọc cho modal thêm bài hát
+      } else {
+        console.error('Lỗi khi lấy bài hát của nghệ sĩ:', response.message);
       }
-    });
-  }
-
+    },
+    error: (err) => {
+      console.error('Lỗi:', err);
+    }
+  });
+}
   playSelectedSong(song: any): void {
     this.dataService.setSelectedSong(song, this.songs);
   }
@@ -115,14 +120,7 @@ export class AlbumsComponent implements OnInit {
     }
   }
 
-  toggleDeleteSong(songId: number): void {
-    const index = this.listDelete.indexOf(songId);
-    if (index > -1) {
-      this.listDelete.splice(index, 1);
-    } else {
-      this.listDelete.push(songId);
-    }
-  }
+ 
 
   toggleOptionsModal(): void {
     this.showOptionsModal = !this.showOptionsModal;
@@ -131,9 +129,18 @@ export class AlbumsComponent implements OnInit {
   toggleSongSelection(songId: number): void {
     const index = this.selectedSongs.indexOf(songId);
     if (index > -1) {
-      this.selectedSongs.splice(index, 1);
+      this.selectedSongs.splice(index, 1); // Xóa bài hát khỏi danh sách đã chọn
     } else {
-      this.selectedSongs.push(songId);
+      this.selectedSongs.push(songId); // Thêm bài hát vào danh sách đã chọn
+    }
+  }
+
+  toggleDeleteSong(songId: number): void {
+    const index = this.listDelete.indexOf(songId);
+    if (index > -1) {
+      this.listDelete.splice(index, 1); // Xóa bài hát khỏi danh sách xóa
+    } else {
+      this.listDelete.push(songId); // Thêm bài hát vào danh sách xóa
     }
   }
 
@@ -180,5 +187,25 @@ export class AlbumsComponent implements OnInit {
             console.error('Lỗi:', err);
         }
     });
+  }
+
+  filterSongsForAdd(): void {
+  if (this.searchTermForAdd) {
+    this.filteredSongsForAdd = this.artistSongs.filter(song => 
+      song.name.toLowerCase().includes(this.searchTermForAdd.toLowerCase())
+    );
+  } else {
+    this.filteredSongsForAdd = this.artistSongs;
+  }
+}
+
+filterSongsForEdit(): void {
+  if (this.searchTermForEdit) {
+    this.filteredSongsForEdit = this.songs.filter(song => 
+      song.name.toLowerCase().includes(this.searchTermForEdit.toLowerCase())
+    );
+  } else {
+    this.filteredSongsForEdit = this.songs;
+  }
 }
 }

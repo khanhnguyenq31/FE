@@ -1,3 +1,4 @@
+/* Hiệu ứng loading */
 
 .spinner-container {
     display: flex;
@@ -15,10 +16,11 @@
     animation: spin 1s linear infinite;
 }
   
-  @keyframes spin {
+@keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
 /* Toàn bộ body */
 body {
     font-family: "Roboto", sans-serif;
@@ -201,7 +203,7 @@ body {
 .action-selection-modal {
     display: flex;
     position: fixed;
-    z-index: 1000;
+    z-index: 5;
     left: 0;
     top: 0;
     width: 100%;
@@ -252,7 +254,7 @@ body {
 .add-songs-modal {
     display: flex;
     position: fixed;
-    z-index: 1000;
+    z-index: 5;
     left: 0;
     top: 0;
     width: 100%;
@@ -269,8 +271,18 @@ body {
     border: 1px solid #888;
     width: 80%;
     max-width: 500px;
+    max-height: 450px;
+    overflow-y: scroll;
+    overflow-x: hidden;
     position: relative;
     border-radius: 8px;
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.add-songs-modal .modal-content::-webkit-scrollbar {
+    display: none;
 }
 
 .add-songs-modal h2 {
@@ -281,7 +293,7 @@ body {
 .edit-album-modal {
     display: flex;
     position: fixed;
-    z-index: 1000;
+    z-index: 5;
     left: 0;
     top: 0;
     width: 100%;
@@ -298,8 +310,18 @@ body {
     border: 1px solid #888;
     width: 80%;
     max-width: 500px;
+    max-height: 450px;
+    overflow-y: scroll;
+    overflow-x: hidden;
     position: relative;
     border-radius: 8px;
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.edit-album-modal .modal-content::-webkit-scrollbar {
+    display: none;
 }
 
 .edit-album-modal h2 {
@@ -350,38 +372,6 @@ body {
     background-color: #1aa34a;
 }
 
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: white;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-/* Nút cập nhật album */
-.update-album-button {
-    background-color: #1DB954;
-    color: white;
-    border: none;
-    border-radius: 20px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    width: 100%;
-    transition: background-color 0.3s ease;
-    margin-top: 10px;
-}
-
-.update-album-button:hover {
-    background-color: #1aa34a;
-}
-
 /* Nút thêm bài hát */
 .add-songs-button {
     background-color: #1DB954;
@@ -397,4 +387,43 @@ body {
 
 .add-songs-button:hover {
     background-color: #1aa34a;
+}
+
+/* Input tìm kiếm trong modal */
+.add-songs-modal input[type="text"],
+.edit-album-modal input[type="text"] {
+    margin-bottom: 15px;
+    background-color: #333;
+    color: white;
+    border: 1px solid #444;
+    border-radius: 4px;
+    padding: 10px;
+    width: 100%;
+}
+
+.add-songs-modal input[type="text"]:focus,
+.edit-album-modal input[type="text"]:focus {
+    border-color: #1DB954;
+    outline: none;
+}
+
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.add-songs-modal label,
+.edit-album-modal label {
+    cursor: pointer;
+    /* Thêm hiệu ứng ngón tay */
 }

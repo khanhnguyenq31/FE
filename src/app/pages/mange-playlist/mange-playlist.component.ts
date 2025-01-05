@@ -18,7 +18,7 @@ export class ManagePlaylistComponent {
                     name: string; 
                     cover_url: string; 
                     is_public: boolean;
-                    user: string;
+                    user: {username: string};
                     status: string }> = [];
 
   playlists_list_approved: number[] = [];

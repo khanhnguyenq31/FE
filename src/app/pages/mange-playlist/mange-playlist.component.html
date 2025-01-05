@@ -27,18 +27,18 @@
                 class="song-image" />
             </td>
             <td>{{ playlist.name }}</td>
-            <td>{{ playlist.user }}</td>
+            <td>{{ playlist.user.username }}</td>
             <td><label>{{ playlist.is_public ? 'Public' : 'Private' }}</label></td>
             <td>
                 <select (change)="onChange(playlist.id, $event)" [value]="playlist.status">
-                    <option value="DRAFT">Draft</option>
-                    <option value="PENDING">Pending</option>
+                    <option value="DRAFT" disabled selected hidden>Draft</option>
+                    <option value="PENDING" disabled selected hidden>Pending</option>
                     <option value="APPROVED">Approve</option>
                     <option value="REJECTED">Reject</option>
                 </select>
             </td>
             <td>
-                <button type="button" (click)="viewDetails(playlist.id)">Xem chi tiết</button>
+                <button type="button" (click)="viewDetails(playlist.id)">Detail</button>
             </td>
             </tr>
         </tbody>

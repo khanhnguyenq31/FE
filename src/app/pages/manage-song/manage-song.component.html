@@ -32,7 +32,7 @@
                 <td><label>{{ song.status }}</label></td>
                 <td>
                     <select (change)="onChange(song.id, $event)" [value]="song.status">
-                        <option value="DRAFT">Draft</option>
+                        <option value="DRAFT" disabled selected hidden>Draft</option>
                         <option value="APPROVED">Approve</option>
                         <option value="REJECTED">Reject</option>
                     </select>

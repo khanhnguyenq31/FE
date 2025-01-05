@@ -11,7 +11,7 @@ import { ApiResponse } from '../../../responses/api.response';
 @Component({
   selector: 'app-new-album',
   standalone: true,
-  imports: [ SidebarsectionComponent, FormsModule, CommonModule],
+  imports: [  FormsModule, CommonModule],
   templateUrl: './new-album.component.html',
   styleUrl: './new-album.component.css'
 })

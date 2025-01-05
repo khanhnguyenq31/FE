@@ -29,14 +29,14 @@
                     </td>
                     <td>
                         <select (change)="onChange(album.id, $event)" [value]="album.status">
-                            <option value="DRAFT">Draft</option>
-                            <option value="PENDING">Pending</option>
+                            <option value="DRAFT" disabled selected hidden>Draft</option>
+                            <option value="PENDING" disabled selected hidden>Pending</option>
                             <option value="APPROVED">Approve</option>
                             <option value="REJECTED">Reject</option>
                         </select>
                     </td>
                     <td>
-                        <button type="button" (click)="viewDetails(album.id)">Xem chi tiết</button>
+                        <button type="button" (click)="viewDetails(album.id)">Detail</button>
                     </td>
                 </tr>
             </tbody>

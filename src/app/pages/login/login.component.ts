@@ -53,21 +53,16 @@ export class LoginComponent extends BaseComponent implements OnInit {
   }
 
   login(): void {
-    if (this.loginForm.invalid) {
-      alert('Please enter valid email and password.');
-      return;
-    }
 
-    if (!this.email || !this.password) {
+    if (!(this.email && this.password)) {
       alert('Please enter both email and password.');
       return;
     }
 
-    if (this.email.endsWith('@gmail.com')) {
-      this.email = this.email; // Gán giá trị vào email
-    } else {
-      this.email = '';
-      this.username = this.email; // Nếu không, gán email là rỗng
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(this.email) ) {
+      alert('Email is not in the right format')
+      return;
     }
 
     const loginDTO: LoginDTO = {

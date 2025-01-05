@@ -7,10 +7,11 @@
         <span class="profile-name">{{ username }}</span>
         <mat-icon class="dropdown-icon">arrow_drop_down</mat-icon>
     </div>
+    
     <div *ngIf="isMenuOpen" class="menu">
         <ul>
             <li (click)="navigateTo('profile')">Profile</li>
-            <li><a (click)="logout()">Log out</a></li>
+            <li (click)="logout()">Log out</li>
         </ul>
     </div>
 </div>

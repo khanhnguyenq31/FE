@@ -55,16 +55,13 @@ export class ProfilemenuComponent {
 
   logout() {
     // Xử lý đăng xuất
-    console.log('Logging out');
+    window.location.href = "/"; 
     this.tokenService.removeToken();
     this.roleService.removeRole();
 
     this.playSongService.play = false;
     this.playSongService.currentTime = "0:00";
     this.playSongService.totalTime = "0:00";
-
-    this.isMenuOpen = false; 
-    window.location.href = "/"; 
   }
 
   username: string = '';

@@ -41,33 +41,6 @@ export class SignupComponent extends BaseComponent {
     this.roleId = 3;
   }
 
-  checkPasswordsMatch() {
-    if (this.password !== this.retypePassword) {
-      this.registerForm.form.controls['retypePassword']
-        .setErrors({ 'passwordMismatch': true });
-    } else {
-      this.registerForm.form.controls['retypePassword'].setErrors(null);
-    }
-  }
-
-  checkAge() {
-    if (this.dateOfBirth) {
-      const today = new Date();
-      const birthDate = new Date(this.dateOfBirth);
-      let age = today.getFullYear() - birthDate.getFullYear();
-      const monthDiff = today.getMonth() - birthDate.getMonth();
-      if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
-        age--;
-      }
-
-      if (age < 18) {
-        this.registerForm.form.controls['dateOfBirth'].setErrors({ 'invalidAge': true });
-      } else {
-        this.registerForm.form.controls['dateOfBirth'].setErrors(null);
-      }
-    }
-  }
-
   register() {
     const message = `email: ${this.email}` +
       `username: ${this.username}` +
@@ -76,7 +49,6 @@ export class SignupComponent extends BaseComponent {
       `country: ${this.country}` +
       `dateOfBirth: ${this.dateOfBirth}` +
       `roleId: ${this.roleId}`;
-    //console.error(message);
 
     const registerDTO: RegisterDTO = {
       email: this.email,
@@ -88,11 +60,32 @@ export class SignupComponent extends BaseComponent {
       role_id: this.roleId
     }
     
+    if (!(registerDTO.email 
+      && registerDTO.password 
+      && registerDTO.role_id 
+      && registerDTO.username 
+      && registerDTO.retype_password
+      && registerDTO.country
+      && registerDTO.date_of_birth)) {
+      alert('Please fill all the information')
+      return;
+    }
+
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(this.email) ) {
+      alert('Email is not in the right format')
+      return;
+    }
+    
+    if (this.password !== this.retypePassword) {
+      alert('Password and retype-password are not the same')
+      return;
+    }
+
     this.loadingList = true;
     this.userService.register(registerDTO).subscribe({
       next: (apiResponse: ApiResponse) => {
         this.loadingList = false;
-        console.log(registerDTO)
         const confirmation = window
           .confirm('Sign up successfully. Log in to discover more songs!!!');
         if (confirmation) {
@@ -101,7 +94,7 @@ export class SignupComponent extends BaseComponent {
       },
       error: (error: HttpErrorResponse) => {
         this.loadingList = false;
-        console.log(error)
+        alert(error.error.message)
       }
     });
   }

@@ -1,7 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { SidebarsectionComponent } from '../../../components/sidebarsection/sidebarsection.component';
 import { HttpErrorResponse } from '@angular/common/http';
 import { UploadSongService } from '../../../services/artist/upload-song.service';
 import { FormsModule } from '@angular/forms';
@@ -9,7 +8,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-new-song',
   standalone: true,
-  imports: [ SidebarsectionComponent, FormsModule, CommonModule],
+  imports: [ FormsModule, CommonModule],
   templateUrl: './new-song.component.html',
   styleUrls: ['./new-song.component.css']
 })
@@ -55,23 +54,23 @@ export class NewSongComponent {
                 this.uploadSongService
                   .uploadSongImage(dbResponse.data.id, this.songImage)
                   .subscribe({
-                    next: (imageResponse) => {
+                    next: (imageResponse) => {              
+                      this.isLoading = false;
                       console.log('Image upload successful:', imageResponse);
                       this.successMessage = 'Song and image created successfully!';
                     },
                     error: (imageError: HttpErrorResponse) => {
+                      this.isLoading = false;
                       console.error('Error uploading image:', imageError);
                       this.errorMessage = 'Song created, but error uploading image.';
                     }
                   });
               } else {
+                this.isLoading = false;
                 this.successMessage = 'Song created successfully!';
               }
               this.songFile = null;
               this.songImage = null;
-
-              this.isLoading = false;
-              
             },
             error: (dbError: HttpErrorResponse) => {
               this.isLoading = false;
